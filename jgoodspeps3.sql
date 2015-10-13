@@ -3,7 +3,7 @@
 --
 -- Loader for PS-3 Database
 --
--- Description:	This script contains the DDL to load
+-- Description: This script contains the DDL to load
 --              the tables of the
 --              INVENTORY database
 --
@@ -48,14 +48,19 @@ DROP sequence jgoodspe.seq_shipment
 -- ******************************************************
 
 
-CREATE table tbComponent (
-        prodNo          char (3)                not null
-            constraint fk_prodNo_tbComponent references tbProduct (prodNo) on delete cascade,
-        compNo          char (2)                not null,
-        partNo          char (2)                null
-            constraint fk_partNo_tbPart references tbPart (partNo) on delete set null,
-        noPartsReq      number (2,0)            default 1     not null,
-            constraint pk_component primary key (prodNo, compNo) 
+CREATE table tbProduct (
+        prodNo          char(3)                 not null
+            constraint pk_product primary key,
+        productName     varchar2(15)            not null,
+        schedule        number(2,0)             not null
+);
+
+
+CREATE table tbVendor (
+        vendorNo        char(3)                 not null
+            constraint pk_vendor primary key,
+        vendorName      varchar2(25)            not null,
+        vendorCity      varchar2(15)            null
 );
 
 
@@ -67,11 +72,14 @@ CREATE table tbPart (
 );
 
 
-CREATE table tbProduct (
-        prodNo          char(3)                 not null
-            constraint pk_product primary key,
-        productName     varchar2(15)            not null,
-        schedule        number(2,0)             not null
+CREATE table tbComponent (
+        prodNo          char (3)                not null
+            constraint fk_prodNo_tbComponent references tbProduct (prodNo) on delete cascade,
+        compNo          char (2)                not null,
+        partNo          char (2)                null
+            constraint fk_partNo_tbPart references tbPart (partNo) on delete set null,
+        noPartsReq      number (2,0)            default 1     not null,
+            constraint pk_component primary key (prodNo, compNo) 
 );
 
 
@@ -97,12 +105,7 @@ CREATE table tbShipment (
 );
 
 
-CREATE table tbVendor (
-        vendorNo        char(3)                 not null
-            constraint pk_vendor primary key,
-        vendorName      varchar2(25)            not null,
-        vendorCity      varchar2(15)            null
-);
+
 
 
 -- ******************************************************
