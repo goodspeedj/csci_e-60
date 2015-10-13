@@ -40,7 +40,7 @@ DROP table tbVendor purge;
 --    DROP SEQUENCES
 -- Note:  Issue the appropiate commands to drop sequences
 -- ******************************************************
-DROP sequence seq_shipment
+DROP sequence JGOODSPE.seq_shipment
 
 
 -- ******************************************************
@@ -213,7 +213,7 @@ INSERT into tbComponent values ('100', '02', '02', 1);
 
 -- Column integrity
 INSERT into tbQuote values ('225', '99', -20.00);
-INSERT into tbVendor values ('890', NULL, 'Dover')
+INSERT into tbPart values ('42', null, 3);
 
 -- ******************************************************
 --    END SESSION
