@@ -213,7 +213,7 @@ INSERT into tbComponent values ('100', '02', '02', 1);
 
 -- Column integrity
 INSERT into tbQuote values ('225', '99', -20.00);
-INSERT into tbVendor values ('890', null, 'Dover')
+INSERT into tbVendor values ('890', NULL, 'Dover')
 
 -- ******************************************************
 --    END SESSION
