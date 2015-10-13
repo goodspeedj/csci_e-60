@@ -40,7 +40,7 @@ DROP table tbVendor purge;
 --    DROP SEQUENCES
 -- Note:  Issue the appropiate commands to drop sequences
 -- ******************************************************
-DROP sequence jgoodspe.seq_shipment
+DROP sequence seq_shipment
 
 
 -- ******************************************************
@@ -124,15 +124,16 @@ CREATE sequence seq_shipment
 --        to populate the tables
 -- ******************************************************
 
-/* inventory tbComponent */
-INSERT into tbComponent values ('100', '01', '05', 2);
-INSERT into tbComponent values ('100', '02', '97', 1);
-INSERT into tbComponent values ('100', '03', '98', 1);
-INSERT into tbComponent values ('100', '04', '99', 1);
-INSERT into tbComponent values ('101', '01', '01', 1);
-INSERT into tbComponent values ('101', '02', '05', 2);
-INSERT into tbComponent values ('101', '03', '98', 1);
-INSERT into tbComponent values ('101', '04', '99', 2);
+/* inventory tbProduct */
+INSERT into tbProduct values ('100', 'Cart', 3);
+INSERT into tbProduct values ('101', 'Wheelbarrow', 3);
+
+
+/* inventory tbVendor */
+INSERT into tbVendor values ('123', 'FirstOne', 'Boston');
+INSERT into tbVendor values ('225', 'SomeStuff', 'Cambridge');
+INSERT into tbVendor values ('747', 'LastChance', 'Belmont');
+INSERT into tbVendor values ('909', 'IHaveIt', 'Boston');
 
 
 /* inventory tbPart */
@@ -143,9 +144,15 @@ INSERT into tbPart values ('98', 'Strut', 15);
 INSERT into tbPart values ('99', 'Handle', 55);
 
 
-/* inventory tbProduct */
-INSERT into tbProduct values ('100', 'Cart', 3);
-INSERT into tbProduct values ('101', 'Wheelbarrow', 3);
+/* inventory tbComponent */
+INSERT into tbComponent values ('100', '01', '05', 2);
+INSERT into tbComponent values ('100', '02', '97', 1);
+INSERT into tbComponent values ('100', '03', '98', 1);
+INSERT into tbComponent values ('100', '04', '99', 1);
+INSERT into tbComponent values ('101', '01', '01', 1);
+INSERT into tbComponent values ('101', '02', '05', 2);
+INSERT into tbComponent values ('101', '03', '98', 1);
+INSERT into tbComponent values ('101', '04', '99', 2);
 
 
 /* inventory tbQuote */
@@ -169,11 +176,7 @@ INSERT into tbShipment values (seq_shipment.nextval, '225', '99', 1, '07-OCT-201
 
 
 
-/* inventory tbVendor */
-INSERT into tbVendor values ('123', 'FirstOne', 'Boston');
-INSERT into tbVendor values ('225', 'SomeStuff', 'Cambridge');
-INSERT into tbVendor values ('747', 'LastChance', 'Belmont');
-INSERT into tbVendor values ('909', 'IHaveIt', 'Boston');
+
 
 
 -- ******************************************************
