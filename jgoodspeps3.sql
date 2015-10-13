@@ -84,7 +84,7 @@ CREATE table tbComponent (
 
 
 CREATE table tbQuote (
-        vendorNo        char(2)                 not null
+        vendorNo        char(3)                 not null
             constraint fk_vendorNo_tbQuote references tbVendor (vendorNo),
         partNo          char(2)                 not null
             constraint fk_partNo_tbQuote references tbPart (partNo) on delete cascade,
@@ -93,7 +93,7 @@ CREATE table tbQuote (
             constraint pk_quote primary key (vendorNo, partNo)
 );
 
--- shipmentDate origianlly not null - are we expected to correct mistakes in the script?
+
 CREATE table tbShipment (
         shipmentNo      number (11,0)           not null
             constraint pk_shipment primary key,
