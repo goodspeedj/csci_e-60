@@ -230,6 +230,18 @@ SELECT productName
   NATURAL JOIN tbPart 
   WHERE partDescr = 'Box';
 
+-- QUERY #3
+
+-- QUERY #4
+SELECT vendorName, partNo, priceQuote 
+  FROM tbQuote a 
+  NATURAL JOIN tbVendor 
+  WHERE priceQuote = (
+    SELECT MIN(priceQuote) 
+    FROM tbQuote b 
+    WHERE b.partNo = a.partNo) 
+  ORDER BY partNo;
+
 -- ******************************************************
 --    END SESSION
 -- ******************************************************
