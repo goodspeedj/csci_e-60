@@ -40,7 +40,7 @@ DROP table tbVendor purge;
 --    DROP SEQUENCES
 -- Note:  Issue the appropiate commands to drop sequences
 -- ******************************************************
-DROP sequence JGOODSPE.seq_shipment
+DROP sequence seq_shipment;
 
 
 -- ******************************************************
