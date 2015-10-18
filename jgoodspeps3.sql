@@ -182,7 +182,7 @@ INSERT into tbShipment values (seq_shipment.nextval, '225', '99', 1, '07-OCT-201
 -- ******************************************************
 --    VIEW TABLES
 --
--- Note:  Issue the appropiate commands to show your data
+-- Note:  Issue the appropriate commands to show your data
 -- ******************************************************
 
 SELECT * FROM tbComponent;
@@ -214,6 +214,21 @@ INSERT into tbComponent values ('100', '02', '02', 1);
 -- Column integrity
 INSERT into tbQuote values ('225', '99', -20.00);
 INSERT into tbPart values ('42', null, 3);
+
+
+-- ******************************************************
+--    ASKING QUESTIONS TO THE DATABASE
+-- 
+-- ******************************************************
+
+-- QUERY #1
+
+-- QUERY #2
+SELECT productName 
+  FROM tbProduct 
+  NATURAL JOIN tbComponent 
+  NATURAL JOIN tbPart 
+  WHERE partDescr = 'Box';
 
 -- ******************************************************
 --    END SESSION
