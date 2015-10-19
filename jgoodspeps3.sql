@@ -256,6 +256,11 @@ SELECT vendorName, partNo, priceQuote
     WHERE b.partNo = a.partNo) 
   ORDER BY partNo;
 
+-- QUERY #5
+SELECT a.vendorName AS Vendor1, b.vendorName AS Vendor2, a.vendorCity 
+  FROM tbVendor a, tbVendor b 
+  WHERE a.vendorCity = b.vendorCity AND a.vendorNo != b.vendorNo;
+
 -- ******************************************************
 --    END SESSION
 -- ******************************************************
