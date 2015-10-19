@@ -222,6 +222,12 @@ INSERT into tbPart values ('42', null, 3);
 -- ******************************************************
 
 -- QUERY #1
+WITH v AS (
+    SELECT partDescr, count(*) AS c 
+    FROM tbComponent NATURAL JOIN tbPart GROUP BY partDescr) 
+SELECT partDescr 
+FROM v 
+WHERE c > 1;
 
 -- QUERY #2
 SELECT productName 
