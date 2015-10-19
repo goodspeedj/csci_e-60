@@ -222,12 +222,14 @@ INSERT into tbPart values ('42', null, 3);
 -- ******************************************************
 
 -- QUERY #1
+-- Assumptions: We would want to know about all future 
+-- Products/Parts not just the existing ones.
 WITH v AS (
     SELECT partDescr, count(*) AS c 
     FROM tbComponent NATURAL JOIN tbPart GROUP BY partDescr) 
 SELECT partDescr 
-FROM v 
-WHERE c > 1;
+  FROM v 
+  WHERE c > 1;
 
 -- QUERY #2
 SELECT productName 
@@ -237,6 +239,12 @@ SELECT productName
   WHERE partDescr = 'Box';
 
 -- QUERY #3
+SELECT a.partNo, partDescr, count(priceQuote) AS numQuote 
+  FROM tbQuote a JOIN tbPart ON a.partNo = tbPart.partNo 
+  WHERE (SELECT count(priceQuote) 
+    FROM tbQuote b 
+    WHERE a.partNo = b.partNo GROUP BY a.partNo) < 2 
+  GROUP BY a.partNo, partDescr;
 
 -- QUERY #4
 SELECT vendorName, partNo, priceQuote 
