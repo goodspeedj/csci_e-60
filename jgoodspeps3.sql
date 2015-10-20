@@ -284,32 +284,22 @@ SELECT a.vendorName AS Vendor1, b.vendorName AS Vendor2, a.vendorCity
 -- Strut                    2
 -- 
 WITH v AS (
-    SELECT DISTINCT partDescr, 
-
-      -- Divide the quantityOnHand by the number of parts used per week
-      FLOOR(((
+    SELECT DISTINCT b.partNo, partDescr, FLOOR(((
         SELECT quantityOnHand 
         FROM tbPart 
-        WHERE b.partNo = partNo) / (
-          (SELECT SUM(noPartsReq) 
-           FROM tbComponent a 
-           WHERE a.partNo = b.partNo) * (
-           SELECT DISTINCT schedule 
+        WHERE b.partNo = partNo) / 
+          (SELECT SUM(schedule * noPartsReq) 
            FROM tbProduct 
-           NATURAL JOIN tbComponent)))) AS week 
-    FROM tbComponent b 
-    JOIN tbPart d ON (b.partNo = d.partNo) 
-    ORDER BY week
-    ) 
-
-  -- Select from the view
-  SELECT * 
-  FROM (
-    SELECT partDescr, MIN(Week) AS week
-    FROM v 
-    GROUP BY partDescr 
-    ORDER BY week ASC) 
-  WHERE ROWNUM = 1;
+           NATURAL JOIN tbComponent 
+           WHERE b.partNo = tbComponent.partNo))) AS week 
+        FROM tbComponent b JOIN tbPart d ON (b.partNo = d.partNo) ORDER BY week) 
+    SELECT * 
+    FROM (
+        SELECT partDescr, MIN(week) AS week 
+        FROM v 
+        GROUP BY partDescr 
+        ORDER BY week ASC) 
+    WHERE ROWNUM = 1;
 
 -- ******************************************************
 --    END SESSION
