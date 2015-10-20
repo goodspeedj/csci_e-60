@@ -284,22 +284,19 @@ SELECT a.vendorName AS Vendor1, b.vendorName AS Vendor2, a.vendorCity
 -- Strut                    2
 -- 
 WITH v AS (
-    SELECT DISTINCT b.partNo, partDescr, FLOOR(((
-        SELECT quantityOnHand 
-        FROM tbPart 
-        WHERE b.partNo = partNo) / 
-          (SELECT SUM(schedule * noPartsReq) 
-           FROM tbProduct 
-           NATURAL JOIN tbComponent 
-           WHERE b.partNo = tbComponent.partNo))) AS week 
-        FROM tbComponent b JOIN tbPart d ON (b.partNo = d.partNo) ORDER BY week) 
-    SELECT * 
-    FROM (
-        SELECT partDescr, MIN(week) AS week 
-        FROM v 
-        GROUP BY partDescr 
-        ORDER BY week ASC) 
-    WHERE ROWNUM = 1;
+  SELECT DISTINCT b.partNo, partDescr, 
+    FLOOR(((SELECT quantityOnHand from tbPart WHERE b.partNo = partNo) / (SELECT SUM(schedule * noPartsReq) FROM tbProduct NATURAL JOIN tbComponent WHERE b.partNo = tbComponent.partNo))) AS week 
+  FROM tbComponent b 
+  JOIN tbPart d ON (b.partNo = d.partNo) 
+  ORDER BY week
+) 
+SELECT * 
+FROM (
+  SELECT partDescr, MIN(week) AS week 
+  FROM v 
+  GROUP BY partDescr 
+  ORDER BY week ASC) 
+WHERE ROWNUM = 1;
 
 -- ******************************************************
 --    END SESSION
