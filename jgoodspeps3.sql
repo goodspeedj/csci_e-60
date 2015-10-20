@@ -267,6 +267,44 @@ SELECT a.vendorName AS Vendor1, b.vendorName AS Vendor2, a.vendorCity
   FROM tbVendor a, tbVendor b 
   WHERE a.vendorCity = b.vendorCity AND a.vendorNo != b.vendorNo;
 
+-- QUERY #7
+-- I am making the following assumption:  my result shows the last week
+-- there will be enough parts.  So the following result shows that the 2nd 
+-- week is the last week there will be enough Struts - the 3rd week there
+-- will not be enough Struts to build anything.
+--
+-- PARTDESCR             WEEK
+-- --------------- ----------
+-- Strut                    2
+-- 
+WITH v AS (
+    SELECT DISTINCT partDescr, 
+
+      -- Divide the quantityOnHand by the number of parts used per week
+      FLOOR(((
+        SELECT quantityOnHand 
+        FROM tbPart 
+        WHERE b.partNo = partNo) / (
+          (SELECT SUM(noPartsReq) 
+           FROM tbComponent a 
+           WHERE a.partNo = b.partNo) * (
+           SELECT DISTINCT schedule 
+           FROM tbProduct 
+           NATURAL JOIN tbComponent)))) AS week 
+    FROM tbComponent b 
+    JOIN tbPart d ON (b.partNo = d.partNo) 
+    ORDER BY week
+    ) 
+
+  -- Select from the view
+  SELECT * 
+  FROM (
+    SELECT partDescr, MIN(Week) AS week
+    FROM v 
+    GROUP BY partDescr 
+    ORDER BY week ASC) 
+  WHERE ROWNUM = 1;
+
 -- ******************************************************
 --    END SESSION
 -- ******************************************************
