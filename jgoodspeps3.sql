@@ -268,9 +268,10 @@ SELECT prodNo, compNo, partNo, partDescr
 
 
 -- QUERY #6
-SELECT a.vendorName AS Vendor1, b.vendorName AS Vendor2, a.vendorCity 
-  FROM tbVendor a, tbVendor b 
-  WHERE a.vendorCity = b.vendorCity AND a.vendorNo != b.vendorNo;
+SELECT a.vendorName AS Vendor1, b.vendorName AS Vendor2, b.vendorCity 
+  FROM tbVendor a 
+  JOIN tbVendor b ON (a.vendorNo > b.vendorNo) 
+  WHERE a.vendorCity = b.vendorCity;
 
 
 -- QUERY #7
@@ -285,7 +286,15 @@ SELECT a.vendorName AS Vendor1, b.vendorName AS Vendor2, a.vendorCity
 -- 
 WITH v AS (
   SELECT DISTINCT b.partNo, partDescr, 
-    FLOOR(((SELECT quantityOnHand from tbPart WHERE b.partNo = partNo) / (SELECT SUM(schedule * noPartsReq) FROM tbProduct NATURAL JOIN tbComponent WHERE b.partNo = tbComponent.partNo))) AS week 
+    FLOOR((
+         (SELECT quantityOnHand 
+          FROM tbPart 
+          WHERE b.partNo = partNo) / 
+         (SELECT SUM(schedule * noPartsReq) 
+          FROM tbProduct 
+          NATURAL JOIN tbComponent 
+          WHERE b.partNo = tbComponent.partNo))
+        ) AS week 
   FROM tbComponent b 
   JOIN tbPart d ON (b.partNo = d.partNo) 
   ORDER BY week
