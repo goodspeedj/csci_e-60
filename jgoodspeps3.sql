@@ -78,6 +78,7 @@ CREATE table tbComponent (
         prodNo          char (3)                not null
             constraint  fk_prodNo_tbComponent references tbProduct (prodNo) on delete cascade,
         compNo          char (2)                not null,
+            constraint  rg_compNo check (REGEXP_LIKE(compNo, '^0[1-9]|10$')),
         partNo          char (2)                null
             constraint  fk_partNo_tbPart references tbPart (partNo) on delete set null,
         noPartsReq      number (2,0)            default 1     not null,
