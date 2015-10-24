@@ -59,7 +59,7 @@ CREATE table tbProduct (
 CREATE table tbVendor (
         vendorNo        char(3)                 not null
             constraint pk_vendor primary key,
-            constraint rg_vendorNo check (length(vendorNo) = 3),
+            constraint rg_vendorNo check REGEXP_LIKE(vendorNo, '^[[:digit:]]{3}$'),
         vendorName      varchar2(25)            not null,
         vendorCity      varchar2(15)            null
 );
