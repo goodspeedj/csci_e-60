@@ -212,11 +212,11 @@ INSERT into tbProduct values (null, 'Mower', 1);
 
 -- Referential integrity
 INSERT into tbQuote values ('567', '01', 30.00);
-INSERT into tbComponent values ('100', '02', '02', 1);
+INSERT into tbComponent values ('200', '02', '02', 1);
 
 -- Column integrity
 INSERT into tbQuote values ('225', '99', -20.00);
-INSERT into tbPart values ('42', null, 3);
+INSERT into tbPart values ('ff', 'Axl', 3);
 
 
 -- ******************************************************
