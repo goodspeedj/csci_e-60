@@ -26,7 +26,7 @@ spool 2015ps3.lst
 
 -- ******************************************************
 --    DROP TABLES
--- Note:  Issue the appropiate commands to drop tables
+-- Note:  Issue the appropriate commands to drop tables
 -- ******************************************************
 DROP table tbShipment purge;
 DROP table tbQuote purge;
@@ -38,7 +38,7 @@ DROP table tbVendor purge;
 
 -- ******************************************************
 --    DROP SEQUENCES
--- Note:  Issue the appropiate commands to drop sequences
+-- Note:  Issue the appropriate commands to drop sequences
 -- ******************************************************
 DROP sequence seq_shipment;
 
@@ -59,6 +59,7 @@ CREATE table tbProduct (
 CREATE table tbVendor (
         vendorNo        char(3)                 not null
             constraint pk_vendor primary key,
+            constraint rg_vendorNo check (length(vendorNo) = 3),
         vendorName      varchar2(25)            not null,
         vendorCity      varchar2(15)            null
 );
@@ -261,13 +262,14 @@ SELECT vendorName, partNo, priceQuote
 
 
 -- QUERY #5
-SELECT prodNo, compNo, partNo, partDescr 
-  FROM tbProduct 
-  NATURAL JOIN tbComponent 
-  NATURAL JOIN tbPart;
+SELECT a.prodNo, b.compNo, c.partNo, c.partDescr 
+  FROM tbProduct a 
+  RIGHT OUTER JOIN tbComponent b ON (a.prodNo = b.prodNo) 
+  RIGHT OUTER JOIN tbPart c ON (b.partNo = c.partNo);
 
 
--- QUERY #6
+-- QUERY #6 
+-- Written to remove redundant rows
 SELECT a.vendorName AS Vendor1, b.vendorName AS Vendor2, b.vendorCity 
   FROM tbVendor a 
   JOIN tbVendor b ON (a.vendorNo > b.vendorNo) 
