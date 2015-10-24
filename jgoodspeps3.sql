@@ -50,7 +50,7 @@ DROP sequence seq_shipment;
 
 CREATE table tbProduct (
         prodNo          char(3)                 not null
-            constraint pk_product primary key,
+            constraint  pk_product primary key,
         productName     varchar2(15)            not null,
         schedule        number(2,0)             not null
 );
@@ -58,8 +58,8 @@ CREATE table tbProduct (
 
 CREATE table tbVendor (
         vendorNo        char(3)                 not null
-            constraint pk_vendor primary key,
-            constraint rg_vendorNo check REGEXP_LIKE(vendorNo, '^[[:digit:]]{3}$'),
+            constraint  pk_vendor primary key,
+            constraint  rg_vendorNo check (REGEXP_LIKE(vendorNo, '^[[:digit:]]{3}$')),
         vendorName      varchar2(25)            not null,
         vendorCity      varchar2(15)            null
 );
@@ -68,6 +68,7 @@ CREATE table tbVendor (
 CREATE table tbPart (
         partNo          char(2)                 not null
             constraint  pk_part primary key,
+            constraint  rg_partNo check (REGEXP_LIKE(partNo, '^[[:digit:]]{2}$')),
         partDescr       varchar2(15)            not null,
         quantityOnHand  number(8,0)             not null
 );
@@ -75,34 +76,34 @@ CREATE table tbPart (
 
 CREATE table tbComponent (
         prodNo          char (3)                not null
-            constraint fk_prodNo_tbComponent references tbProduct (prodNo) on delete cascade,
+            constraint  fk_prodNo_tbComponent references tbProduct (prodNo) on delete cascade,
         compNo          char (2)                not null,
         partNo          char (2)                null
-            constraint fk_partNo_tbPart references tbPart (partNo) on delete set null,
+            constraint  fk_partNo_tbPart references tbPart (partNo) on delete set null,
         noPartsReq      number (2,0)            default 1     not null,
-            constraint pk_component primary key (prodNo, compNo) 
+            constraint  pk_component primary key (prodNo, compNo) 
 );
 
 
 CREATE table tbQuote (
         vendorNo        char(3)                 not null
-            constraint fk_vendorNo_tbQuote references tbVendor (vendorNo),
+            constraint  fk_vendorNo_tbQuote references tbVendor (vendorNo),
         partNo          char(2)                 not null
-            constraint fk_partNo_tbQuote references tbPart (partNo) on delete cascade,
+            constraint  fk_partNo_tbQuote references tbPart (partNo) on delete cascade,
         priceQuote      number(11,2)            default 0     not null
-            constraint rg_priceQuote check (priceQuote >= 0),
-            constraint pk_quote primary key (vendorNo, partNo)
+            constraint  rg_priceQuote check (priceQuote >= 0),
+            constraint  pk_quote primary key (vendorNo, partNo)
 );
 
 
 CREATE table tbShipment (
         shipmentNo      number (11,0)           not null
-            constraint pk_shipment primary key,
+            constraint  pk_shipment primary key,
         vendorNo        char (3)                not null,
         partNo          char (2)                not null,
         quantity        number (4,0)            default 1,
         shipmentDate    date                    default CURRENT_DATE     null,
-            constraint fk_vendorNo_partNo_tbShipment foreign key (vendorNo, partNo) references tbQuote (vendorNo, partNo)
+            constraint  fk_vendorNo_partNo_tbShipment foreign key (vendorNo, partNo) references tbQuote (vendorNo, partNo)
 );
 
 
