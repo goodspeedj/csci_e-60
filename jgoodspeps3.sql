@@ -59,7 +59,7 @@ CREATE table tbProduct (
 CREATE table tbVendor (
         vendorNo        char(3)                 not null
             constraint  pk_vendor primary key,
-            constraint  rg_vendorNo check (REGEXP_LIKE(vendorNo, '^[[:digit:]]{3}$')),
+            constraint  rg_vendorNo check (REGEXP_LIKE(vendorNo, '^[1-9][0-9][0-9]$')),
         vendorName      varchar2(25)            not null,
         vendorCity      varchar2(15)            null
 );
@@ -214,7 +214,7 @@ INSERT into tbProduct values (null, 'Mower', 1);
 INSERT into tbQuote values ('567', '01', 30.00);
 INSERT into tbComponent values ('200', '02', '02', 1);
 
--- Column integrity
+-- Column integrity.  Add negative number and non-number values
 INSERT into tbQuote values ('225', '99', -20.00);
 INSERT into tbPart values ('ff', 'Axl', 3);
 
