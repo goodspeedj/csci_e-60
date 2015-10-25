@@ -244,6 +244,8 @@ SELECT productName
 
 
 -- QUERY #3
+-- I am assuming we do not want to see parts that pass the
+-- requirement (e.g. have 2 or more quotes)
 SELECT a.partNo, partDescr, count(priceQuote) AS numQuote 
   FROM tbQuote a JOIN tbPart ON a.partNo = tbPart.partNo 
   WHERE (SELECT count(priceQuote) 
