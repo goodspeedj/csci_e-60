@@ -93,9 +93,8 @@ CREATE table tbStudyPFCLevel (
             constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbStudyPFCLevel references tbChemical (chemID),
-        pfcLevel           number(3,3)             not null,
+        pfcLevel           number(3,3)          not null,
             constraint  pk_studypfclevel primary key (studyID, chemID)
-
 );
 
 
@@ -104,9 +103,8 @@ CREATE table tbPersonPFCLevel (
             constraint  fk_personID_tbPersonPFCLevel references tbPerson (personID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbPersonPFCLevel references tbChemical (chemID),
-        pfcLevel           number(3,3)             not null,
+        pfcLevel        number(3,3)             not null,
             constraint  pk_personpfclevel primary key (personID, chemID)
-
 );
 
 
@@ -115,12 +113,10 @@ CREATE table tbWellSample (
             constraint pk_wellsample primary key,
         wellID          number(11,0)            not null
             constraint  fk_wellID_tbWellSample references tbWell (wellID),
-        wellID          number(11,0)            not null
-            constraint  fk_wellID_tbWellSample references tbChemical (chemID),
+        chemID          number(11,0)            not null
+            constraint  fk_chemID_tbWellSample references tbChemical (chemID),
         sampleDate      date                    not null,
-        pfcLevel           number(3,3)             not null,
-            constraint  pk_personpfclevel primary key (personID, chemID)
-
+        pfcLevel        number(3,3)             not null
 );
 
 
@@ -130,5 +126,28 @@ CREATE table tbAddress (
         personID         number(11,0)            not null
             constraint  fk_personID_tbAddress references tbPerson (personID),
         address          varchar(45)             not null
-
 );
+
+
+-- ******************************************************
+--    CREATE SEQUENCES
+-- ******************************************************
+CREATE sequence seq_person
+    increment by 1
+    start with 1;
+
+CREATE sequence seq_chemical
+    increment by 1
+    start with 1;
+
+CREATE sequence seq_well
+    increment by 1
+    start with 1;
+
+CREATE sequence seq_sample
+    increment by 1
+    start with 1;
+
+CREATE sequence seq_study
+    increment by 1
+    start with 1;
