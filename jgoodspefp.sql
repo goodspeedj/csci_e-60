@@ -151,3 +151,24 @@ CREATE sequence seq_sample
 CREATE sequence seq_study
     increment by 1
     start with 1;
+
+
+-- ******************************************************
+--    POPULATE TABLES
+-- ******************************************************
+
+/* chemical table */
+INSERT into tbChemical values (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
+INSERT into tbChemical values (seq_chemical.nextval, 'PFHxS', 'Perfluorohexanesulphonic acid', 1.1);
+
+/* study table */
+INSERT into tbStudy values (seq_study.nextval, 'NHANES', '01-OCT-2015', '01-OCT-2015', 100);
+
+/* well table */
+INSERT into tbWell values (seq_well.nextval, 'Haven', '43.082087, -70.812584', 'N');
+INSERT into tbWell values (seq_well.nextval, 'Smith', '43.082087, -70.812584', 'Y');
+INSERT into tbWell values (seq_well.nextval, 'Harrison', '43.082087, -70.812584', 'Y');
+
+/* person table */
+INSERT INTO tbPerson values (seq_person.nextval, '123-p', 40, 13, 'M');
+INSERT INTO tbPerson values (seq_person.nextval, '123-p', 4, 2, 'F');
