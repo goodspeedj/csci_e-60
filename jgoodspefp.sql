@@ -32,6 +32,7 @@ DROP table tbPerson purge;
 DROP table tbWell purge;
 DROP table tbStudy purge;
 DROP table tbChemical purge;
+DROP table tbExposureType purge;
 
 -- ******************************************************
 --    DROP SEQUENCES
@@ -42,6 +43,7 @@ DROP sequence seq_chemical;
 DROP sequence seq_well;
 DROP sequence seq_sample;
 DROP sequence seq_study;
+DROP sequence seq_exposure;
 
 -- ******************************************************
 --    CREATE TABLES
@@ -57,13 +59,22 @@ CREATE table tbChemical (
 );
 
 
+CREATE table tbExposureType (
+        exposureID        number(11,0)            not null
+            constraint pk_exposureType primary key,
+        type              varchar(45)             not null
+);
+
+
 CREATE table tbStudy (
         studyID         number(11,0)            not null
             constraint pk_study primary key,
         name            varchar2(25)            not null,
-        startDate       date                    null,
-        endDate         date                    null,
-        participants    number(11,0)            not null
+        startDate       date                    not null,
+        endDate         date                    not null,
+        participants    number(11,0)            not null,
+        exposureID      number(11,0)            not null
+            constraint fk_exposureID_tbStudy references tbExposureType (exposureID)
 );
 
 
@@ -128,7 +139,6 @@ CREATE table tbAddress (
         address          varchar(45)             not null
 );
 
-
 -- ******************************************************
 --    CREATE SEQUENCES
 -- ******************************************************
@@ -152,6 +162,10 @@ CREATE sequence seq_study
     increment by 1
     start with 1;
 
+CREATE sequence seq_exposure
+    increment by 1
+    start with 1;
+
 
 -- ******************************************************
 --    POPULATE TABLES
@@ -166,11 +180,25 @@ INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFOSA', 'Perfluorooctane s
 INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFNA', 'Perfluorononanoic acid', .09);
 INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFDeA', 'Perfluorodecanoic acid', .09);
 INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
-INSERT into tbChemical VALUES (seq_chemical.nextval, 'Me-PFOSA-AcOH2', '2-(N-methyl-perfluorooctane sulfonamido) aetic acid', .09);
-INSERT into tbChemical VALUES (seq_chemical.nextval, 'Et-PFOSA-AcOH', '2-(N-ethyl-perfluorooctane sulfonamido) aetic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'Me-PFOSA-AcOH2', '2-(N-methyl-perfluorooctane sulfonamido) acetic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'Et-PFOSA-AcOH', '2-(N-ethyl-perfluorooctane sulfonamido) acetic acid', .09);
+
+/* exposure type table */
+INSERT INTO tbExposureType VALUES (seq_exposure.nextval, 'Occupational');
+INSERT INTO tbExposureType VALUES (seq_exposure.nextval, 'Environmental');
+INSERT INTO tbExposureType VALUES (seq_exposure.nextval, 'General Population');
 
 /* study table */
-INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES', '01-OCT-2015', '01-OCT-2015', 100);
+INSERT into tbStudy VALUES (seq_study.nextval, '3M Workers (PFOS and PFOA)', '2000', '2000', 263, 1);
+INSERT into tbStudy VALUES (seq_study.nextval, '3M Workers (PFHxS)', '2004', '2004', 26, 1);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Dupont Workers', '2004', '2004', 1025, 1);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Ohio River Valley', '2005', '2006', 69030, 2);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Decatur, Alabama', '2009', '2009', 153, 2);
+INSERT into tbStudy VALUES (seq_study.nextval, 'East Metro Minnesota Pilot', '2008', '2009', 196, 2);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Red Cross donors', '2006', '2006', 600, 3);
+INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES 1', '2005', '2006', 2120, 3);
+INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES 2', '2011', '2012', 1904, 3);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Schecter', '2012', '2012', 0, 3);
 
 /* well table */
 INSERT into tbWell VALUES (seq_well.nextval, 'Haven', '43.076018, -70.818631', 'N');
