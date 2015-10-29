@@ -130,7 +130,7 @@ CREATE table tbWellSample (
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbWellSample references tbChemical (chemID),
         sampleDate      date                    not null,
-        pfcLevel        number(3,3)             not null
+        pfcLevel        number(3,5)             null
 );
 
 
@@ -255,4 +255,59 @@ INSERT INTO tbStudyPFCLevel VALUES (10, 7, .1, 2.1, null, .1);
 INSERT INTO tbStudyPFCLevel VALUES (10, 8, .1, 28.9, null, .1);
 INSERT INTO tbStudyPFCLevel VALUES (10, 9, .1, .7, null, .1);
 
+/* well sample table */
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 1, '16-APR-2014', .35);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 2, '16-APR-2014', 2.5);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 3, '16-APR-2014', .83);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 4, '16-APR-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 5, '16-APR-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 6, '16-APR-2014', .017);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 7, '16-APR-2014', .0049);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 8, '16-APR-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 9, '16-APR-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 1, '16-APR-2014', .0035);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '16-APR-2014', .018);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 3, '16-APR-2014', .013);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 4, '16-APR-2014', .017);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 5, '16-APR-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 6, '16-APR-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 7, '16-APR-2014', .0044);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 8, '16-APR-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 9, '16-APR-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '16-APR-2014', .009);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '16-APR-2014', .048);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '16-APR-2014', .036);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 4, '16-APR-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 5, '16-APR-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '16-APR-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 7, '16-APR-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 8, '16-APR-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '16-APR-2014', null);
 
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 1, '14-MAY-2014', .32);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 2, '14-MAY-2014', 2.4);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 3, '14-MAY-2014', .96);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 4, '14-MAY-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 5, '14-MAY-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 6, '14-MAY-2014', .017);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 7, '14-MAY-2014', .0043);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 8, '14-MAY-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 9, '14-MAY-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 1, '14-MAY-2014', .0036);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '14-MAY-2014', .015);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 3, '14-MAY-2014', .013);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 4, '14-MAY-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 5, '14-MAY-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 6, '14-MAY-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 7, '14-MAY-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 8, '14-MAY-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 9, '14-MAY-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '14-MAY-2014', .0086);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '14-MAY-2014', .041);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '14-MAY-2014', .032);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 4, '14-MAY-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 5, '14-MAY-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '14-MAY-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 7, '14-MAY-2014', 0);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 8, '14-MAY-2014', null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '14-MAY-2014', null);
