@@ -158,17 +158,25 @@ CREATE sequence seq_study
 -- ******************************************************
 
 /* chemical table */
+INSERT into tbChemical values (seq_chemical.nextval, 'PFOA', 'Perfluorooctanoic acid', .09);
 INSERT into tbChemical values (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
 INSERT into tbChemical values (seq_chemical.nextval, 'PFHxS', 'Perfluorohexanesulphonic acid', 1.1);
+INSERT into tbChemical values (seq_chemical.nextval, 'PFUA', 'Perfluoroundecanoic acid', .09);
+INSERT into tbChemical values (seq_chemical.nextval, 'PFOSA', 'Perfluorooctane sulfonamide', .09);
+INSERT into tbChemical values (seq_chemical.nextval, 'PFNA', 'Perfluorononanoic acid', .09);
+INSERT into tbChemical values (seq_chemical.nextval, 'PFDeA', 'Perfluorodecanoic acid', .09);
+INSERT into tbChemical values (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
+INSERT into tbChemical values (seq_chemical.nextval, 'Me-PFOSA-AcOH2', '2-(N-methyl-perfluorooctane sulfonamido) aetic acid', .09);
+INSERT into tbChemical values (seq_chemical.nextval, 'Et-PFOSA-AcOH', '2-(N-ethyl-perfluorooctane sulfonamido) aetic acid', .09);
 
 /* study table */
 INSERT into tbStudy values (seq_study.nextval, 'NHANES', '01-OCT-2015', '01-OCT-2015', 100);
 
 /* well table */
-INSERT into tbWell values (seq_well.nextval, 'Haven', '43.082087, -70.812584', 'N');
-INSERT into tbWell values (seq_well.nextval, 'Smith', '43.082087, -70.812584', 'Y');
-INSERT into tbWell values (seq_well.nextval, 'Harrison', '43.082087, -70.812584', 'Y');
+INSERT into tbWell values (seq_well.nextval, 'Haven', '43.076018, -70.818631', 'N');
+INSERT into tbWell values (seq_well.nextval, 'Smith', '43.061068, -70.804976', 'Y');
+INSERT into tbWell values (seq_well.nextval, 'Harrison', '43.065879, -70.804495', 'Y');
 
 /* person table */
-INSERT INTO tbPerson values (seq_person.nextval, '123-p', 40, 13, 'M');
-INSERT INTO tbPerson values (seq_person.nextval, '123-p', 4, 2, 'F');
+INSERT INTO tbPerson values (seq_person.nextval, 'PT0576', 40, 13, 'M');
+INSERT INTO tbPerson values (seq_person.nextval, 'PT0577', 4, 2, 'F');
