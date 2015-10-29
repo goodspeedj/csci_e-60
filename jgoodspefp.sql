@@ -104,7 +104,10 @@ CREATE table tbStudyPFCLevel (
             constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbStudyPFCLevel references tbChemical (chemID),
-        pfcLevel           number(3,3)          not null,
+        pfcMin          number(3,3)             null,
+        pfcMax          number(3,3)             null,
+        pfcMean         number(3,3)             null,
+        pfcMedian       number(3,3)             null,
             constraint  pk_studypfclevel primary key (studyID, chemID)
 );
 
@@ -179,7 +182,6 @@ INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFUA', 'Perfluoroundecanoi
 INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFOSA', 'Perfluorooctane sulfonamide', .09);
 INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFNA', 'Perfluorononanoic acid', .09);
 INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFDeA', 'Perfluorodecanoic acid', .09);
-INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
 INSERT into tbChemical VALUES (seq_chemical.nextval, 'Me-PFOSA-AcOH2', '2-(N-methyl-perfluorooctane sulfonamido) acetic acid', .09);
 INSERT into tbChemical VALUES (seq_chemical.nextval, 'Et-PFOSA-AcOH', '2-(N-ethyl-perfluorooctane sulfonamido) acetic acid', .09);
 
@@ -198,7 +200,7 @@ INSERT into tbStudy VALUES (seq_study.nextval, 'East Metro Minnesota Pilot', '20
 INSERT into tbStudy VALUES (seq_study.nextval, 'Red Cross donors', '2006', '2006', 600, 3);
 INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES 1', '2005', '2006', 2120, 3);
 INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES 2', '2011', '2012', 1904, 3);
-INSERT into tbStudy VALUES (seq_study.nextval, 'Schecter', '2012', '2012', 0, 3);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Schecter', '2009', '2009', 300, 3);
 
 /* well table */
 INSERT into tbWell VALUES (seq_well.nextval, 'Haven', '43.076018, -70.818631', 'N');
@@ -228,3 +230,23 @@ INSERT INTO tbPersonPFCLevel VALUES (2, 6, 2);
 INSERT INTO tbPersonPFCLevel VALUES (2, 7, .2);
 INSERT INTO tbPersonPFCLevel VALUES (2, 8, .6);
 INSERT INTO tbPersonPFCLevel VALUES (2, 9, .1);
+
+/* study level table */
+INSERT INTO tbStudyPFCLevel VALUES (9, 1, 0, 43, 2.1, null);
+INSERT INTO tbStudyPFCLevel VALUES (9, 2, .1, 235, 6.3, null);
+INSERT INTO tbStudyPFCLevel VALUES (9, 3, 0, 47.8, 1.3, null);
+INSERT INTO tbStudyPFCLevel VALUES (9, 4, 0, 7, null, null);
+INSERT INTO tbStudyPFCLevel VALUES (9, 5, 0, .6, null, null);
+INSERT INTO tbStudyPFCLevel VALUES (9, 6, 0, 80.8, .9, null);
+INSERT INTO tbStudyPFCLevel VALUES (9, 7, 0, 17.8, .2, null);
+INSERT INTO tbStudyPFCLevel VALUES (9, 8, 0, 4.3, null, null);
+INSERT INTO tbStudyPFCLevel VALUES (9, 9, 0, .7, null, null);
+INSERT INTO tbStudyPFCLevel VALUES (10, 1, 0, 13.5, null, 2.9);
+INSERT INTO tbStudyPFCLevel VALUES (10, 2, .1, 93.3, null, 4.1);
+INSERT INTO tbStudyPFCLevel VALUES (10, 3, 0, 31.2, null, 1.2);
+INSERT INTO tbStudyPFCLevel VALUES (10, 4, null, null, null, null);
+INSERT INTO tbStudyPFCLevel VALUES (10, 5, 0, .6, null, 0);
+INSERT INTO tbStudyPFCLevel VALUES (10, 6, 0, 55.8, null, 1.2);
+INSERT INTO tbStudyPFCLevel VALUES (10, 7, .1, 2.1, null, .1);
+INSERT INTO tbStudyPFCLevel VALUES (10, 8, .1, 28.9, null, .1);
+INSERT INTO tbStudyPFCLevel VALUES (10, 9, .1, .7, null, .1);
