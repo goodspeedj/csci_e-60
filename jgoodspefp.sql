@@ -211,6 +211,10 @@ INSERT into tbWell VALUES (seq_well.nextval, 'Harrison', '43.065879, -70.804495'
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0576', 40, 13, 'M');
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0577', 4, 2, 'F');
 
+/* address table */
+INSERT INTO tbAddress VALUES (seq_address.nextval, 1, '325 Corporate Drive');
+INSERT INTO tbAddress VALUES (seq_address.nextval, 2, '81 New Hampshire Avenue');
+
 /* person PFC level table */
 INSERT INTO tbPersonPFCLevel VALUES (1, 1, 2.6);
 INSERT INTO tbPersonPFCLevel VALUES (1, 2, 12.7);
@@ -250,3 +254,5 @@ INSERT INTO tbStudyPFCLevel VALUES (10, 6, 0, 55.8, null, 1.2);
 INSERT INTO tbStudyPFCLevel VALUES (10, 7, .1, 2.1, null, .1);
 INSERT INTO tbStudyPFCLevel VALUES (10, 8, .1, 28.9, null, .1);
 INSERT INTO tbStudyPFCLevel VALUES (10, 9, .1, .7, null, .1);
+
+
