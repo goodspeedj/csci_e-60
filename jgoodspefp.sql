@@ -158,25 +158,45 @@ CREATE sequence seq_study
 -- ******************************************************
 
 /* chemical table */
-INSERT into tbChemical values (seq_chemical.nextval, 'PFOA', 'Perfluorooctanoic acid', .09);
-INSERT into tbChemical values (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
-INSERT into tbChemical values (seq_chemical.nextval, 'PFHxS', 'Perfluorohexanesulphonic acid', 1.1);
-INSERT into tbChemical values (seq_chemical.nextval, 'PFUA', 'Perfluoroundecanoic acid', .09);
-INSERT into tbChemical values (seq_chemical.nextval, 'PFOSA', 'Perfluorooctane sulfonamide', .09);
-INSERT into tbChemical values (seq_chemical.nextval, 'PFNA', 'Perfluorononanoic acid', .09);
-INSERT into tbChemical values (seq_chemical.nextval, 'PFDeA', 'Perfluorodecanoic acid', .09);
-INSERT into tbChemical values (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
-INSERT into tbChemical values (seq_chemical.nextval, 'Me-PFOSA-AcOH2', '2-(N-methyl-perfluorooctane sulfonamido) aetic acid', .09);
-INSERT into tbChemical values (seq_chemical.nextval, 'Et-PFOSA-AcOH', '2-(N-ethyl-perfluorooctane sulfonamido) aetic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFOA', 'Perfluorooctanoic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFHxS', 'Perfluorohexanesulphonic acid', 1.1);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFUA', 'Perfluoroundecanoic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFOSA', 'Perfluorooctane sulfonamide', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFNA', 'Perfluorononanoic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFDeA', 'Perfluorodecanoic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'Me-PFOSA-AcOH2', '2-(N-methyl-perfluorooctane sulfonamido) aetic acid', .09);
+INSERT into tbChemical VALUES (seq_chemical.nextval, 'Et-PFOSA-AcOH', '2-(N-ethyl-perfluorooctane sulfonamido) aetic acid', .09);
 
 /* study table */
-INSERT into tbStudy values (seq_study.nextval, 'NHANES', '01-OCT-2015', '01-OCT-2015', 100);
+INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES', '01-OCT-2015', '01-OCT-2015', 100);
 
 /* well table */
-INSERT into tbWell values (seq_well.nextval, 'Haven', '43.076018, -70.818631', 'N');
-INSERT into tbWell values (seq_well.nextval, 'Smith', '43.061068, -70.804976', 'Y');
-INSERT into tbWell values (seq_well.nextval, 'Harrison', '43.065879, -70.804495', 'Y');
+INSERT into tbWell VALUES (seq_well.nextval, 'Haven', '43.076018, -70.818631', 'N');
+INSERT into tbWell VALUES (seq_well.nextval, 'Smith', '43.061068, -70.804976', 'Y');
+INSERT into tbWell VALUES (seq_well.nextval, 'Harrison', '43.065879, -70.804495', 'Y');
 
 /* person table */
-INSERT INTO tbPerson values (seq_person.nextval, 'PT0576', 40, 13, 'M');
-INSERT INTO tbPerson values (seq_person.nextval, 'PT0577', 4, 2, 'F');
+INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0576', 40, 13, 'M');
+INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0577', 4, 2, 'F');
+
+/* person PFC level table */
+INSERT INTO tbPersonPFCLevel VALUES (1, 1, 2.6);
+INSERT INTO tbPersonPFCLevel VALUES (1, 2, 12.7);
+INSERT INTO tbPersonPFCLevel VALUES (1, 3, 6.5);
+INSERT INTO tbPersonPFCLevel VALUES (1, 4, 0);
+INSERT INTO tbPersonPFCLevel VALUES (1, 5, 0);
+INSERT INTO tbPersonPFCLevel VALUES (1, 6, .9);
+INSERT INTO tbPersonPFCLevel VALUES (1, 7, .2);
+INSERT INTO tbPersonPFCLevel VALUES (1, 8, .2);
+INSERT INTO tbPersonPFCLevel VALUES (1, 9, 0);
+INSERT INTO tbPersonPFCLevel VALUES (2, 1, 7.2);
+INSERT INTO tbPersonPFCLevel VALUES (2, 2, 10.5);
+INSERT INTO tbPersonPFCLevel VALUES (2, 3, 9.8);
+INSERT INTO tbPersonPFCLevel VALUES (2, 4, .1);
+INSERT INTO tbPersonPFCLevel VALUES (2, 5, .1);
+INSERT INTO tbPersonPFCLevel VALUES (2, 6, 2);
+INSERT INTO tbPersonPFCLevel VALUES (2, 7, .2);
+INSERT INTO tbPersonPFCLevel VALUES (2, 8, .6);
+INSERT INTO tbPersonPFCLevel VALUES (2, 9, .1);
