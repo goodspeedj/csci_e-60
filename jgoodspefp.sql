@@ -54,8 +54,8 @@ CREATE table tbChemical (
         chemID          number(11,0)            not null
             constraint pk_chemical primary key,
         shortName       varchar2(15)            not null,
-        longName        varchar2(40)            not null,
-        epaPHALevel     number(3,2)             not null
+        longName        varchar2(60)            not null,
+        epaPHALevel     number(6,3)             not null
 );
 
 
@@ -69,7 +69,7 @@ CREATE table tbExposureType (
 CREATE table tbStudy (
         studyID         number(11,0)            not null
             constraint pk_study primary key,
-        name            varchar2(25)            not null,
+        name            varchar2(30)            not null,
         startDate       date                    not null,
         endDate         date                    not null,
         participants    number(11,0)            not null,
@@ -104,10 +104,10 @@ CREATE table tbStudyPFCLevel (
             constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbStudyPFCLevel references tbChemical (chemID),
-        pfcMin          number(3,3)             null,
-        pfcMax          number(3,3)             null,
-        pfcMean         number(3,3)             null,
-        pfcMedian       number(3,3)             null,
+        pfcMin          number(6,3)             null,
+        pfcMax          number(6,3)             null,
+        pfcMean         number(6,3)             null,
+        pfcMedian       number(6,3)             null,
             constraint  pk_studypfclevel primary key (studyID, chemID)
 );
 
@@ -117,7 +117,7 @@ CREATE table tbPersonPFCLevel (
             constraint  fk_personID_tbPersonPFCLevel references tbPerson (personID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbPersonPFCLevel references tbChemical (chemID),
-        pfcLevel        number(3,3)             not null,
+        pfcLevel        number(6,3)             not null,
             constraint  pk_personpfclevel primary key (personID, chemID)
 );
 
@@ -130,7 +130,7 @@ CREATE table tbWellSample (
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbWellSample references tbChemical (chemID),
         sampleDate      date                    not null,
-        pfcLevel        number(3,5)             null
+        pfcLevel        number(6,3)             null
 );
 
 
@@ -145,6 +145,11 @@ CREATE table tbAddress (
 -- ******************************************************
 --    CREATE SEQUENCES
 -- ******************************************************
+CREATE sequence seq_address
+    increment by 1
+    start with 1;
+
+
 CREATE sequence seq_person
     increment by 1
     start with 1;
@@ -191,16 +196,16 @@ INSERT INTO tbExposureType VALUES (seq_exposure.nextval, 'Environmental');
 INSERT INTO tbExposureType VALUES (seq_exposure.nextval, 'General Population');
 
 /* study table */
-INSERT into tbStudy VALUES (seq_study.nextval, '3M Workers (PFOS and PFOA)', '2000', '2000', 263, 1);
-INSERT into tbStudy VALUES (seq_study.nextval, '3M Workers (PFHxS)', '2004', '2004', 26, 1);
-INSERT into tbStudy VALUES (seq_study.nextval, 'Dupont Workers', '2004', '2004', 1025, 1);
-INSERT into tbStudy VALUES (seq_study.nextval, 'Ohio River Valley', '2005', '2006', 69030, 2);
-INSERT into tbStudy VALUES (seq_study.nextval, 'Decatur, Alabama', '2009', '2009', 153, 2);
-INSERT into tbStudy VALUES (seq_study.nextval, 'East Metro Minnesota Pilot', '2008', '2009', 196, 2);
-INSERT into tbStudy VALUES (seq_study.nextval, 'Red Cross donors', '2006', '2006', 600, 3);
-INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES 1', '2005', '2006', 2120, 3);
-INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES 2', '2011', '2012', 1904, 3);
-INSERT into tbStudy VALUES (seq_study.nextval, 'Schecter', '2009', '2009', 300, 3);
+INSERT into tbStudy VALUES (seq_study.nextval, '3M Workers (PFOS and PFOA)', '01-JAN-2000', '31-DEC-2000', 263, 1);
+INSERT into tbStudy VALUES (seq_study.nextval, '3M Workers (PFHxS)', '01-JAN-2004', '31-DEC-2004', 26, 1);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Dupont Workers', '01-JAN-2004', '31-DEC-2004', 1025, 1);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Ohio River Valley', '01-JAN-2005', '31-DEC-2006', 69030, 2);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Decatur, Alabama', '01-JAN-2009', '31-DEC-2009', 153, 2);
+INSERT into tbStudy VALUES (seq_study.nextval, 'East Metro Minnesota Pilot', '01-JAN-2008', '31-DEC-2009', 196, 2);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Red Cross donors', '01-JAN-2006', '31-DEC-2006', 600, 3);
+INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES 1', '01-JAN-2005', '31-DEC-2006', 2120, 3);
+INSERT into tbStudy VALUES (seq_study.nextval, 'NHANES 2', '01-JAN-2011', '31-DEC-2012', 1904, 3);
+INSERT into tbStudy VALUES (seq_study.nextval, 'Schecter', '01-JAN-2009', '31-DEC-2009', 300, 3);
 
 /* well table */
 INSERT into tbWell VALUES (seq_well.nextval, 'Haven', '43.076018, -70.818631', 'N');
