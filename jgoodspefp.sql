@@ -46,6 +46,7 @@ DROP sequence seq_sample;
 DROP sequence seq_study;
 DROP sequence seq_exposure;
 DROP sequence seq_samplenote;
+DROP sequence seq_studypfclevel;
 
 -- ******************************************************
 --    CREATE TABLES
@@ -102,6 +103,8 @@ CREATE table tbPerson (
 
 
 CREATE table tbStudyPFCLevel (
+	    studyPfcLevelID number(11,0)            not null
+	        constraint pk_studypfclevel primary key,
         studyID         number(11,0)            not null
             constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID),
         chemID          number(11,0)            not null
@@ -109,8 +112,11 @@ CREATE table tbStudyPFCLevel (
         pfcMin          number(6,3)             null,
         pfcMax          number(6,3)             null,
         pfcMean         number(6,3)             null,
+        pfcGeoMean      number(6,3)             null,
         pfcMedian       number(6,3)             null,
-            constraint  pk_studypfclevel primary key (studyID, chemID)
+        ageRange        varchar2(20)            not null, 
+        adult           char(1)                 not null,
+            constraint  rg_adult check (REGEXP_LIKE(adult, '^Y|N$'))
 );
 
 
@@ -190,6 +196,10 @@ CREATE sequence seq_samplenote
     increment by 1
     start with 1;
 
+CREATE sequence seq_studypfclevel
+    increment by 1
+    start with 1;
+
 
 -- ******************************************************
 --    POPULATE TABLES
@@ -216,11 +226,11 @@ INSERT INTO tbExposureType VALUES (seq_exposure.nextval, 'General Population');
 INSERT INTO tbStudy VALUES (seq_study.nextval, '3M Workers (PFOS and PFOA)', '01-JAN-2000', '31-DEC-2000', 263, 1);
 INSERT INTO tbStudy VALUES (seq_study.nextval, '3M Workers (PFHxS)', '01-JAN-2004', '31-DEC-2004', 26, 1);
 INSERT INTO tbStudy VALUES (seq_study.nextval, 'Dupont Workers', '01-JAN-2004', '31-DEC-2004', 1025, 1);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'Ohio River Valley', '01-JAN-2005', '31-DEC-2006', 69030, 2);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 'Ohio River Valley - C8', '01-JAN-2005', '31-DEC-2006', 69030, 2);
 INSERT INTO tbStudy VALUES (seq_study.nextval, 'Decatur, Alabama', '01-JAN-2009', '31-DEC-2009', 153, 2);
 INSERT INTO tbStudy VALUES (seq_study.nextval, 'East Metro Minnesota Pilot', '01-JAN-2008', '31-DEC-2009', 196, 2);
 INSERT INTO tbStudy VALUES (seq_study.nextval, 'Red Cross donors', '01-JAN-2006', '31-DEC-2006', 600, 3);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'NHANES 1', '01-JAN-2005', '31-DEC-2006', 2120, 3);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 'NHANES 1', '01-JAN-2003', '31-DEC-2004', 2094, 3);
 INSERT INTO tbStudy VALUES (seq_study.nextval, 'NHANES 2', '01-JAN-2011', '31-DEC-2012', 1904, 3);
 INSERT INTO tbStudy VALUES (seq_study.nextval, 'Schecter', '01-JAN-2009', '31-DEC-2009', 300, 3);
 
@@ -265,24 +275,18 @@ INSERT INTO tbPersonPFCLevel VALUES (2, 8, .6);
 INSERT INTO tbPersonPFCLevel VALUES (2, 9, .1);
 
 /* study level table */
-INSERT INTO tbStudyPFCLevel VALUES (9, 1, 0, 43, 2.1, null);
-INSERT INTO tbStudyPFCLevel VALUES (9, 2, .1, 235, 6.3, null);
-INSERT INTO tbStudyPFCLevel VALUES (9, 3, 0, 47.8, 1.3, null);
-INSERT INTO tbStudyPFCLevel VALUES (9, 4, 0, 7, null, null);
-INSERT INTO tbStudyPFCLevel VALUES (9, 5, 0, .6, null, null);
-INSERT INTO tbStudyPFCLevel VALUES (9, 6, 0, 80.8, .9, null);
-INSERT INTO tbStudyPFCLevel VALUES (9, 7, 0, 17.8, .2, null);
-INSERT INTO tbStudyPFCLevel VALUES (9, 8, 0, 4.3, null, null);
-INSERT INTO tbStudyPFCLevel VALUES (9, 9, 0, .7, null, null);
-INSERT INTO tbStudyPFCLevel VALUES (10, 1, 0, 13.5, null, 2.9);
-INSERT INTO tbStudyPFCLevel VALUES (10, 2, .1, 93.3, null, 4.1);
-INSERT INTO tbStudyPFCLevel VALUES (10, 3, 0, 31.2, null, 1.2);
-INSERT INTO tbStudyPFCLevel VALUES (10, 4, null, null, null, null);
-INSERT INTO tbStudyPFCLevel VALUES (10, 5, 0, .6, null, 0);
-INSERT INTO tbStudyPFCLevel VALUES (10, 6, 0, 55.8, null, 1.2);
-INSERT INTO tbStudyPFCLevel VALUES (10, 7, .1, 2.1, null, .1);
-INSERT INTO tbStudyPFCLevel VALUES (10, 8, .1, 28.9, null, .1);
-INSERT INTO tbStudyPFCLevel VALUES (10, 9, .1, .7, null, .1);
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 1, null, null, 77.6, 32.6, 36.9, '< 12 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 2, null, null, 23.6, 20.7, 20.6, '< 12 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 6, null, null, 1.9, 1.6, 1.7, '< 12 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 9, null, null, 1, .7, .7, '< 12 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 1, null, null, 59.9, 25.7, 29.3, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 2, null, null, 21.8, 19.3, 19.1, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 6, null, null, 1.5, 1.4, 1.4, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 9, null, null, .9, .6, .6, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 1, null, null, 58.1, 21.8, 25.2, '20 - 39 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 2, null, null, 20.1, 18.1, 16.8, '20 - 39 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 6, null, null, 1.5, 1.4, 1.4, '20 - 39 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 9, null, null, .9, .5, .6, '20 - 39 years', 'N');
 
 /* well sample table */
 
