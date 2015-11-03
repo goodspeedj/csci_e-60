@@ -296,6 +296,19 @@ INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 2, null, null,
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 6, null, null, 1.5, 1.4, 1.3, '> 60 years', 'Y');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 9, null, null, .8, .3, .5, '> 60 years', 'Y');
 
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 1, null, null, null, 1.8, null, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 1, null, null, null, 2.12, null, '20 years and older', 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 2, null, null, null, 4.16, null, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 2, null, null, null, 6.71, null, '20 years and older', 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 3, null, null, null, 1.28, null, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 3, null, null, null, 1.28, null, '20 years and older', 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 4, null, null, null, .146, null, '20 years and older', 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 6, null, null, null, .741, null, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 6, null, null, null, .903, null, '20 years and older', 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 7, null, null, null, .146, null, '12 - 19 years', 'N');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 9, 7, null, null, null, .209, null, '20 years and older', 'Y');
+
+
 /* well sample table */
 
 /* PFOA */
