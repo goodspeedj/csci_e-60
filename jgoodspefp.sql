@@ -275,6 +275,9 @@ INSERT INTO tbPersonPFCLevel VALUES (2, 8, .6);
 INSERT INTO tbPersonPFCLevel VALUES (2, 9, .1);
 
 /* study level table */
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 1, 1, 40, 12700, 1780, 1130, null, null, 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 1, 2, 60, 10060, 1320, 910, null, null, 'Y');
+
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 1, null, null, 77.6, 32.6, 36.9, '< 12 years', 'N');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 2, null, null, 23.6, 20.7, 20.6, '< 12 years', 'N');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 6, null, null, 1.9, 1.6, 1.7, '< 12 years', 'N');
