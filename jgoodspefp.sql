@@ -59,6 +59,7 @@ CREATE table tbChemical (
         shortName       varchar2(15)            not null,
         longName        varchar2(60)            not null,
         epaPHALevel     number(6,3)             null
+            constraint  rg_epaPHALevel check (epaPHALevel >= 0)
 );
 
 
@@ -75,7 +76,8 @@ CREATE table tbStudy (
         name            varchar2(30)            not null,
         startDate       date                    not null,
         endDate         date                    not null,
-        participants    number(11,0)            not null,
+        participants    number(11,0)            not null
+            constraint  rg_participants check (participants >= 0),
         exposureID      number(11,0)            not null
             constraint fk_exposureID_tbStudy references tbExposureType (exposureID)
 );
@@ -96,7 +98,9 @@ CREATE table tbPerson (
             constraint pk_person primary key,
         nhHHSID         varchar2(10)            not null,
         age             number(3,0)             not null,
-        yearsExposed    number(2,0)             not null,
+            constraint  rg_age check (age >= 0)
+        yearsExposed    number(2,0)             not null
+            constraint  rg_yearsExposed check (yearsExposed >= 0),
         sex             char(1)                 not null,
             constraint  rg_sex check (REGEXP_LIKE(sex, '^M|F$'))
 );
@@ -109,11 +113,16 @@ CREATE table tbStudyPFCLevel (
             constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbStudyPFCLevel references tbChemical (chemID),
-        pfcMin          number(6,3)             null,
-        pfcMax          number(6,3)             null,
-        pfcMean         number(6,3)             null,
-        pfcGeoMean      number(6,3)             null,
-        pfcMedian       number(6,3)             null,
+        pfcMin          number(6,3)             null
+            constraint  rg_pfcMin check (pfcMin >= 0),
+        pfcMax          number(6,3)             null
+            constraint  rg_pfcMax check (pfcMax >= 0),
+        pfcMean         number(6,3)             null
+            constraint  rg_pfcMean check (pfcMean >= 0),
+        pfcGeoMean      number(6,3)             null
+            constraint  rg_pfcGeoMean check (pfcGeoMean >= 0),
+        pfcMedian       number(6,3)             null
+            constraint  rg_pfcMedian check (pfcMedian >= 0),
         ageRange        varchar2(20)            not null, 
         adult           char(1)                 not null,
             constraint  rg_adult check (REGEXP_LIKE(adult, '^Y|N$'))
@@ -125,7 +134,8 @@ CREATE table tbPersonPFCLevel (
             constraint  fk_personID_tbPersonPFCLevel references tbPerson (personID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbPersonPFCLevel references tbChemical (chemID),
-        pfcLevel        number(6,3)             not null,
+        pfcLevel        number(6,3)             not null
+            constraint  rg_pfcLevel check (pfcLevel >= 0),
             constraint  pk_personpfclevel primary key (personID, chemID)
 );
 
@@ -146,7 +156,8 @@ CREATE table tbWellSample (
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbWellSample references tbChemical (chemID),
         sampleDate      date                    not null,
-        pfcLevel        number(6,3)             null,
+        pfcLevel        number(6,3)             null
+            constraint  rg_pfcLevel check (pfcLevel >= 0),
         noteID		    number(11,0)            not null
             constraint  fk_noteID_tbWellSample references tbSampleNote (noteID)
 );
