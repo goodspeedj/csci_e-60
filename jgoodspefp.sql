@@ -303,6 +303,13 @@ INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 2, null, null,
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 6, null, null, 1.5, 1.4, 1.3, '> 60 years', 'Y');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 9, null, null, .8, .3, .5, '> 60 years', 'Y');
 
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 5, 1, 2.2, 144, 23.31, 16.3, null, null, 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 5, 2, 5.4, 472, 56.60, 39.8, null, null, 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 5, 3, .6, 59.1, 9.04, 6.4, null, null, 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 5, 5, .1, .1, null, null, null, null, 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 5, 6, .3, 5.5, 1.86, 1.7, null, null, 'Y');
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 5, 7, .2, 2.5, null, .4, null, null, 'Y');
+
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 8, 1, null, null, null, 3.89, null, '12 - 19 years', 'N');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 8, 1, null, null, null, 3.96, null, '20 years and older', 'Y');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 8, 2, null, null, null, 19.3, null, '12 - 19 years', 'N');
