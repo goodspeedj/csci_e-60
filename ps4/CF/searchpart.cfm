@@ -37,31 +37,30 @@
     <div class="container">
 
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+        <h4>Select a Part Description</h4>
+        <form action="showquotes.cfm" method="post">
+          <table>
+            <tr>
+              <th>Parts: </th>
+              <td>
+                  <select name="partNo">
+                    <cfoutput query="getParts">
+                      <option value="#partNo#">#partDescr#</option>
+                    </cfoutput>
+                  </select>
+              </td>
+             </tr>
+             <tr>
+              <td>&nbsp;</td>
+              <td><input name="submit" type="submit" value="Display Quotes" /></td>
+             </tr>
+           </table>
+         </form>
       </div>
 
     </div><!-- /.container -->
 
-    <h4>Select a Part Description</h4>
-    <form action="showquotes.cfm" method="post">
-      <table>
-        <tr>
-          <th>Parts: </th>
-          <td>
-              <select name="partNo">
-                <cfoutput query="getParts">
-                  <option value="#partNo#">#partDescr#</option>
-                </cfoutput>
-              </select>
-          </td>
-         </tr>
-         <tr>
-          <td>&nbsp;</td>
-          <td><input name="submit" type="submit" value="Display Quotes" /></td>
-         </tr>
-       </table>
-     </form>
+    
 
      <cfinclude template = "footer.cfm">
 
