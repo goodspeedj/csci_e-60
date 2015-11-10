@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Project #2</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
   </head>
 
   <body>
+    <cfinclude template = "navbar.cfm">
     <cfquery name="getParts"
              datasource="#Request.DSN#"
              username="#Request.username#"
@@ -28,6 +34,15 @@
         AND b.partDescr = 'Tub';
     </cfquery>
 
+    <div class="container">
+
+      <div class="starter-template">
+        <h1>Bootstrap starter template</h1>
+        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+      </div>
+
+    </div><!-- /.container -->
+
     <h4>Select a Part Description</h4>
     <form action="showquotes.cfm" method="post">
       <table>
@@ -47,5 +62,10 @@
          </tr>
        </table>
      </form>
+
+     <cfinclude template = "footer.cfm">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
