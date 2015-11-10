@@ -199,7 +199,7 @@ INSERT INTO tbShipment VALUES (seq_shipment.nextval, '123', '98', 5, '07-OCT-201
 INSERT INTO tbShipment VALUES (seq_shipment.nextval, '225', '99', 1, '07-OCT-2015');
 */
 
-/* New insert statements for PS-4 using Trigger */
+/* New tbShipment insert statements for PS-4 using Trigger */
 INSERT INTO tbShipment (shipmentNo, vendorNo, partNo, quantity) VALUES (seq_shipment.nextval, '909', '01', 2);
 INSERT INTO tbShipment (shipmentNo, vendorNo, partNo, quantity) VALUES (seq_shipment.nextval, '747', '05', 5);
 INSERT INTO tbShipment (shipmentNo, vendorNo, partNo, quantity) VALUES (seq_shipment.nextval, '909', '97', 2);
