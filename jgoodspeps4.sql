@@ -120,65 +120,91 @@ CREATE sequence seq_shipment
     start with 1;
 
 
-   
+
+-- ******************************************************
+--    CREATE TRIGGERS - PS-4
+-- ******************************************************
+CREATE OR REPLACE TRIGGER TR_new_shipDate_IN
+   BEFORE INSERT ON tbShipment
+   FOR EACH ROW
+
+   BEGIN
+      SELECT sysdate
+           into :new.shipmentDate
+            FROM dual;
+   END TR_new_gift_IN;
+.
+/
+
     
 -- ******************************************************
 --    POPULATE TABLES
 --
 -- Note:  Follow instructions and data provided on PS-3
 --        to populate the tables
+--
+-- These are the original insert statements for PS-3.  
+-- A new insert statement for the PS-4 trigger is listed
+-- above.
 -- ******************************************************
 
 /* inventory tbProduct */
-INSERT into tbProduct values ('100', 'Cart', 3);
-INSERT into tbProduct values ('101', 'Wheelbarrow', 3);
+INSERT INTO tbProduct VALUES ('100', 'Cart', 3);
+INSERT INTO tbProduct VALUES ('101', 'Wheelbarrow', 3);
 
 
 /* inventory tbVendor */
-INSERT into tbVendor values ('123', 'FirstOne', 'Boston');
-INSERT into tbVendor values ('225', 'SomeStuff', 'Cambridge');
-INSERT into tbVendor values ('747', 'LastChance', 'Belmont');
-INSERT into tbVendor values ('909', 'IHaveIt', 'Boston');
+INSERT INTO tbVendor VALUES ('123', 'FirstOne', 'Boston');
+INSERT INTO tbVendor VALUES ('225', 'SomeStuff', 'Cambridge');
+INSERT INTO tbVendor VALUES ('747', 'LastChance', 'Belmont');
+INSERT INTO tbVendor VALUES ('909', 'IHaveIt', 'Boston');
 
 
 /* inventory tbPart */
-INSERT into tbPart values ('01', 'Tub', 10);
-INSERT into tbPart values ('05', 'Wheel', 45);
-INSERT into tbPart values ('97', 'Box', 15);
-INSERT into tbPart values ('98', 'Strut', 15);
-INSERT into tbPart values ('99', 'Handle', 55);
+INSERT INTO tbPart VALUES ('01', 'Tub', 10);
+INSERT INTO tbPart VALUES ('05', 'Wheel', 45);
+INSERT INTO tbPart VALUES ('97', 'Box', 15);
+INSERT INTO tbPart VALUES ('98', 'Strut', 15);
+INSERT INTO tbPart VALUES ('99', 'Handle', 55);
 
 
 /* inventory tbComponent */
-INSERT into tbComponent values ('100', '01', '05', 2);
-INSERT into tbComponent values ('100', '02', '97', 1);
-INSERT into tbComponent values ('100', '03', '98', 1);
-INSERT into tbComponent values ('100', '04', '99', 1);
-INSERT into tbComponent values ('101', '01', '01', 1);
-INSERT into tbComponent values ('101', '02', '05', 2);
-INSERT into tbComponent values ('101', '03', '98', 1);
-INSERT into tbComponent values ('101', '04', '99', 2);
+INSERT INTO tbComponent VALUES ('100', '01', '05', 2);
+INSERT INTO tbComponent VALUES ('100', '02', '97', 1);
+INSERT INTO tbComponent VALUES ('100', '03', '98', 1);
+INSERT INTO tbComponent VALUES ('100', '04', '99', 1);
+INSERT INTO tbComponent VALUES ('101', '01', '01', 1);
+INSERT INTO tbComponent VALUES ('101', '02', '05', 2);
+INSERT INTO tbComponent VALUES ('101', '03', '98', 1);
+INSERT INTO tbComponent VALUES ('101', '04', '99', 2);
 
 
 /* inventory tbQuote */
-INSERT into tbQuote values ('123', '01', 50.00);
-INSERT into tbQuote values ('123', '98', 20.00);
-INSERT into tbQuote values ('225', '99', 20.00);
-INSERT into tbQuote values ('747', '05', 28.00);
-INSERT into tbQuote values ('909', '01', 40.00);
-INSERT into tbQuote values ('909', '05', 30.00);
-INSERT into tbQuote values ('909', '97', 60.00);
-INSERT into tbQuote values ('909', '98', 22.00);
-INSERT into tbQuote values ('909', '99', 22.00);
+INSERT INTO tbQuote VALUES ('123', '01', 50.00);
+INSERT INTO tbQuote VALUES ('123', '98', 20.00);
+INSERT INTO tbQuote VALUES ('225', '99', 20.00);
+INSERT INTO tbQuote VALUES ('747', '05', 28.00);
+INSERT INTO tbQuote VALUES ('909', '01', 40.00);
+INSERT INTO tbQuote VALUES ('909', '05', 30.00);
+INSERT INTO tbQuote VALUES ('909', '97', 60.00);
+INSERT INTO tbQuote VALUES ('909', '98', 22.00);
+INSERT INTO tbQuote VALUES ('909', '99', 22.00);
 
 
-/* inventory tbShipment */
-INSERT into tbShipment values (seq_shipment.nextval, '909', '01', 2, '01-OCT-2015');
-INSERT into tbShipment values (seq_shipment.nextval, '747', '05', 5, '02-OCT-2015');
-INSERT into tbShipment values (seq_shipment.nextval, '909', '97', 2, '03-OCT-2015');
-INSERT into tbShipment values (seq_shipment.nextval, '123', '98', 5, '07-OCT-2015');
-INSERT into tbShipment values (seq_shipment.nextval, '225', '99', 1, '07-OCT-2015');
+/* inventory tbShipment 
+INSERT INTO tbShipment VALUES (seq_shipment.nextval, '909', '01', 2, '01-OCT-2015');
+INSERT INTO tbShipment VALUES (seq_shipment.nextval, '747', '05', 5, '02-OCT-2015');
+INSERT INTO tbShipment VALUES (seq_shipment.nextval, '909', '97', 2, '03-OCT-2015');
+INSERT INTO tbShipment VALUES (seq_shipment.nextval, '123', '98', 5, '07-OCT-2015');
+INSERT INTO tbShipment VALUES (seq_shipment.nextval, '225', '99', 1, '07-OCT-2015');
+*/
 
+/* New insert statements for PS-4 using Trigger */
+INSERT INTO tbShipment (shipmentNo, vendorNo, partNo, quantity) VALUES (seq_shipment.nextval, '909', '01', 2);
+INSERT INTO tbShipment (shipmentNo, vendorNo, partNo, quantity) VALUES (seq_shipment.nextval, '747', '05', 5);
+INSERT INTO tbShipment (shipmentNo, vendorNo, partNo, quantity) VALUES (seq_shipment.nextval, '909', '97', 2);
+INSERT INTO tbShipment (shipmentNo, vendorNo, partNo, quantity) VALUES (seq_shipment.nextval, '123', '98', 5);
+INSERT INTO tbShipment (shipmentNo, vendorNo, partNo, quantity) VALUES (seq_shipment.nextval, '225', '99', 1);
 
 
 
