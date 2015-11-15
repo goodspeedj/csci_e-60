@@ -6,8 +6,8 @@
 
 <!--- ########## Email Variables ########## --->
 
-<cfparam name="Request.emailuname" default="yourusername">
-<cfparam name="Request.emailpwd" default="yourpassword">
+<cfparam name="Request.emailuname" default="jgoodspe">
+<cfparam name="Request.emailpwd" default="testpwd">
 <cfparam name="Request.emailserver" default="smtp.fas.harvard.edu">
 
 

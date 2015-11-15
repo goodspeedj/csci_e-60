@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Project #2</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
   </head>
 
   <body>
@@ -20,19 +20,56 @@
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT vendorNo, vendorName, a.priceQuote 
+            SELECT vendorNo, vendorName, a.priceQuote AS quote
               FROM tbVendor 
               NATURAL JOIN tbQuote a 
               JOIN tbPart b ON (a.partNo = b.partNo) 
               WHERE (SELECT count(priceQuote) FROM tbQuote c 
                       WHERE a.partNo = c.partNo 
                       GROUP BY a.partNo) > 1  
-              AND b.partDescr = 
+              AND b.partNo = 
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                 value="#URL.partNo#">
           </cfquery>
 
+          <cfquery name="countQuotes"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            SELECT b.partNo, count(a.priceQuote) as numQuotes 
+              FROM tbVendor NATURAL JOIN tbQuote a 
+              JOIN tbPart b ON (a.partNo = b.partNo) 
+              AND b.partNo = 
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                value="#URL.partNo#">
+              GROUP BY b.partNo
+          </cfquery>
+
           <h4>Quotes</h4>
+
+          <cfoutput query="countQuotes">
+            <h5>Total Quotes: #numQuotes#</h5>
+          </cfoutput>
+          
+          <table class="table table-striped">
+            <tr>
+              <th>Vendor Number</th>
+              <th>Vendor Name</th>
+              <th>Quote</th>
+            </tr>
+
+          <cfoutput query="getQuotes">
+
+            <tr>
+              <td>#vendorNo#</td>
+              <td>#vendorName#</td>
+              <td>#quote#</td>
+            </tr>
+          </cfoutput>
+
+          </table>
+
+
 
         <cfelse>
           <cfquery name="getParts"
@@ -45,7 +82,7 @@
           </cfquery>
 
           <h4>Select a Part Description</h4>
-          <form action="searchandshowquotes.cfm?#getParts.partNo#" method="get">
+          <form action="searchandshowquotes.cfm?#URL.partNo#" method="get">
             <table>
               <tr>
                 <th>Parts: </th>
