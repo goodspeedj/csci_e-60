@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Project #3</title>
+    <title>Project #4</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
   </head>
@@ -41,15 +41,13 @@
             </tr>
 
           <cfoutput query="getComponents">
-            <cfform action="upatepart.cfm" method="post">
 
-              <tr>
-                <td>#compNo#</td>
-                <td>#partNo#</td>
-                <td>#partDescr#</td>
-                <td><button type="submit" class="btn btn-primary">Update</button></td>
-              </tr>
-            </cfform>
+            <tr>
+              <td>#compNo#</td>
+              <td>#partNo#</td>
+              <td>#partDescr#</td>
+              <td><a href="updatepart.cfm" class="btn btn-primary" role="button">Update</a></td>
+            </tr>
           </cfoutput>
 
           </table>
