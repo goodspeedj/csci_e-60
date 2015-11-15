@@ -26,29 +26,29 @@
               JOIN tbPart b ON (a.partNo = b.partNo) 
               WHERE (SELECT count(priceQuote) FROM tbQuote c 
                       WHERE a.partNo = c.partNo 
-                      GROUP BY a.partNo) > 1  
+                      GROUP BY a.partNo) > 0 
               AND b.partNo = 
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                 value="#URL.partNo#">
           </cfquery>
 
-          <cfquery name="countQuotes"
+          <cfquery name="getPartName"
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT b.partNo, count(a.priceQuote) as numQuotes 
-              FROM tbVendor NATURAL JOIN tbQuote a 
-              JOIN tbPart b ON (a.partNo = b.partNo) 
-              AND b.partNo = 
+            SElECT partDescr 
+              FROM tbPart
+              WHERE partNo = 
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                 value="#URL.partNo#">
-              GROUP BY b.partNo
           </cfquery>
 
-          <h4>Quotes</h4>
-
-          <cfoutput query="countQuotes">
-            <h5>Total Quotes: #numQuotes#</h5>
+          <cfoutput>
+            <h4>Quotes for #getPartName.partDescr#</h4>
+            <h5>Total Quotes: #getQuotes.recordCount#</h5>
+            <cfif getQuotes.recordCount LT 3>
+              <p class="bg-danger">WARNING: This part has less than 3 quotes.</p>
+            </cfif>
           </cfoutput>
           
           <table class="table table-striped">
