@@ -167,6 +167,9 @@ INSERT INTO tbPart VALUES ('97', 'Box', 15);
 INSERT INTO tbPart VALUES ('98', 'Strut', 15);
 INSERT INTO tbPart VALUES ('99', 'Handle', 55);
 
+/* Insert for testing PS-4 project #2 */
+INSERT INTO tbPart VALUES ('10', 'Axl', 12);
+INSERT INTO tbPart VALUES ('12', 'Handle Covers', 20);
 
 /* inventory tbComponent */
 INSERT INTO tbComponent VALUES ('100', '01', '05', 2);
@@ -189,6 +192,9 @@ INSERT INTO tbQuote VALUES ('909', '05', 30.00);
 INSERT INTO tbQuote VALUES ('909', '97', 60.00);
 INSERT INTO tbQuote VALUES ('909', '98', 22.00);
 INSERT INTO tbQuote VALUES ('909', '99', 22.00);
+
+/* Insert for testing PS-4 project #2 */
+INSERT INTO tbQuote VALUES ('123', '05', 27);
 
 
 /* inventory tbShipment 
