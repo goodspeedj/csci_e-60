@@ -51,6 +51,7 @@
                 <td>#partDescr#</td>
                 <td>#noPartsReq#</td>
                 <input type="hidden" name="partNo" value="#partNo#">
+                <input type="hidden" name="prodNo" value="#prodNo#">
                 <td><button type="submit" class="btn btn-primary btn-sm">Update</button></td>
               </tr>
             </cfform>

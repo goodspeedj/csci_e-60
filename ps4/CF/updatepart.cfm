@@ -10,9 +10,30 @@
   </head>
 
   <body>
+    
+
     <div class="container">
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
+
+        <cfif IsDefined("Form.update")>
+
+          <cfquery name="updateQuantity"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            UPDATE tbComponent 
+              SET noPartsReq = #Form.noPartsReqUpdate#
+              WHERE partNo = 
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                value="#partNo#">
+              AND prodNo = 
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                value="#prodNo#">
+          </cfquery>
+
+          <cflocation url="searchandshowcomps.cfm?prodNo=#Form.prodNo#">
+        <cfelse>
 
           <cfquery name="getComponent"
                    datasource="#Request.DSN#"
@@ -24,6 +45,9 @@
               NATURAL JOIN tbPart WHERE partNo = 
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                 value="#partNo#">
+              AND prodNo = 
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                value="#prodNo#">
           </cfquery>
 
           <cfoutput>
@@ -41,50 +65,25 @@
 
           <cfoutput query="getComponent">
 
-            <tr>
-              <td>#compNo#</td>
-              <td>#partNo#</td>
-              <td>#partDescr#</td>
-              <td><input name="noPartsReq" type="text" value="#noPartsReq#"></td>
-              <td><a href="updatepart.cfm" class="btn btn-primary btn-sm" role="button">Update Quantity</a></td>
-            </tr>
+            <cfform action="updatepart.cfm" method="post">
+              <tr>
+                <td>#compNo#</td>
+                <td>#partNo#</td>
+                <td>#partDescr#</td>
+                <td>
+                  <cfinput name="noPartsReqUpdate" type="text" value="#getComponent.noPartsReq#">
+                </td>
+                <input type="hidden" name="noPartsReq" value="#noPartsReq#">
+                <input type="hidden" name="partNo" value="#partNo#">
+                <input type="hidden" name="prodNo" value="#prodNo#">
+                <td><button type="submit" name="update" class="btn btn-primary btn-sm">Update Quantity</button></td>
+              </tr>
+            </cfform>
           </cfoutput>
 
           </table>
 
-<!---
-        <cfelse>
-          <cfquery name="getProducts"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            SELECT prodNo, productName
-              FROM tbProduct
-              ORDER BY productName
-          </cfquery>
-
-          <h4>Select a Product</h4>
-          <form action="searchandshowcomps.cfm?#URL.prodNo#" method="get">
-            <table>
-              <tr>
-                <th>Products: </th>
-                <td>
-                    <select name="prodNo">
-                      <cfoutput query="getProducts">
-                        <option value="#prodNo#">#productName#</option>
-                      </cfoutput>
-                    </select>
-                </td>
-               </tr>
-               <tr>
-                <td>&nbsp;</td>
-                <td><input name="submit" type="submit" value="Display Components" /></td>
-               </tr>
-             </table>
-           </form>
-
         </cfif>
-        --->
 
       </div>
     </div><!-- /.container -->
