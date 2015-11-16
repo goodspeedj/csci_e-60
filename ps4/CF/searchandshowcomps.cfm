@@ -11,6 +11,9 @@
   </head>
 
   <body>
+
+    <!-- Self submitting form for Project #4 -->
+    
     <div class="container">
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">

@@ -12,6 +12,9 @@
   </head>
 
   <body>
+
+    <!-- HTML version of the sql file -->
+    
     <div class="container">
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">

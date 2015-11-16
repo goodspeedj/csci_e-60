@@ -10,6 +10,9 @@
   </head>
 
   <body>
+
+    <!-- HTML version of the README file -->
+    
     <div class="container">
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">

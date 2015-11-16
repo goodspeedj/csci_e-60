@@ -12,6 +12,9 @@
   </head>
 
   <body>
+
+    <!-- HTML listing page for Project #1 -->
+    
     <div class="container">
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">

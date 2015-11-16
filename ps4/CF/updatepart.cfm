@@ -4,12 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Project #4</title>
+    <title>Project #5</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
   </head>
 
   <body>
+
+    <!-- Self submitting form for Project #5 -->
     
     <!--protects against people going directly to this page -->
     <cfif !IsDefined("Form.partNo") and !IsDefined("Form.prodNo")>
