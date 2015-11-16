@@ -12,7 +12,7 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="ps4.cfm">Home</a></li>
-            <li class="active"><a href="#">Project #1</a></li>
+            <li class="active"><a href="proj1.cfm">Project #1</a></li>
             <li><a href="searchandshowquotes.cfm">Project #2</a></li>
             <li><a href="#contact">Project #3</a></li>
             <li><a href="searchandshowcomps.cfm">Project #4</a></li>
