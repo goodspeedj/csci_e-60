@@ -12,7 +12,13 @@
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
             <li><a href="ps4.cfm">Home</a></li>
-            <li class="active"><a href="proj1.cfm">Project #1</a></li>
+            <li class="dropdown">
+              <a href="proj1.cfm" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Project #1 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="jgoodspeps4.cfm">jgoodspeps4.sql</a></li>
+                <li><a href="2015ps4.cfm">2015ps4.lst</a></li>
+              </ul>
+            </li>
             <li><a href="searchandshowquotes.cfm">Project #2</a></li>
             <li><a href="#contact">Project #3</a></li>
             <li><a href="searchandshowcomps.cfm">Project #4</a></li>
