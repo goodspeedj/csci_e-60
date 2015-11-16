@@ -81,13 +81,16 @@
                       </cfoutput>
                     </select>
                 </td>
-               </tr>
-               <tr>
+              </tr>
+              <tr>
+                <td span="2">&nbsp;</td>
+              </tr>
+              <tr>
                 <td>&nbsp;</td>
                 <td><input name="submit" type="submit" value="Display Components" /></td>
-               </tr>
-             </table>
-           </form>
+              </tr>
+            </table>
+          </form>
 
         </cfif>
 
