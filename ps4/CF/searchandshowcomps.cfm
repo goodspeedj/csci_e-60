@@ -47,7 +47,7 @@
                 <td>#compNo#</td>
                 <td>#partNo#</td>
                 <td>#partDescr#</td>
-                <td><button type="submit" class="btn btn-primary">Update</button></td>
+                <td><button type="submit" class="btn btn-primary btn-sm">Update</button></td>
               </tr>
             </cfform>
           </cfoutput>
