@@ -16,7 +16,7 @@
 
         <h3>Problem Set #4</h3>
         <ul>
-          <li>Project #1 - jgoodspeps4.sql (also included in zip)</li>
+          <li><a href="proj1.cfm">Project #1 - jgoodspeps4.sql (also included in zip)</a></li>
           <li><a href="searchandshowquotes.cfm">Project #2</a></li>
           <li>Project #3 (also included in zip)</li>
           <li><a href="searchandshowcomps.cfm">Project #4</a></li>
