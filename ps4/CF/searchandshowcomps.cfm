@@ -7,6 +7,7 @@
     <title>Project #3</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
   </head>
 
   <body>
@@ -20,7 +21,7 @@
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT prodNo, productName, compNo, partNo, partDescr 
+            SELECT prodNo, productName, compNo, partNo, partDescr, noPartsReq
               FROM tbProduct 
               NATURAL JOIN tbComponent 
               NATURAL JOIN tbPart WHERE prodNo = 
@@ -42,14 +43,14 @@
             </tr>
 
           <cfoutput query="getComponents">
-            <cfform action="upatepart.cfm" method="post">
+            <cfform action="updatepart.cfm" method="post">
 
               <tr>
                 <td>#compNo#</td>
                 <td>#partNo#</td>
                 <td>#partDescr#</td>
                 <td>#noPartsReq#</td>
-                <input type="hidden" name="noPartsReq" value="#noPartsReq#">
+                <input type="hidden" name="compNo" value="#compNo#">
                 <td><button type="submit" class="btn btn-primary btn-sm">Update</button></td>
               </tr>
             </cfform>
