@@ -37,6 +37,7 @@
               <th>Component No.</th>
               <th>Part No.</th>
               <th>Part Name</th>
+              <th>Parts Required</th>
               <th>Update</th>
             </tr>
 
@@ -47,6 +48,8 @@
                 <td>#compNo#</td>
                 <td>#partNo#</td>
                 <td>#partDescr#</td>
+                <td>#noPartsReq#</td>
+                <input type="hidden" name="noPartsReq" value="#noPartsReq#">
                 <td><button type="submit" class="btn btn-primary btn-sm">Update</button></td>
               </tr>
             </cfform>
