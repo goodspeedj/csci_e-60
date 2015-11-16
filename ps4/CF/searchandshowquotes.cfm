@@ -46,8 +46,8 @@
           <cfoutput>
             <h4>Quotes for #getPartName.partDescr#</h4>
             <h5>Total Quotes: #getQuotes.recordCount#</h5>
-            <cfif getQuotes.recordCount LT 3>
-              <p class="bg-danger">WARNING: This part has less than 3 quotes.</p>
+            <cfif getQuotes.recordCount LT 2>
+              <p class="bg-danger">WARNING: This part has less than 2 quotes.</p>
             </cfif>
           </cfoutput>
           
