@@ -13,23 +13,21 @@
     <div class="container">
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
-        <cfparam name="URL.prodNo" default="AAA" type="string">
 
-        <cfif URL.prodNo NEQ "AAA">
-          <cfquery name="getComponents"
+          <cfquery name="getComponent"
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT prodNo, productName, compNo, partNo, partDescr 
+            SELECT prodNo, productName, compNo, partNo, partDescr, noPartsReq
               FROM tbProduct 
               NATURAL JOIN tbComponent 
-              NATURAL JOIN tbPart WHERE prodNo = 
+              NATURAL JOIN tbPart WHERE partNo = 
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                value="#URL.prodNo#">
+                value="#partNo#">
           </cfquery>
 
           <cfoutput>
-            <h4>Components for #getComponents.productName#</h4>
+            <h4>Component:  #getComponent.partDescr#</h4>
           </cfoutput>
           
           <table class="table table-striped">
@@ -37,22 +35,24 @@
               <th>Component No.</th>
               <th>Part No.</th>
               <th>Part Name</th>
+              <th>Parts Required</th>
               <th>Update</th>
             </tr>
 
-          <cfoutput query="getComponents">
+          <cfoutput query="getComponent">
 
             <tr>
               <td>#compNo#</td>
               <td>#partNo#</td>
               <td>#partDescr#</td>
-              <td><a href="updatepart.cfm" class="btn btn-primary" role="button">Update</a></td>
+              <td><input name="noPartsReq" type="text" value="#noPartsReq#"></td>
+              <td><a href="updatepart.cfm" class="btn btn-primary btn-sm" role="button">Update Quantity</a></td>
             </tr>
           </cfoutput>
 
           </table>
 
-
+<!---
         <cfelse>
           <cfquery name="getProducts"
                    datasource="#Request.DSN#"
@@ -84,6 +84,7 @@
            </form>
 
         </cfif>
+        --->
 
       </div>
     </div><!-- /.container -->
