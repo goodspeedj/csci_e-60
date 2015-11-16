@@ -50,7 +50,7 @@
                 <td>#partNo#</td>
                 <td>#partDescr#</td>
                 <td>#noPartsReq#</td>
-                <input type="hidden" name="compNo" value="#compNo#">
+                <input type="hidden" name="partNo" value="#partNo#">
                 <td><button type="submit" class="btn btn-primary btn-sm">Update</button></td>
               </tr>
             </cfform>
