@@ -22,6 +22,7 @@
             <li><a href="searchandshowquotes.cfm">Project #2</a></li>
             <li><a href="#contact">Project #3</a></li>
             <li><a href="searchandshowcomps.cfm">Project #4 & #5</a></li>
+            <li><a href="readme.cfm">README</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

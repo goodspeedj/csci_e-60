@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Project #4</title>
+    <title>README</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
   </head>
@@ -20,7 +20,6 @@
           <li><a href="searchandshowquotes.cfm">Project #2</a></li>
           <li>Project #3 (also included in zip)</li>
           <li><a href="searchandshowcomps.cfm">Project #4 and #5</a></li>
-          <li><a href="readme.cfm">README (also included in zip)</a></li>
         </ul>
 
         <p>&nbsp;</p>

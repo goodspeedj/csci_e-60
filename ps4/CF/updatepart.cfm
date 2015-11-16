@@ -11,6 +11,10 @@
 
   <body>
     
+    <!--protects against people going directly to this page -->
+    <cfif !IsDefined("Form.partNo") and !IsDefined("Form.prodNo")>
+      <cflocation url="searchandshowcomps.cfm">
+    </cfif>
 
     <div class="container">
       <div class="starter-template">
@@ -71,7 +75,10 @@
                 <td>#partNo#</td>
                 <td>#partDescr#</td>
                 <td>
-                  <cfinput name="noPartsReqUpdate" type="text" value="#getComponent.noPartsReq#">
+                  <cfinput name="noPartsReqUpdate" type="text" value="#getComponent.noPartsReq#"
+                           maxlength="2" range="0,99"
+                           required="yes" validate="integer"
+                           message="Parts required must be a number between 0 and 99">
                 </td>
                 <input type="hidden" name="noPartsReq" value="#noPartsReq#">
                 <input type="hidden" name="partNo" value="#partNo#">
