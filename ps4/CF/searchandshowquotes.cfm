@@ -12,7 +12,7 @@
   <body>
 
     <!-- Self submitting form for Project #2 -->
-    
+
     <div class="container">
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
@@ -66,7 +66,7 @@
             <tr>
               <td>#vendorNo#</td>
               <td>#vendorName#</td>
-              <td>#quote#</td>
+              <td>#NumberFormat(quote, "$0.00" )#</td>
             </tr>
           </cfoutput>
 
