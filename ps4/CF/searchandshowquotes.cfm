@@ -7,6 +7,7 @@
     <title>Project #2</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
   </head>
 
   <body>
@@ -64,9 +65,13 @@
           <cfoutput query="getQuotes">
 
             <tr>
+            <cfif getQuotes.recordCount EQ 0>
+              <td span="3" class="center">No Quotes Found</td>
+            <cfelse>
               <td>#vendorNo#</td>
               <td>#vendorName#</td>
               <td>#NumberFormat(quote, "$0.00" )#</td>
+            </cfif>
             </tr>
           </cfoutput>
 
