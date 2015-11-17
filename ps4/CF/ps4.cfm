@@ -17,7 +17,7 @@
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
 
-        <h3>Problem Set #4</h3>
+        <h3>Problem Set #4 - Index page (extra credit)</h3>
         <ul>
           <li><a href="proj1.cfm">Project #1 - jgoodspeps4.sql and 2015ps4.lst (also included in zip)</a></li>
           <li><a href="searchandshowquotes.cfm">Project #2</a></li>
@@ -28,7 +28,7 @@
 
         <p>&nbsp;</p>
 
-        <h5>Extra credit page</h5>
+        <h4>Extra credit page</h4>
 
       </div>
     </div><!-- /.container -->
