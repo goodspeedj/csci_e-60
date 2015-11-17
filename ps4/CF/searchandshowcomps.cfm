@@ -77,7 +77,7 @@
           <form action="searchandshowcomps.cfm?#URL.prodNo#" method="get">
             <table>
               <tr>
-                <th>Products: </th>
+                <th>Product: </th>
                 <td>
                     <select name="prodNo">
                       <cfoutput query="getProducts">

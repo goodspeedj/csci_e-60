@@ -78,7 +78,7 @@
                 <td>#partDescr#</td>
                 <td>
                   <cfinput name="noPartsReqUpdate" type="text" value="#getComponent.noPartsReq#"
-                           maxlength="2" range="0,99"
+                           maxlength="2" range="0,99" size="4"
                            required="yes" validate="integer"
                            message="Parts required must be a number between 0 and 99">
                 </td>
