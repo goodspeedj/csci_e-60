@@ -56,7 +56,7 @@
           
           <table class="table table-striped">
             <tr>
-              <th>Vendor Number</th>
+              <th>Vendor ID</th>
               <th>Vendor Name</th>
               <th>Quote</th>
             </tr>
