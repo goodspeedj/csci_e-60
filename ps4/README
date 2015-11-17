@@ -17,6 +17,8 @@ navbar.cfm - common Bootstrap navigation bar file
 
 proj1.cfm - Project #1 HTML file with listings to LST and SQL files
 
+proj3.cfm - Project #3, storyboard.
+
 ps4.cfm - Extra credit index page
 
 readme.cfm - This file.  HTML rendering of the README file (also included in zip)

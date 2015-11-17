@@ -27,6 +27,7 @@
           <li>jgoodspeps4.cfm - HTML listing of the jgoodspeps4.sql file (also included in zip)</li>
           <li>navbar.cfm - common Bootstrap navigation bar file</li>
           <li>proj1.cfm - Project #1 HTML file with listings to LST and SQL files</li>
+          <li>proj3.cfm - Project #3 storyboard</li>
           <li>ps4.cfm - Extra credit index page</li>
           <li>readme.cfm - This file.  HTML rendering of the README file (also included in zip)</li>
           <li>searchandshowcomps.cfm - Project #4 and #5 file listing Products and Components</li>
