@@ -7,8 +7,6 @@
     <title>Project #1</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
-    <link href="css/prettify.css" rel="stylesheet">
-    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?lang=sql"></script>
   </head>
 
   <body>
