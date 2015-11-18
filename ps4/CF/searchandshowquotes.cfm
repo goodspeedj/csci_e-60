@@ -65,7 +65,7 @@
           <cfoutput query="getQuotes">
 
             <tr>
-            <cfif getQuotes.recordCount EQ 0>
+            <cfif getQuotes.recordCount LT 1>
               <td span="3" class="center">No Quotes Found</td>
             <cfelse>
               <td>#vendorNo#</td>
