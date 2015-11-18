@@ -89,7 +89,7 @@ CREATE table tbWell (
         wellName        varchar2(30)            not null,
         wellLocation    varchar2(30)            not null,
         wellActive      char(1)                 not null,
-            constraint  rg_active check (REGEXP_LIKE(active, '^Y|N$'))
+            constraint  rg_active check (REGEXP_LIKE(wellActive, '^Y|N$'))
 );
 
 
@@ -97,8 +97,8 @@ CREATE table tbPerson (
         personID        number(11,0)            not null
             constraint pk_person primary key,
         nhHHSID         varchar2(10)            not null,
-        age             number(3,0)             not null,
-            constraint  rg_age check (age >= 0)
+        age             number(3,0)             not null
+            constraint  rg_age check (age >= 0),
         yearsExposed    number(2,0)             not null
             constraint  rg_yearsExposed check (yearsExposed >= 0),
         sex             char(1)                 not null,
@@ -113,17 +113,17 @@ CREATE table tbStudyPFCLevel (
             constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbStudyPFCLevel references tbChemical (chemID),
-        pfcMin          number(6,3)             null
+        pfcMin          number(10,3)             null
             constraint  rg_pfcMin check (pfcMin >= 0),
-        pfcMax          number(6,3)             null
+        pfcMax          number(10,3)             null
             constraint  rg_pfcMax check (pfcMax >= 0),
-        pfcMean         number(6,3)             null
+        pfcMean         number(10,3)             null
             constraint  rg_pfcMean check (pfcMean >= 0),
-        pfcGeoMean      number(6,3)             null
+        pfcGeoMean      number(10,3)             null
             constraint  rg_pfcGeoMean check (pfcGeoMean >= 0),
-        pfcMedian       number(6,3)             null
+        pfcMedian       number(10,3)             null
             constraint  rg_pfcMedian check (pfcMedian >= 0),
-        ageRange        varchar2(20)            not null, 
+        ageRange        varchar2(20)            null, 
         adult           char(1)                 not null,
             constraint  rg_adult check (REGEXP_LIKE(adult, '^Y|N$'))
 );
@@ -135,7 +135,7 @@ CREATE table tbPersonPFCLevel (
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbPersonPFCLevel references tbChemical (chemID),
         pfcLevel        number(6,3)             not null
-            constraint  rg_pfcLevel check (pfcLevel >= 0),
+            constraint  rg_personpfclevel check (pfcLevel >= 0),
             constraint  pk_personpfclevel primary key (personID, chemID)
 );
 
@@ -157,8 +157,8 @@ CREATE table tbWellSample (
             constraint  fk_chemID_tbWellSample references tbChemical (chemID),
         sampleDate      date                    not null,
         pfcLevel        number(6,3)             null
-            constraint  rg_pfcLevel check (pfcLevel >= 0),
-        noteID		    number(11,0)            not null
+            constraint  rg_wellpfclevel check (pfcLevel >= 0),
+        noteID		    number(11,0)            null
             constraint  fk_noteID_tbWellSample references tbSampleNote (noteID)
 );
 
