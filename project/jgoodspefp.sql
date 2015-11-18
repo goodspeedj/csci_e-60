@@ -73,9 +73,9 @@ CREATE table tbExposureType (
 CREATE table tbStudy (
         studyID         number(11,0)            not null
             constraint pk_study primary key,
-        name            varchar2(30)            not null,
-        startDate       date                    not null,
-        endDate         date                    not null,
+        studyName            varchar2(30)            not null,
+        studyStartDate       date                    not null,
+        studyEndDate         date                    not null,
         participants    number(11,0)            not null
             constraint  rg_participants check (participants >= 0),
         exposureID      number(11,0)            not null
@@ -86,9 +86,9 @@ CREATE table tbStudy (
 CREATE table tbWell (
         wellID          number(11,0)            not null
             constraint pk_well primary key,
-        name            varchar2(30)            not null,
-        location        varchar2(30)            not null,
-        active          char(1)                 not null,
+        wellName        varchar2(30)            not null,
+        wellLocation    varchar2(30)            not null,
+        wellActive      char(1)                 not null,
             constraint  rg_active check (REGEXP_LIKE(active, '^Y|N$'))
 );
 
