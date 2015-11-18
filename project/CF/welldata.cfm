@@ -10,8 +10,6 @@
   </head>
 
   <body>
-
-    <!-- Extra credit index page -->
     
     <div class="container">
       <div class="starter-template">
