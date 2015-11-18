@@ -363,6 +363,10 @@ INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 10, 9, .1, .7, nu
 /* well sample table */
 
 /* PFOA */
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 1, '16-Apr-14', .35, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 1, '14-May-14', .32, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '16-Apr-14', .009, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '14-May-14', .0086, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '18-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '25-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '02-Jul-14', 0.003, 1);
@@ -399,6 +403,8 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '30-Jun-15', 0, null)
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '16-Jul-15', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '31-Jul-15', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 1, '11-Aug-15', 0.005, 1);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 1, '16-Apr-14', .0035, 1);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 1, '14-May-14', .0036, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 1, '18-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 1, '25-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 1, '02-Jul-14', 0, null);
@@ -477,6 +483,10 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 1, '16-Jun-15', 0, null)
 
 
 /* PFOS */
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 2, '16-Apr-14', 2.5, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 2, '14-May-14', 2.4, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '16-Apr-14', .048, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '14-May-14', .041, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '18-Jun-14', 0.025, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '25-Jun-14', 0.025, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '02-Jul-14', 0.027, null);
@@ -513,6 +523,8 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '30-Jun-15', 0.027, n
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '16-Jul-15', 0.026, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '31-Jul-15', 0.028, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 2, '11-Aug-15', 0.025, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '16-Apr-14', .018, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '14-May-14', .015, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '18-Jun-14', 0.010, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '25-Jun-14', 0.007, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 2, '02-Jul-14', 0.012, 1);
@@ -591,6 +603,10 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 2, '16-Jun-15', 0.010, 1
 
 
 /* PFHxS */
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 3, '16-Apr-14', 0.83, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 3, '14-May-14', 0.96, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '16-Apr-14', 0.036, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '14-May-14', 0.032, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '18-Jun-14', 0.026, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '25-Jun-14', 0.021, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '02-Jul-14', 0.021, null);
@@ -627,6 +643,8 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '30-Jun-15', 0.024, n
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '16-Jul-15', 0.023, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '31-Jul-15', 0.023, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 3, '11-Aug-15', 0.027, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 3, '16-Apr-14', 0.013, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 3, '14-May-14', 0.013, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 3, '18-Jun-14', 0.011, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 3, '25-Jun-14', 0.010, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 3, '02-Jul-14', 0.010, 1);
@@ -817,6 +835,10 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 5, '12-Dec-14', 0, null)
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 5, '16-Jun-15', 0, null);
 
 /* PFNA */
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 6, '16-Apr-14', 0.017, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 6, '14-May-14', 0.017, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '16-Apr-14', 0, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '14-May-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '18-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '25-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '02-Jul-14', 0, null);
@@ -853,6 +875,8 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '30-Jun-15', 0, null)
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '16-Jul-15', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '31-Jul-15', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 6, '11-Aug-15', 0, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 6, '16-Apr-14', 0, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 6, '14-May-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 6, '18-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 6, '25-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 6, '02-Jul-14', 0, null);
@@ -1043,6 +1067,10 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 8, '12-Dec-14', 0.005, 1
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 8, '16-Jun-15', 0.004, 1);
 
 /* PFHxA */
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 9, '16-Apr-14', 0.33, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 1, 9, '14-May-14', 0.35, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '16-Apr-14', 0.0087, null);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '14-May-14', 0.01, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '18-Jun-14', 0.005, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '25-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '02-Jul-14', 0.006, 1);
@@ -1079,6 +1107,8 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '30-Jun-15', 0.004, 1
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '16-Jul-15', 0.006, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '31-Jul-15', 0.004, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 3, 9, '11-Aug-15', 0.008, 1);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 9, '16-Apr-14', 0.0039, 1);
+INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 9, '14-May-14', 0.004, 1);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 9, '18-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 9, '25-Jun-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 2, 9, '02-Jul-14', 0.003, 1);
