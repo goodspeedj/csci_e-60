@@ -17,14 +17,39 @@
 
         <h3>Well Data</h3>
 
-        <p>&nbsp;</p>
+        <cfquery name="getComponent"
+                 datasource="#Request.DSN#"
+                 username="#Request.username#"
+                 password="#Request.password#">
+          SELECT wellName, shortName, longName, sampleDate, pfcLevel, noteAbr 
+            FROM tbWell 
+            NATURAL JOIN tbWellSample a 
+            NATURAL JOIN tbChemical 
+            LEFT OUTER JOIN tbSampleNote b ON (a.noteID = b.noteID) 
+            WHERE wellID = 
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                value="#wellID#">
+        </cfquery>
+
+        <table class="table table-striped">
+          <tr>
+            <th>Chemical</th>
+            <th>Date</th>
+            <th>Level</th>
+          </tr>
+
+        <cfoutput query="getComponent">
+          <tr>
+            <td>#shortName#</td>
+            <td>#sampleDate#</td>
+            <td>#pfcLevel#</td>
+          </tr>
+        </cfoutput>
 
       </div>
-    </div><!-- /.container -->
+    </div><!-- /.container -->  
 
-    
-
-     <cfinclude template = "footer.cfm">
+    <cfinclude template = "footer.cfm">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
