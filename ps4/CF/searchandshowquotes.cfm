@@ -61,19 +61,24 @@
               <th>Vendor Name</th>
               <th>Quote</th>
             </tr>
-
-          <cfoutput query="getQuotes">
-
-            <tr>
+            
             <cfif getQuotes.recordCount LT 1>
-              <td span="3" class="center">No Quotes Found</td>
+            <tr>
+              <td colspan="3" class="center">No Quotes Found</td>
+            </tr>
+            
             <cfelse>
+            <cfoutput query="getQuotes">
+            <tr>
               <td>#vendorNo#</td>
               <td>#vendorName#</td>
               <td>#NumberFormat(quote, "$0.00" )#</td>
+            </tr>
+            </cfoutput>
+
             </cfif>
             </tr>
-          </cfoutput>
+          
 
           </table>
 
