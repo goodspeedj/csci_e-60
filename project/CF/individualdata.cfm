@@ -15,6 +15,8 @@
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
 
+        <cfif IsDefined("Form.search") or IsDefined("Form.update")>
+
         <cfquery name="getPersonRecord"
                  datasource="#Request.DSN#"
                  username="#Request.username#"
@@ -23,12 +25,19 @@
             FROM tbPerson
             NATURAL JOIN tbPersonPFCLevel
             NATURAL JOIN tbChemical
-            WHERE nhHHSID = 'PT0576'
+            WHERE nhHHSID =
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                value="#nhHHSID#">
         </cfquery>
 
         <h3>Individual Data</h3>
         <cfoutput>
-          <h5>Participant: #getPersonRecord.nhHHSID#</h5>
+          <cfform action="individualdata.cfm" method="post">
+            <h5>
+              Participant: <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#getPersonRecord.nhHHSID#">
+              <button type="submit" name="update" class="btn btn-primary btn-sm">Update</button>
+            </h5>
+          </cfform>
         </cfoutput>
 
         <table class="table table-striped">
@@ -45,6 +54,14 @@
         </cfoutput>
 
         </table>
+
+        <cfelse>
+          <h4>Type in your Participant ID number</h4>
+          <cfform action="individualdata.cfm" method="post">
+            <cfinput name="nhHHSID" type="text" maxlength="6" size="8">
+            <button type="submit" name="search" class="btn btn-primary btn-sm">Search</button>
+          </cfform>
+        </cfif>
 
       </div>
     </div><!-- /.container -->
