@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    
+
     <div class="container">
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
@@ -21,33 +21,31 @@
                  datasource="#Request.DSN#"
                  username="#Request.username#"
                  password="#Request.password#">
-          SELECT wellName, shortName, longName, sampleDate, pfcLevel, noteAbr 
-            FROM tbWell 
-            NATURAL JOIN tbWellSample a 
-            NATURAL JOIN tbChemical 
-            LEFT OUTER JOIN tbSampleNote b ON (a.noteID = b.noteID) 
-            WHERE wellID = 
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                value="#wellID#">
+          SELECT * FROM 
+            (SELECT sampleDate, wellID, shortName, pfcLevel 
+              FROM tbWellSample NATURAL JOIN tbChemical) 
+            PIVOT 
+            (MAX(pfcLevel) FOR shortName IN ('PFOA', 'PFOS', 'PFHxS', 'PFUA', 'PFOSA', 'PFNA', 'PFDeA', 'PFPeA', 'PFHxA', 'PFBA')) 
+            WHERE wellId = 2 ORDER BY sampleDate
         </cfquery>
 
         <table class="table table-striped">
           <tr>
-            <th>Chemical</th>
             <th>Date</th>
             <th>Level</th>
           </tr>
 
         <cfoutput query="getComponent">
           <tr>
-            <td>#shortName#</td>
             <td>#sampleDate#</td>
             <td>#pfcLevel#</td>
           </tr>
         </cfoutput>
 
+        </table>
+
       </div>
-    </div><!-- /.container -->  
+    </div><!-- /.container -->
 
     <cfinclude template = "footer.cfm">
 
