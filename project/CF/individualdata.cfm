@@ -21,13 +21,19 @@
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT nhHHSID, age, shortName, longname, pfcLevel, pfcGeoMean, studyID, studyName, participants
+            SELECT nhHHSID, age, adult, shortName, longname, pfcLevel,  pfcMin, pfcMax, 
+              pfcMean, pfcGeoMean, pfcMedian, studyID, studyName, participants
               FROM tbPerson
               NATURAL JOIN tbPersonPFCLevel
               NATURAL JOIN tbChemical
               NATURAL JOIN tbStudyPFCLevel
               NATURAL JOIN tbStudy
-              WHERE nhHHSID =
+              WHERE adult = (
+                CASE 
+                  WHEN age < 18 
+                  THEN 'N' ELSE 'Y' 
+                END)
+              AND nhHHSID =
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                   value="#nhHHSID#">
               AND studyID =
@@ -66,14 +72,22 @@
             <tr>
               <th>Chemical</th>
               <th>Personal Level</th>
+              <th>Min</th>
+              <th>Max</th>
+              <th>Mean</th>
               <th>Geometric Mean</th>
+              <th>Median</th>
             </tr>
 
           <cfoutput query="getPersonRecord">
             <tr>
               <td>#shortName# <br /><small>(#longName#)</small></td>
               <td>#pfcLevel#</td>
+              <td>#pfcMin#</td>
+              <td>#pfcMax#</td>
+              <td>#pfcMean#</td>
               <td>#pfcGeoMean#</td>
+              <td>#pfcMedian#</td>
             </tr>
           </cfoutput>
 
