@@ -83,11 +83,31 @@
             <tr>
               <td>#shortName# <br /><small>(#longName#)</small></td>
               <td>#pfcLevel#</td>
-              <td>#pfcMin#</td>
-              <td>#pfcMax#</td>
-              <td>#pfcMean#</td>
-              <td>#pfcGeoMean#</td>
-              <td>#pfcMedian#</td>
+              <cfif "#pfcMin#" eq "">
+                <td> - </td>
+              <cfelse>
+                <td>#pfcMin#</td>
+              </cfif>
+              <cfif "#pfcMax#" eq "">
+                <td> - </td>
+              <cfelse>
+                <td>#pfcMax#</td>
+              </cfif>
+              <cfif "#pfcMean#" eq "">
+                <td> - </td>
+              <cfelse>
+                <td>#pfcMean#</td>
+              </cfif>
+              <cfif "#pfcGeoMean#" eq "">
+                <td> - </td>
+              <cfelse>
+                <td>#pfcGeoMean#</td>
+              </cfif>
+              <cfif "#pfcMedian#" eq "">
+                <td> - </td>
+              <cfelse>
+                <td>#pfcMedian#</td>
+              </cfif>
             </tr>
           </cfoutput>
 
