@@ -22,7 +22,7 @@
                    username="#Request.username#"
                    password="#Request.password#">
             SELECT nhHHSID, age, adult, shortName, longname, pfcLevel,  pfcMin, pfcMax, 
-              pfcMean, pfcGeoMean, pfcMedian, studyID, studyName, participants, type
+              pfcMean, pfcGeoMean, pfcMedian, studyID, studyName, participants, exposureType
               FROM tbPerson
               NATURAL JOIN tbPersonPFCLevel
               NATURAL JOIN tbChemical
@@ -69,9 +69,10 @@
                        </select>
               </h5>
               <h5>Number of Participants: <cfoutput>#getPersonRecord.participants#</cfoutput></h5>
-              <h5>Exposure Type: <cfoutput>#getPersonRecord.type#</cfoutput></h5>
+              <h5>Exposure Type: <cfoutput>#getPersonRecord.exposureType#</cfoutput></h5>
             <button type="submit" name="update" class="btn btn-primary btn-sm">Update</button>
             </cfform>
+            <p>&nbsp;</p>
           <table class="table table-striped">
             <tr>
               <th>Chemical</th>
