@@ -15,8 +15,6 @@
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
 
-        <cfparam name="studyID" default=9 type="integer">
-
         <cfif IsDefined("Form.search") or IsDefined("Form.update")>
 
         <cfquery name="getPersonRecord"
@@ -54,7 +52,7 @@
             <h5>
               Study: <select name="studyID">
                        <cfoutput query="getStudies">
-                         <option value="studyID">#studyName#</option>
+                         <option value="#studyID#">#studyName#</option>
                        </cfoutput>
                      </select>
             </h5>
@@ -78,9 +76,11 @@
         </table>
 
         <cfelse>
+
           <h4>Type in your Participant ID number</h4>
           <cfform action="individualdata.cfm" method="post">
             <cfinput name="nhHHSID" type="text" maxlength="6" size="8">
+            <cfinput name="studyID" type="hidden" value="9">
             <button type="submit" name="search" class="btn btn-primary btn-sm">Search</button>
           </cfform>
         </cfif>
