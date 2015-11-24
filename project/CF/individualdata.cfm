@@ -52,7 +52,11 @@
             <h5>
               Study: <select name="studyID">
                        <cfoutput query="getStudies">
-                         <option value="#studyID#">#studyName#</option>
+                         <cfif "#getStudies.studyID#" eq "#getPersonRecord.studyID#">
+                           <option value="#studyID#" selected>#studyName#</option>
+                         <cfelse>
+                           <option value="#studyID#">#studyName#</option>
+                         </cfif>  
                        </cfoutput>
                      </select>
             </h5>
