@@ -66,7 +66,7 @@ CREATE table tbChemical (
 CREATE table tbExposureType (
         exposureID        number(11,0)            not null
             constraint pk_exposureType primary key,
-        type              varchar(45)             not null
+        exposureType      varchar(45)             not null
 );
 
 
@@ -292,6 +292,8 @@ INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 1, 2, 60, 10060, 
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 2, 1, 72, 5100, 691, null, null, null, 'Y');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 2, 2, 145, 3490, 799, null, null, null, 'Y');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 2, 3, 16, 1295, 290, null, null, null, 'Y');
+
+INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 3, 1, .0094, 3.709, null, null, .2448, null, 'Y');
 
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 1, null, null, 77.6, 32.6, 36.9, '< 12 years', 'N');
 INSERT INTO tbStudyPFCLevel VALUES (seq_studypfclevel.nextval, 4, 2, null, null, 23.6, 20.7, 20.6, '< 12 years', 'N');
