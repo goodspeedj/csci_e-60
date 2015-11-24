@@ -22,12 +22,13 @@
                    username="#Request.username#"
                    password="#Request.password#">
             SELECT nhHHSID, age, adult, shortName, longname, pfcLevel,  pfcMin, pfcMax, 
-              pfcMean, pfcGeoMean, pfcMedian, studyID, studyName, participants
+              pfcMean, pfcGeoMean, pfcMedian, studyID, studyName, participants, type
               FROM tbPerson
               NATURAL JOIN tbPersonPFCLevel
               NATURAL JOIN tbChemical
               NATURAL JOIN tbStudyPFCLevel
               NATURAL JOIN tbStudy
+              NATURAL JOIN tbExposureType
               WHERE adult = (
                 CASE 
                   WHEN age < 18 
@@ -55,6 +56,7 @@
                 Participant: <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#getPersonRecord.nhHHSID#">
               </h5>
             </cfoutput>
+              <p>&nbsp;</p>
               <h5>
                 Study: <select name="studyID">
                          <cfoutput query="getStudies">
@@ -66,6 +68,8 @@
                          </cfoutput>
                        </select>
               </h5>
+              <h5>Number of Participants: <cfoutput>#getPersonRecord.participants#</cfoutput></h5>
+              <h5>Exposure Type: <cfoutput>#getPersonRecord.type#</cfoutput></h5>
             <button type="submit" name="update" class="btn btn-primary btn-sm">Update</button>
             </cfform>
           <table class="table table-striped">
@@ -82,7 +86,7 @@
           <cfoutput query="getPersonRecord">
             <tr>
               <td>#shortName# <br /><small>(#longName#)</small></td>
-              <td>#pfcLevel#</td>
+              <td class="info">#pfcLevel#</td>
               <cfif "#pfcMin#" eq "">
                 <td> - </td>
               <cfelse>
