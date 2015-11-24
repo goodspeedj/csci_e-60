@@ -5,3 +5,19 @@
 .center {
   text-align: center;
 }
+
+.circle {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px; 
+  opacity: 0.4;
+  stroke: gray;
+}
+
+.green {
+  background: green;
+}
+
+.red {
+  background: red;
+}

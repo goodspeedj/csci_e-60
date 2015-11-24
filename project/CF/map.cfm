@@ -7,10 +7,22 @@
     <title>Map</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
       #map { height: 100%; }
+      #legend {
+        background: white;
+        padding: 5px;
+        border-radius: 3px;
+        border:2px solid #fff;
+        box-shadow: 0 2px 6px rgba(0,0,0,.3);
+        color: rgb(25,25,25);
+        font-family: Roboto,Arial,sans-serif;
+        font-size: 12px;
+        padding-right: 5px;
+      }
     </style>
   </head>
   <body>
@@ -27,16 +39,33 @@
     <script type="text/javascript">
 
       var map;
+      var styles = [
+        {
+          stylers: [
+            { saturation: -60 }
+          ]
+        },{
+          featureType: "road",
+          elementType: "geometry",
+          stylers: [
+            { lightness: 0 },
+            { visibility: "simplified" }
+          ]
+        }
+      ];
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 43.076018, lng: -70.818631},
           zoom: 14
         });
 
+        map.setOptions({ styles: styles });
+
         var haven = new google.maps.Marker({
           position: {lat: 43.076018, lng: -70.818631},
           map: map,
           label: 'W',
+          icon: getMarker(699, 'red'),
           title: 'Haven Well'
         });
 
@@ -44,6 +73,7 @@
           position: {lat: 43.061068, lng: -70.804976},
           map: map,
           label: 'W',
+          icon: getMarker(447, 'green'),
           title: 'Smith Well'
         });
 
@@ -51,24 +81,34 @@
           position: {lat: 43.065879, lng: -70.804495},
           map: map,
           label: 'W',
+          icon: getMarker(331, 'green'),
           title: 'Harrison Well'
         });
 
-        var wwtp = new google.maps.Marker({
-          position: {lat: 43.083631, lng: -70.795990},
-          map: map,
-          label: 'D',
-          title: 'WWTP Distribution'
-        });
+        function getMarker(size, color) {
+          var circle = {
+            path: google.maps.SymbolPath.CIRCLE,
+            fillColor: color,
+            fillOpacity: .4,
+            scale: size / 20,
+            strokeColor: 'white',
+            strokeWeight: .5
+          };
+          return circle;
+        }
 
-        var des = new google.maps.Marker({
-          position: {lat: 43.074757, lng: -70.802534},
-          map: map,
-          label: 'D',
-          title: 'DES Office Distribution'
-        });
+        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+          document.getElementById('legend'));
 
-
+        var legend = document.createElement('div');
+        legend.id = 'legend';
+        var content = [];
+        content.push('<h4>Legend</h4>');
+        content.push('<p>Well Shutdown<div class="circle red"></div></p>');
+        content.push('<p><div class="circle green"></div>Well Operational</p>');;
+        legend.innerHTML = content.join('');
+        legend.index = 1;
+        map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
       }
 
     </script>
