@@ -17,67 +17,67 @@
 
         <cfif IsDefined("Form.search") or IsDefined("Form.update")>
 
-        <cfquery name="getPersonRecord"
-                 datasource="#Request.DSN#"
-                 username="#Request.username#"
-                 password="#Request.password#">
-          SELECT nhHHSID, age, shortName, longname, pfcLevel, pfcGeoMean, studyID, studyName, participants
-            FROM tbPerson
-            NATURAL JOIN tbPersonPFCLevel
-            NATURAL JOIN tbChemical
-            NATURAL JOIN tbStudyPFCLevel
-            NATURAL JOIN tbStudy
-            WHERE nhHHSID =
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                value="#nhHHSID#">
-            AND studyID =
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                value="#studyID#">
-        </cfquery>
+          <cfquery name="getPersonRecord"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            SELECT nhHHSID, age, shortName, longname, pfcLevel, pfcGeoMean, studyID, studyName, participants
+              FROM tbPerson
+              NATURAL JOIN tbPersonPFCLevel
+              NATURAL JOIN tbChemical
+              NATURAL JOIN tbStudyPFCLevel
+              NATURAL JOIN tbStudy
+              WHERE nhHHSID =
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#nhHHSID#">
+              AND studyID =
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#studyID#">
+          </cfquery>
 
-        <cfquery name="getStudies"
-                 datasource="#Request.DSN#"
-                 username="#Request.username#"
-                 password="#Request.password#">
-           SELECT studyID, studyName FROM tbStudy
-        </cfquery>
+          <cfquery name="getStudies"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+             SELECT studyID, studyName FROM tbStudy
+          </cfquery>
 
-        <h3>Individual Data</h3>
-          <cfform action="individualdata.cfm" method="post">
-          <cfoutput>
-            <h5>
-              Participant: <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#getPersonRecord.nhHHSID#">
-            </h5>
+          <h3>Individual Data</h3>
+            <cfform action="individualdata.cfm" method="post">
+            <cfoutput>
+              <h5>
+                Participant: <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#getPersonRecord.nhHHSID#">
+              </h5>
+            </cfoutput>
+              <h5>
+                Study: <select name="studyID">
+                         <cfoutput query="getStudies">
+                           <cfif "#getStudies.studyID#" eq "#getPersonRecord.studyID#">
+                             <option value="#studyID#" selected>#studyName#</option>
+                           <cfelse>
+                             <option value="#studyID#">#studyName#</option>
+                           </cfif>  
+                         </cfoutput>
+                       </select>
+              </h5>
+            <button type="submit" name="update" class="btn btn-primary btn-sm">Update</button>
+            </cfform>
+          <table class="table table-striped">
+            <tr>
+              <th>Chemical</th>
+              <th>Personal Level</th>
+              <th>Geometric Mean</th>
+            </tr>
+
+          <cfoutput query="getPersonRecord">
+            <tr>
+              <td>#shortName# <br /><small>(#longName#)</small></td>
+              <td>#pfcLevel#</td>
+              <td>#pfcGeoMean#</td>
+            </tr>
           </cfoutput>
-            <h5>
-              Study: <select name="studyID">
-                       <cfoutput query="getStudies">
-                         <cfif "#getStudies.studyID#" eq "#getPersonRecord.studyID#">
-                           <option value="#studyID#" selected>#studyName#</option>
-                         <cfelse>
-                           <option value="#studyID#">#studyName#</option>
-                         </cfif>  
-                       </cfoutput>
-                     </select>
-            </h5>
-          <button type="submit" name="update" class="btn btn-primary btn-sm">Update</button>
-          </cfform>
-        <table class="table table-striped">
-          <tr>
-            <th>Chemical</th>
-            <th>Personal Level</th>
-            <th>Geometric Mean</th>
-          </tr>
 
-        <cfoutput query="getPersonRecord">
-          <tr>
-            <td>#shortName# <br /><small>(#longName#)</small></td>
-            <td>#pfcLevel#</td>
-            <td>#pfcGeoMean#</td>
-          </tr>
-        </cfoutput>
-
-        </table>
+          </table>
 
         <cfelse>
 
