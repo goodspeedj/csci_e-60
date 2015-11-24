@@ -17,6 +17,9 @@
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
 
+    <!-- Custom styles -->
+    <link href="css/main.css" rel="stylesheet">
+
     <style>
       body { 
         background: url(images/bg.jpg) no-repeat center center fixed; 
@@ -52,10 +55,10 @@
           </div>
 
           <div class="inner cover">
-            <h1 class="cover-heading">Pease Water</h1>
-            <p class="lead">In May 2014 it was discovered that one of the wells serving the Pease Tradeport in Portsmouth, NH was contaminated with perfluorochemicals (PFCs) at quantities above the EPAs Provisional Health Advisory level.</p>
-            <p class="lead">In the intervening years thousands of people were exposed including children at two day care facilities on the former Air Force base.</p>
-            <p class="lead">
+            <h1 class="push-right cover-heading">Pease Water</h1>
+            <p class="push-right lead">In May 2014 it was discovered that one of the wells serving the Pease Tradeport in Portsmouth, NH was contaminated with perfluorochemicals (PFCs) at quantities above the EPAs Provisional Health Advisory level.</p>
+            <p class="push-right lead">Before the well was shut down it is estimated that thousands of people were exposed, including children at two day care facilities, over a period of approximately 20 years.</p>
+            <p class="push-right lead">
               <a href="info.cfm" class="btn btn-lg btn-default">Learn more</a>
             </p>
           </div>
