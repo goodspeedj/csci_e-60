@@ -43,8 +43,9 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Data</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li><a href="welldata.cfm">Well Data</a></li>
+                  <li><a href="individualdata.cfm">Individual Data</a></li>
+                  <li><a href="map.cfm">Map</a></li>
                 </ul>
               </nav>
             </div>
@@ -55,7 +56,7 @@
             <p class="lead">In May 2014 it was discovered that one of the wells serving the Pease Tradeport in Portsmouth, NH was contaminated with perfluorochemicals (PFCs) at quantities above the EPAs Provisional Health Advisory level.</p>
             <p class="lead">In the intervening years thousands of people were exposed including children at two day care facilities on the former Air Force base.</p>
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Learn more</a>
+              <a href="info.cfm" class="btn btn-lg btn-default">Learn more</a>
             </p>
           </div>
 
