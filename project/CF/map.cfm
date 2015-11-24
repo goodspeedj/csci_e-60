@@ -36,30 +36,35 @@
         var haven = new google.maps.Marker({
           position: {lat: 43.076018, lng: -70.818631},
           map: map,
+          label: 'W',
           title: 'Haven Well'
         });
 
         var smith = new google.maps.Marker({
           position: {lat: 43.061068, lng: -70.804976},
           map: map,
+          label: 'W',
           title: 'Smith Well'
         });
 
         var harrison = new google.maps.Marker({
           position: {lat: 43.065879, lng: -70.804495},
           map: map,
+          label: 'W',
           title: 'Harrison Well'
         });
 
         var wwtp = new google.maps.Marker({
           position: {lat: 43.083631, lng: -70.795990},
           map: map,
+          label: 'D',
           title: 'WWTP Distribution'
         });
 
         var des = new google.maps.Marker({
           position: {lat: 43.074757, lng: -70.802534},
           map: map,
+          label: 'D',
           title: 'DES Office Distribution'
         });
 
