@@ -52,13 +52,10 @@
           <h3>Individual Data</h3>
             <cfform action="individualdata.cfm" method="post">
             <cfoutput>
-              <h5>
-                Participant: <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#getPersonRecord.nhHHSID#">
-              </h5>
+              <strong>Participant:</strong> <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#getPersonRecord.nhHHSID#">
             </cfoutput>
               <p>&nbsp;</p>
-              <h5>
-                Study: <select name="studyID">
+                <strong>Study:</strong> <select name="studyID">
                          <cfoutput query="getStudies">
                            <cfif "#getStudies.studyID#" eq "#getPersonRecord.studyID#">
                              <option value="#studyID#" selected>#studyName#</option>
@@ -67,10 +64,10 @@
                            </cfif>  
                          </cfoutput>
                        </select>
-              </h5>
-              <h5>Number of Participants: <cfoutput>#getPersonRecord.participants#</cfoutput></h5>
-              <h5>Exposure Type: <cfoutput>#getPersonRecord.exposureType#</cfoutput></h5>
-            <button type="submit" name="update" class="btn btn-primary btn-sm">Update</button>
+              <br /><strong>Number of Participants:</strong> <cfoutput>#getPersonRecord.participants#</cfoutput>
+              <br /><strong>Exposure Type:</strong> <cfoutput>#getPersonRecord.exposureType#</cfoutput>
+              <p>&nbsp;</p>
+              <button type="submit" name="update" class="btn btn-primary btn-sm">Update</button>
             </cfform>
             <p>&nbsp;</p>
           <table class="table table-striped">
