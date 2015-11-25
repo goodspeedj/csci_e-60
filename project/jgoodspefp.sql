@@ -30,6 +30,7 @@ DROP table tbPersonPFCLevel purge;
 DROP table tbStudyPFCLevel purge;
 DROP table tbPerson purge;
 DROP table tbWell purge;
+DROP table tbWellType;
 DROP table tbStudy purge;
 DROP table tbChemical purge;
 DROP table tbExposureType purge;
@@ -42,6 +43,7 @@ DROP sequence seq_address;
 DROP sequence seq_person;
 DROP sequence seq_chemical;
 DROP sequence seq_well;
+DROP sequence seq_welltype;
 DROP sequence seq_sample;
 DROP sequence seq_study;
 DROP sequence seq_exposure;
@@ -83,13 +85,22 @@ CREATE table tbStudy (
 );
 
 
+CREATE table tbWellType (
+        wellTypeID      number(11,0)            not null
+            constraint pk_welltype primary key,
+        wellType        varchar2(20)            not null
+);
+
+
 CREATE table tbWell (
         wellID          number(11,0)            not null
             constraint pk_well primary key,
+        wellTypeID      number(11,0)            not null
+            constraint  fk_wellTypeID_tbWell references tbWellType (wellTypeID),
         wellName        varchar2(30)            not null,
         wellLocation    varchar2(30)            not null,
         wellYeild       number(4,0)             null,
-        wellActive      char(1)                 not null,
+        wellActive      char(1)                 not null
             constraint  rg_active check (REGEXP_LIKE(wellActive, '^Y|N$'))
 );
 
@@ -192,6 +203,10 @@ CREATE sequence seq_well
     increment by 1
     start with 1;
 
+CREATE sequence seq_welltype
+    increment by 1
+    start with 1;
+
 CREATE sequence seq_sample
     increment by 1
     start with 1;
@@ -246,12 +261,16 @@ INSERT INTO tbStudy VALUES (seq_study.nextval, 'NHANES 1', '01-JAN-2003', '31-DE
 INSERT INTO tbStudy VALUES (seq_study.nextval, 'NHANES 2', '01-JAN-2011', '31-DEC-2012', 1904, 3);
 INSERT INTO tbStudy VALUES (seq_study.nextval, 'Schecter', '01-JAN-2009', '31-DEC-2009', 300, 3);
 
+/* Well Type table */
+INSERT INTO tbWellType VALUES (seq_welltype.nextval, 'Well');
+INSERT INTO tbWellType VALUES (seq_welltype.nextval, 'Distribution Point');
+
 /* well table */
-INSERT INTO tbWell VALUES (seq_well.nextval, 'Haven', '43.076018, -70.818631', 699, 'N');
-INSERT INTO tbWell VALUES (seq_well.nextval, 'Smith', '43.061068, -70.804976', 447, 'Y');
-INSERT INTO tbWell VALUES (seq_well.nextval, 'Harrison', '43.065879, -70.804495', 331, 'Y');
-INSERT INTO tbWell VALUES (seq_well.nextval, 'WWTP Distribution','43.083631, -70.795990', null, 'Y');
-INSERT INTO tbWell VALUES (seq_well.nextval, 'DES Office Distribution', '43.074757, -70.802534', null, 'Y');
+INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Haven', '43.076018, -70.818631', 699, 'N');
+INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Smith', '43.061068, -70.804976', 447, 'Y');
+INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Harrison', '43.065879, -70.804495', 331, 'Y');
+INSERT INTO tbWell VALUES (seq_well.nextval, 2, 'WWTP Distribution','43.083631, -70.795990', null, 'Y');
+INSERT INTO tbWell VALUES (seq_well.nextval, 2, 'DES Office Distribution', '43.074757, -70.802534', null, 'Y');
 
 /* sample note table */
 INSERT INTO tbSampleNote VALUES (seq_samplenote.nextval, 'J', 'The result is an estimated value');
