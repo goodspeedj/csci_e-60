@@ -283,8 +283,8 @@ INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0576', 40, 13, 'M');
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0577', 4, 2, 'F');
 
 /* address table */
-INSERT INTO tbAddress VALUES (seq_address.nextval, 1, '325 Corporate Drive');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 2, '81 New Hampshire Avenue');
+INSERT INTO tbAddress VALUES (seq_address.nextval, 1, '325 Corporate Drive Portsmouth, NH  03801');
+INSERT INTO tbAddress VALUES (seq_address.nextval, 2, '81 New Hampshire Avenue Portsmouth, NH 03801');
 
 /* person PFC level table */
 INSERT INTO tbPersonPFCLevel VALUES (1, 1, 2.6);
