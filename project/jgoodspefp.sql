@@ -98,7 +98,8 @@ CREATE table tbWell (
         wellTypeID      number(11,0)            not null
             constraint  fk_wellTypeID_tbWell references tbWellType (wellTypeID),
         wellName        varchar2(30)            not null,
-        wellLocation    varchar2(30)            not null,
+        wellLat         number(10,8)            not null,
+        wellLong        number(10,8)            not null,
         wellYeild       number(4,0)             null,
         wellActive      char(1)                 not null
             constraint  rg_active check (REGEXP_LIKE(wellActive, '^Y|N$'))
@@ -266,11 +267,11 @@ INSERT INTO tbWellType VALUES (seq_welltype.nextval, 'Well');
 INSERT INTO tbWellType VALUES (seq_welltype.nextval, 'Distribution Point');
 
 /* well table */
-INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Haven', '43.076018, -70.818631', 699, 'N');
-INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Smith', '43.061068, -70.804976', 447, 'Y');
-INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Harrison', '43.065879, -70.804495', 331, 'Y');
-INSERT INTO tbWell VALUES (seq_well.nextval, 2, 'WWTP Distribution','43.083631, -70.795990', null, 'Y');
-INSERT INTO tbWell VALUES (seq_well.nextval, 2, 'DES Office Distribution', '43.074757, -70.802534', null, 'Y');
+INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Haven', 43.076018, -70.818631, 699, 'N');
+INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Smith', 43.061068, -70.804976, 447, 'Y');
+INSERT INTO tbWell VALUES (seq_well.nextval, 1, 'Harrison', 43.065879, -70.804495, 331, 'Y');
+INSERT INTO tbWell VALUES (seq_well.nextval, 2, 'WWTP Distribution',43.083631, -70.795990, null, 'Y');
+INSERT INTO tbWell VALUES (seq_well.nextval, 2, 'DES Office Distribution', 43.074757, -70.802534, null, 'Y');
 
 /* sample note table */
 INSERT INTO tbSampleNote VALUES (seq_samplenote.nextval, 'J', 'The result is an estimated value');
