@@ -41,8 +41,10 @@
             ORDER BY wellID
         </cfquery>
 
+        <!-- Store some data to use in the map javascript -->
         <cfset wellLat = ListToArray(ValueList(getWells.wellLat)) />
         <cfset wellLong = ListToArray(ValueList(getWells.wellLong)) />
+        <cfset wellYeild = ListToArray(ValueList(getWells.wellYeild)) />
         <div id="map"></div>
 
       </div>
@@ -52,6 +54,7 @@
 
     <script type="text/javascript">
 
+      // pull in data dynamically from the database
       <cfoutput>
         var #toScript(wellLat[1], "havenWellLat")#;
         var #toScript(wellLong[1], "havenWellLong")#;
@@ -59,6 +62,9 @@
         var #toScript(wellLong[2], "smithWellLong")#;
         var #toScript(wellLat[3], "harrisonWellLat")#;
         var #toScript(wellLong[3], "harrisonWellLong")#;
+        var #toScript(wellYeild[1], "havenWellYeild")#;
+        var #toScript(wellYeild[2], "smithWellYeild")#;
+        var #toScript(wellYeild[3], "harrisonWellYeild")#;
       </cfoutput>
 
       var map;
@@ -88,7 +94,7 @@
           position: {lat: Number(havenWellLat), lng: Number(havenWellLong)},
           map: map,
           label: 'W',
-          icon: getMarker(699, 'red'),
+          icon: getMarker(havenWellYeild, 'red'),
           title: 'Haven Well'
         });
 
@@ -96,7 +102,7 @@
           position: {lat: Number(smithWellLat), lng: Number(smithWellLong)},
           map: map,
           label: 'W',
-          icon: getMarker(447, 'green'),
+          icon: getMarker(smithWellYeild, 'green'),
           title: 'Smith Well'
         });
 
@@ -104,7 +110,7 @@
           position: {lat: Number(harrisonWellLat), lng: Number(harrisonWellLong)},
           map: map,
           label: 'W',
-          icon: getMarker(331, 'green'),
+          icon: getMarker(harrisonWellYeild, 'green'),
           title: 'Harrison Well'
         });
 
