@@ -41,6 +41,15 @@
             ORDER BY wellID
         </cfquery>
 
+        <cfquery name="getPeopleLocations"
+                 datasource="#Request.DSN#"
+                 username="#Request.username#"
+                 password="#Request.password#">
+          SELECT nhHHSID, address 
+            FROM tbPerson
+            NATURAL JOIN tbAddress
+        </cfquery>
+
         <!-- Store some data to use in the map javascript -->
         <cfset wellLat = ListToArray(ValueList(getWells.wellLat)) />
         <cfset wellLong = ListToArray(ValueList(getWells.wellLong)) />
@@ -90,6 +99,25 @@
 
         map.setOptions({ styles: styles });
 
+        <cfoutput query="getPeopleLocations">
+          var #toScript(address, "address")#;
+          var geocoder = new google.maps.Geocoder();
+
+          geocoder.geocode( { 'address': address}, function(results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+              var latitude = results[0].geometry.location.lat();
+              var longitude = results[0].geometry.location.lng();
+
+              var loc = new google.maps.Marker({
+                position: {lat: latitude, lng: longitude},
+                map: map
+              });
+
+            } 
+          }); 
+        </cfoutput>
+
         var haven = new google.maps.Marker({
           position: {lat: Number(havenWellLat), lng: Number(havenWellLong)},
           map: map,
@@ -125,6 +153,8 @@
           };
           return circle;
         }
+
+
 
         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
           document.getElementById('legend'));
