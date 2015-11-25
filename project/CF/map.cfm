@@ -29,6 +29,20 @@
     <div class="container" style="height:100%; width:100%;">
       <div class="starter-template" style="height:100%; width:100%;">
         <cfinclude template = "navbar.cfm">
+
+        <cfquery name="getWells"
+                 datasource="#Request.DSN#"
+                 username="#Request.username#"
+                 password="#Request.password#">
+          SELECT wellID, wellTypeID, wellName, wellLat, wellLong, wellYeild, wellActive
+            FROM tbWell
+            NATURAL JOIN tbWellType
+            WHERE wellType = 'Well'
+            ORDER BY wellID
+        </cfquery>
+
+        <cfset wellLat = ListToArray(ValueList(getWells.wellLat)) />
+        <cfset wellLong = ListToArray(ValueList(getWells.wellLong)) />
         <div id="map"></div>
 
       </div>
@@ -37,6 +51,15 @@
     <cfinclude template = "footer.cfm">
 
     <script type="text/javascript">
+
+      <cfoutput>
+        var #toScript(wellLat[1], "havenWellLat")#;
+        var #toScript(wellLong[1], "havenWellLong")#;
+        var #toScript(wellLat[2], "smithWellLat")#;
+        var #toScript(wellLong[2], "smithWellLong")#;
+        var #toScript(wellLat[3], "harrisonWellLat")#;
+        var #toScript(wellLong[3], "harrisonWellLong")#;
+      </cfoutput>
 
       var map;
       var styles = [
@@ -55,14 +78,14 @@
       ];
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 43.066166, lng: -70.811611},
+          center: {lat: 43.069537, lng: -70.803328},
           zoom: 14
         });
 
         map.setOptions({ styles: styles });
 
         var haven = new google.maps.Marker({
-          position: {lat: 43.076018, lng: -70.818631},
+          position: {lat: Number(havenWellLat), lng: Number(havenWellLong)},
           map: map,
           label: 'W',
           icon: getMarker(699, 'red'),
@@ -70,7 +93,7 @@
         });
 
         var smith = new google.maps.Marker({
-          position: {lat: 43.061068, lng: -70.804976},
+          position: {lat: Number(smithWellLat), lng: Number(smithWellLong)},
           map: map,
           label: 'W',
           icon: getMarker(447, 'green'),
@@ -78,7 +101,7 @@
         });
 
         var harrison = new google.maps.Marker({
-          position: {lat: 43.065879, lng: -70.804495},
+          position: {lat: Number(harrisonWellLat), lng: Number(harrisonWellLong)},
           map: map,
           label: 'W',
           icon: getMarker(331, 'green'),
