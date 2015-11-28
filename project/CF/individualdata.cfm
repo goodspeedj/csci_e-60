@@ -7,6 +7,7 @@
     <title>Individual Data</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
   </head>
 
   <body>
@@ -52,15 +53,15 @@
           <h3>Individual Data</h3>
             <cfform action="individualdata.cfm" method="post">
             <cfoutput>
-              <strong>Participant:</strong> <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#getPersonRecord.nhHHSID#">
+              <strong>Participant:</strong> <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#nhHHSID#">
             </cfoutput>
               <p>&nbsp;</p>
                 <strong>Study:</strong> <select name="studyID">
                          <cfoutput query="getStudies">
-                           <cfif "#getStudies.studyID#" eq "#getPersonRecord.studyID#">
-                             <option value="#studyID#" selected>#studyName#</option>
-                           <cfelse>
+                           <cfif "#getStudies.studyID#" neq "#getPersonRecord.studyID#">
                              <option value="#studyID#">#studyName#</option>
+                           <cfelse>
+                             <option value="#studyID#" selected>#studyName#</option>
                            </cfif>  
                          </cfoutput>
                        </select>
@@ -81,7 +82,13 @@
               <th>Median</th>
             </tr>
 
-          <cfoutput query="getPersonRecord">
+          <cfif getPersonRecord.recordCount LT 1>
+            <tr>
+              <td colspan="7" class="center">No comparable studies found.</td>
+            </tr>
+
+          <cfelse>
+            <cfoutput query="getPersonRecord">
             <tr>
               <td>#shortName# <br /><small>(#longName#)</small></td>
               <td class="info">#pfcLevel#</td>
@@ -112,6 +119,7 @@
               </cfif>
             </tr>
           </cfoutput>
+        </cfif>
 
           </table>
 
