@@ -139,12 +139,16 @@
 
         <cfelse>
 
-          <h4>Type in your Participant ID number</h4>
-          <cfform action="individualdata.cfm" method="post">
-            <cfinput name="nhHHSID" type="text" maxlength="6" size="8">
-            <cfinput name="studyID" type="hidden" value="9">
-            <button type="submit" name="search" class="btn btn-primary btn-sm">Search</button>
-          </cfform>
+        <p>&nbsp;</p>
+          <h3>Type in your Participant ID number</h3>
+          <div class="form-group">
+            <cfform action="individualdata.cfm" method="post" class="form-inline">
+              <input name="nhHHSID" type="text" maxlength="6" class="formcontrol input-lg" size="20" placeholder="nhHHSID" aria-describedby="nhHHSIDHelp">
+              <span id="nhHHSIDHelp" class="help-block">nhHHSID Participant IDs can be found on your blood sample record.</span>
+              <input name="studyID" type="hidden" value="9">
+              <button type="submit" name="search" class="btn btn-primary btn-lg">Search</button>
+            </cfform>
+          </div>
         </cfif>
 
       </div>
