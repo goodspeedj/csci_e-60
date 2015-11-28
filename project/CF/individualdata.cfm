@@ -60,25 +60,27 @@
           </cfquery>
 
           <h3>Individual Data</h3>
-            <cfform action="individualdata.cfm" method="post">
-            <cfoutput>
-              <strong>Participant:</strong> <cfinput name="nhHHSID" type="text" maxlength="6" size="8" value="#nhHHSID#">
-            </cfoutput>
-              <p>&nbsp;</p>
-                <strong>Study:</strong> <select name="studyID">
-                         <cfoutput query="getStudies">
-                           <cfif "#getStudies.studyID#" neq "#getPersonRecord.studyID#">
-                             <option value="#studyID#">#studyName#</option>
-                           <cfelse>
-                             <option value="#studyID#" selected>#studyName#</option>
-                           </cfif>  
-                         </cfoutput>
-                       </select>
-              <br /><strong>Number of Participants:</strong> <cfoutput>#getPersonRecord.participants#</cfoutput>
-              <br /><strong>Exposure Type:</strong> <cfoutput>#getPersonRecord.exposureType#</cfoutput>
-              <p>&nbsp;</p>
-              <button type="submit" name="update" class="btn btn-primary btn-sm">Update</button>
-            </cfform>
+            <div class="form-group">
+              <cfform action="individualdata.cfm" method="post" class="form-inline">
+              <cfoutput>
+                <strong>Participant:</strong> <cfinput class="form-control" name="nhHHSID" type="text" maxlength="6" size="8" value="#nhHHSID#">
+              </cfoutput>
+                <p>&nbsp;</p>
+                  <strong>Study:</strong> <select name="studyID" class="form-control">
+                           <cfoutput query="getStudies">
+                             <cfif "#getStudies.studyID#" neq "#getPersonRecord.studyID#">
+                               <option value="#studyID#">#studyName#</option>
+                             <cfelse>
+                               <option value="#studyID#" selected>#studyName#</option>
+                             </cfif>  
+                           </cfoutput>
+                         </select>
+                <p><br /><strong>Number of Participants:</strong> <cfoutput>#getPersonRecord.participants#</cfoutput></p>
+                <p><strong>Exposure Type:</strong> <cfoutput>#getPersonRecord.exposureType#</cfoutput></p>
+                <p>&nbsp;</p>
+                <button type="submit" name="update" class="btn btn-primary">Update</button>
+              </cfform>
+            </div>
             <p>&nbsp;</p>
           <table class="table table-striped">
             <tr>
