@@ -18,6 +18,15 @@
 
         <cfif IsDefined("Form.search") or IsDefined("Form.update")>
 
+          <cfquery name="validatePerson"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            SELECT nhHHSID FROM tbPerson WHERE nhHHSID =
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#nhHHSID#">
+          </cfquery>
+
           <cfquery name="getPersonRecord"
                    datasource="#Request.DSN#"
                    username="#Request.username#"
@@ -82,7 +91,12 @@
               <th>Median</th>
             </tr>
 
-          <cfif getPersonRecord.recordCount LT 1>
+          <cfif getPersonRecord.recordCount LT 1 and validatePerson.recordCount LT 1>
+            <tr>
+              <td colspan="7" class="center">No participant record found.</td>
+            </tr>
+
+          <cfelseif getPersonRecord.recordCount LT 1>
             <tr>
               <td colspan="7" class="center">No comparable studies found.</td>
             </tr>
