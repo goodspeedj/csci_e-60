@@ -9,52 +9,53 @@
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
 
+    <!-- Specific Google Map styles -->
     <style type="text/css">
-      html, body { height: 100%; margin: 0; padding: 0; }
-      #map { height: 100%; }
-      #legend {
-        background: white;
-        padding: 5px;
-        border-radius: 3px;
-        border:2px solid #fff;
-        box-shadow: 0 2px 6px rgba(0,0,0,.3);
-        color: rgb(25,25,25);
-        font-family: Roboto,Arial,sans-serif;
-        font-size: 12px;
-        padding-right: 5px;
+      html, body { 
+        height: 90%; 
+        margin: 0; 
+        padding: 0; 
       }
     </style>
   </head>
   <body>
     <div class="container" style="height:100%; width:100%;">
-      <div class="starter-template" style="height:100%; width:100%;">
-        <cfinclude template = "navbar.cfm">
+      <cfinclude template = "navbar.cfm">
+      <!-- <div class="starter-template" style="height:100%; width:100%;"> -->
+      <div class="row">
+        <div class="col-md-4">
+          <p>Lorum ipsum...</p>
+        </div>
+        <div class="col-md-8">
+      
+          <cfquery name="getWells"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            SELECT wellID, wellTypeID, wellName, wellLat, wellLong, wellYeild, wellActive
+              FROM tbWell
+              NATURAL JOIN tbWellType
+              WHERE wellType = 'Well'
+              ORDER BY wellID
+          </cfquery>
 
-        <cfquery name="getWells"
-                 datasource="#Request.DSN#"
-                 username="#Request.username#"
-                 password="#Request.password#">
-          SELECT wellID, wellTypeID, wellName, wellLat, wellLong, wellYeild, wellActive
-            FROM tbWell
-            NATURAL JOIN tbWellType
-            WHERE wellType = 'Well'
-            ORDER BY wellID
-        </cfquery>
+          <cfquery name="getPeopleLocations"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            SELECT nhHHSID, address 
+              FROM tbPerson
+              NATURAL JOIN tbAddress
+          </cfquery>
 
-        <cfquery name="getPeopleLocations"
-                 datasource="#Request.DSN#"
-                 username="#Request.username#"
-                 password="#Request.password#">
-          SELECT nhHHSID, address 
-            FROM tbPerson
-            NATURAL JOIN tbAddress
-        </cfquery>
+          <!-- Store some data to use in the map javascript -->
+          <cfset wellLat = ListToArray(ValueList(getWells.wellLat)) />
+          <cfset wellLong = ListToArray(ValueList(getWells.wellLong)) />
+          <cfset wellYeild = ListToArray(ValueList(getWells.wellYeild)) />
 
-        <!-- Store some data to use in the map javascript -->
-        <cfset wellLat = ListToArray(ValueList(getWells.wellLat)) />
-        <cfset wellLong = ListToArray(ValueList(getWells.wellLong)) />
-        <cfset wellYeild = ListToArray(ValueList(getWells.wellYeild)) />
-        <div id="map"></div>
+          <div id="map"></div>
+
+        </div>
 
       </div>
     </div><!-- /.container -->
@@ -153,6 +154,14 @@
           };
           return circle;
         }
+
+        // Allows map to re-size when not 100% height and width
+        $(window).resize(function () {
+          var h = $(window).height(),
+            offsetTop = 60;
+
+          $('#map').css('height', (h - offsetTop));
+        }).resize();
 
 
 
