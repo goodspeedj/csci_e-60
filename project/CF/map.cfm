@@ -92,7 +92,7 @@
       var styles = [
         {
           stylers: [
-            { saturation: -60 }
+            { saturation: -80 }
           ]
         },{
           featureType: "road",
@@ -124,8 +124,6 @@
             if (status == google.maps.GeocoderStatus.OK) {
               var latitude = results[0].geometry.location.lat();
               var longitude = results[0].geometry.location.lng();
-
-              alert(address + " : " + pfcLevel);
 
               var loc = new google.maps.Marker({
                 position: {lat: latitude, lng: longitude},
