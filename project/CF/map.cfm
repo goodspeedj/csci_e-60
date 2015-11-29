@@ -200,7 +200,7 @@
         var content = [];
         content.push('<h4>Legend</h4>');
         content.push('<p>Well Shutdown<div class="circle red"></div></p>');
-        content.push('<p><div class="circle green"></div>Well Operational</p>');;
+        content.push('<p><div class="circle blue"></div>Well Operational</p>');;
         legend.innerHTML = content.join('');
         legend.index = 1;
         map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
