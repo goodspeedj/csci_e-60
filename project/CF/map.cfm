@@ -51,9 +51,12 @@
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT nhHHSID, address 
+            SELECT nhHHSID, address, pfcLevel, shortName
               FROM tbPerson
+              NATURAL JOIN tbPersonPFCLevel
+              NATURAL JOIN tbChemical
               NATURAL JOIN tbAddress
+              WHERE shortName = 'PFOS'
           </cfquery>
 
           <!-- Store some data to use in the map javascript -->
@@ -110,17 +113,25 @@
 
         <cfoutput query="getPeopleLocations">
           var #toScript(address, "address")#;
+
           var geocoder = new google.maps.Geocoder();
 
           geocoder.geocode( { 'address': address}, function(results, status) {
+
+            var #toScript(pfcLevel, "pfcLevel")#;
+            var #toScript(shortName, "shortName")#;
 
             if (status == google.maps.GeocoderStatus.OK) {
               var latitude = results[0].geometry.location.lat();
               var longitude = results[0].geometry.location.lng();
 
+              alert(address + " : " + pfcLevel);
+
               var loc = new google.maps.Marker({
                 position: {lat: latitude, lng: longitude},
-                map: map
+                map: map,
+                icon: getMarker(pfcLevel, 'orange'),
+                title: shortName + ": " + pfcLevel
               });
 
             } 
@@ -139,7 +150,7 @@
           position: {lat: Number(smithWellLat), lng: Number(smithWellLong)},
           map: map,
           label: 'W',
-          icon: getMarker(smithWellYeild, 'green'),
+          icon: getMarker(smithWellYeild, 'blue'),
           title: 'Smith Well'
         });
 
@@ -147,16 +158,26 @@
           position: {lat: Number(harrisonWellLat), lng: Number(harrisonWellLong)},
           map: map,
           label: 'W',
-          icon: getMarker(harrisonWellYeild, 'green'),
+          icon: getMarker(harrisonWellYeild, 'blue'),
           title: 'Harrison Well'
         });
 
         function getMarker(size, color) {
+          var diameter;
+
+          // Is the size for a well yield or a person exposed?
+          if (size < 50) {
+            diameter = size; 
+          }
+          else {
+            diameter = size / 20;
+          }
+
           var circle = {
             path: google.maps.SymbolPath.CIRCLE,
             fillColor: color,
             fillOpacity: .4,
-            scale: size / 20,
+            scale: diameter,
             strokeColor: 'white',
             strokeWeight: .5
           };
