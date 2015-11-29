@@ -1,5 +1,17 @@
-.push-right {
-  margin-left: 120px;   
+#legend {
+  background: white;
+  padding: 5px;
+  border-radius: 3px;
+  border:2px solid #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  color: rgb(25,25,25);
+  font-family: Roboto,Arial,sans-serif;
+  font-size: 12px;
+  padding-right: 5px;
+}
+
+#map { 
+  height: 100%; 
 }
 
 .center {
@@ -20,4 +32,8 @@
 
 .red {
   background: red;
+}
+
+.push-right {
+  margin-left: 120px;   
 }
