@@ -66,6 +66,14 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <label for="sampleDate" class="col-sm-2 control-label">Sample Date</label>
+              <div class="col-sm-4">
+              <input type="date" name="sampleDate">
+                <span id="helpDate" class="help-block">Enter the date this sample was taken.</span>
+              </div>
+            </div>
+
           </cfform>
         </div>
 
