@@ -37,7 +37,11 @@
           <tr>
             <cfloop array="#getWellSamples.getcolumnlist()#" index="pfcName">
               <cfif #pfcName# neq "WELLID">
-                <th>#pfcName#</th>
+                <cfif #pfcName# eq "SAMPLEDATE">
+                  <th>Sample Date</th>
+                <cfelse>
+                  <th>#pfcName#</th>
+                </cfif>
               </cfif>
             </cfloop>
           </tr>
@@ -46,7 +50,11 @@
           <tr>
             <cfloop array="#getWellSamples.getcolumnlist()#" index="pfcLevel">
               <cfif #pfcLevel# neq "WELLID">
-                <td>#getWellSamples[pfcLevel][currentrow]#</td>
+                <cfif #pfcLevel# eq "SAMPLEDATE">
+                  <td>#DateFormat(getWellSamples[pfcLevel][currentrow], "dd-mmm-yyyy")#</td>
+                <cfelse>
+                  <td>#getWellSamples[pfcLevel][currentrow]#</td>
+                </cfif>
               </cfif>
             </cfloop>
           </tr>
