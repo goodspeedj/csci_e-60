@@ -306,6 +306,10 @@
                         greaterThan: {
                           value: 0,
                           message: 'The participants age must be greater than 0'
+                        },
+                        lessThan: {
+                          value: 100,
+                          message: 'The participants age must be less than 100'
                         }
                     }
                 },
@@ -320,6 +324,10 @@
                         greaterThan: {
                           value: 0,
                           message: 'The number of years exposed must be greater than 0'
+                        },
+                        lessThan: {
+                          value: 30,
+                          message: 'The number of years exposed must be less than 30'
                         }
                     }
                 },
