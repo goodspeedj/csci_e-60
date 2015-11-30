@@ -72,14 +72,30 @@
               <label for="sampleDate" class="col-sm-2 control-label">Sample Date</label>
               <div class="col-sm-4 date">
                 <div class="input-group input-append date" id="datePicker">
-                  <input type="text" class="form-control" name="sampleDate" />
+                  <input type="text" class="form-control" name="sampleDate">
                   <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                 </div>
                 <span id="helpDate" class="help-block">Enter the date this sample was taken.</span>
               </div>
-              
             </div>
 
+            <div class="form-group">
+              <label for="pfcLevel" class="col-sm-2 control-label">PFC Level</label>
+              <div class="col-sm-4">
+                <input type="text" class="form-control" name="pfcLevel" aria-describedby="helpPfcLevel">
+                <span id="helpPfcLevel" class="help-block">Enter the PFC level for this sample.</span>
+              </div>
+            </div>
+
+            <p>&nbsp;</p>
+
+            <div class="form-group">
+              <div class="col-sm-2 control-label"></div>
+              <div class="col-sm-4 center">
+                <button type="addSample" name="Add Sample Record" class="btn btn-primary">Add Sample Record</button>
+              </div>
+            </div>
+            
           </cfform>
         </div>
 
@@ -115,7 +131,7 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                date: {
+                sampleDate: {
                     validators: {
                         notEmpty: {
                             message: 'The date is required'
@@ -125,7 +141,22 @@
                             message: 'The date is not a valid'
                         }
                     }
+                },
+                pfcLevel: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The PFC level is required'
+                        },
+                        numeric: {
+                            message: 'The PFC level must be a number'
+                        },
+                        greaterThan: {
+                          value: 0,
+                          message: 'The value must be greater than or equal to 0'
+                        }
+                    }
                 }
+
             }
         });
     });
