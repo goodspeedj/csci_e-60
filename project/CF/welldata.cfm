@@ -30,17 +30,24 @@
         </cfquery>
 
         <cfoutput>
+
+        <!-- Following code based on: http://stackoverflow.com/questions/33876129/displaying-results-from-pivot-query-in-coldfusion/33877746 -->
+
         <table class="table table-striped">
           <tr>
             <cfloop array="#getWellSamples.getcolumnlist()#" index="pfcName">
-              <th>#pfcName#</th>
+              <cfif #pfcName# neq "WELLID">
+                <th>#pfcName#</th>
+              </cfif>
             </cfloop>
           </tr>
 
           <cfloop query="getWellSamples">
           <tr>
             <cfloop array="#getWellSamples.getcolumnlist()#" index="pfcLevel">
-            <td>#getWellSamples[pfcLevel][currentrow]#</td>
+              <cfif #pfcLevel# neq "WELLID">
+                <td>#getWellSamples[pfcLevel][currentrow]#</td>
+              </cfif>
             </cfloop>
           </tr>
           </cfloop>
