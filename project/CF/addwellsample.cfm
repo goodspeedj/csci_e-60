@@ -18,9 +18,30 @@
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
 
-        <cfif IsDefined("Form.addWellData")>
-          <p>Record Added</p>
-          <!-- <cflocation url="welldata.cfm"> -->
+        <cfif IsDefined("Form.addSample")>
+
+
+          <cfquery name="addWellSample"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            INSERT INTO tbWellSample
+              VALUES (
+                seq_sample.nextval, 
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.wellID#">, 
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.chemID#">, 
+                TO_DATE(
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.sampleDate#">, 'MM/DD/YYYY'),    
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.pfcLevel#">,
+                null
+              )
+          </cfquery>
+          <h4>Record Added</h4>
+          <cflocation url="welldata.cfm">
         <cfelse>
 
           <h3>Add Well Sample</h3>
@@ -45,7 +66,7 @@
 
           <div class="form-group">
 
-            <cfform id="addWellData" action="managewell.cfm" method="post" class="form-horizontal">
+            <cfform id="addWellData" action="addwellsample.cfm" method="post" class="form-horizontal">
 
               <div class="form-group">
                 <label for="wellID" class="col-sm-2 control-label">Well Name</label>
@@ -87,7 +108,7 @@
               <div class="form-group">
                 <label for="pfcLevel" class="col-sm-2 control-label">PFC Level</label>
                 <div class="col-sm-4">
-                  <input type="text" class="form-control" name="pfcLevel" aria-describedby="helpPfcLevel">
+                  <input type="text" class="form-control" name="pfcLevel" aria-describedby="helpPfcLevel" placeholder="0.00">
                   <span id="helpPfcLevel" class="help-block">Enter the PFC level for this sample.</span>
                 </div>
               </div>
@@ -97,7 +118,7 @@
               <div class="form-group">
                 <div class="col-sm-2 control-label"></div>
                 <div class="col-sm-4 center">
-                  <button type="addSample" name="Add Sample Record" class="btn btn-primary">Add Sample Record</button>
+                  <button type="submit" name="addSample" class="btn btn-primary">Add Sample Record</button>
                 </div>
               </div>
               
@@ -138,6 +159,20 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
+                wellID: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The well is required'
+                        }
+                    }
+                },
+                chemID: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The chemical is required'
+                        }
+                    }
+                },
                 sampleDate: {
                     validators: {
                         notEmpty: {
