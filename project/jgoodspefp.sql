@@ -66,18 +66,18 @@ CREATE table tbChemical (
 
 
 CREATE table tbExposureType (
-        exposureID        number(11,0)            not null
+        exposureID        number(11,0)          not null
             constraint pk_exposureType primary key,
-        exposureType      varchar(45)             not null
+        exposureType      varchar(45)           not null
 );
 
 
 CREATE table tbStudy (
         studyID         number(11,0)            not null
             constraint pk_study primary key,
-        studyName            varchar2(30)            not null,
-        studyStartDate       date                    not null,
-        studyEndDate         date                    not null,
+        studyName            varchar2(30)       not null,
+        studyStartDate       date               not null,
+        studyEndDate         date               not null,
         participants    number(11,0)            not null
             constraint  rg_participants check (participants >= 0),
         exposureID      number(11,0)            not null
@@ -100,7 +100,8 @@ CREATE table tbWell (
         wellName        varchar2(30)            not null,
         wellLat         number(10,8)            not null,
         wellLong        number(10,8)            not null,
-        wellYeild       number(4,0)             null,
+        wellYeild       number(4,0)             null
+            constraint  rg_wellyeild check (wellYeild >= 0),
         wellActive      char(1)                 not null
             constraint  rg_active check (REGEXP_LIKE(wellActive, '^Y|N$'))
 );
@@ -126,15 +127,15 @@ CREATE table tbStudyPFCLevel (
             constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID),
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbStudyPFCLevel references tbChemical (chemID),
-        pfcMin          number(10,3)             null
+        pfcMin          number(10,3)            null
             constraint  rg_pfcMin check (pfcMin >= 0),
-        pfcMax          number(10,3)             null
+        pfcMax          number(10,3)            null
             constraint  rg_pfcMax check (pfcMax >= 0),
-        pfcMean         number(10,3)             null
+        pfcMean         number(10,3)            null
             constraint  rg_pfcMean check (pfcMean >= 0),
-        pfcGeoMean      number(10,3)             null
+        pfcGeoMean      number(10,3)            null
             constraint  rg_pfcGeoMean check (pfcGeoMean >= 0),
-        pfcMedian       number(10,3)             null
+        pfcMedian       number(10,3)            null
             constraint  rg_pfcMedian check (pfcMedian >= 0),
         ageRange        varchar2(20)            null, 
         adult           char(1)                 not null,
@@ -177,11 +178,11 @@ CREATE table tbWellSample (
 
 
 CREATE table tbAddress (
-        addressID        number(11,0)            not null
+        addressID        number(11,0)           not null
             constraint pk_address primary key,
-        personID         number(11,0)            not null
+        personID         number(11,0)           not null
             constraint  fk_personID_tbAddress references tbPerson (personID),
-        address          varchar(45)             not null
+        address          varchar(45)            not null
 );
 
 -- ******************************************************
