@@ -18,7 +18,7 @@
             <li class="dropdown">
               <a href="admin.cfm" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="managewell.cfm">Manage Well Samples</a></li>
+                <li><a href="addwellsample.cfm">Add Well Sample</a></li>
                 <li><a href="manageparticipant.cfm">Manage Participant Records</a></li>
               </ul>
             </li>
