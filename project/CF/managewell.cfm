@@ -8,6 +8,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
     <link href="css/formValidation/formValidation.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
   </head>
 
@@ -69,10 +70,14 @@
 
             <div class="form-group">
               <label for="sampleDate" class="col-sm-2 control-label">Sample Date</label>
-              <div class="col-sm-4">
-              <input type="date" name="sampleDate">
+              <div class="col-sm-4 date">
+                <div class="input-group input-append date" id="datePicker">
+                  <input type="text" class="form-control" name="sampleDate" />
+                  <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>
                 <span id="helpDate" class="help-block">Enter the date this sample was taken.</span>
               </div>
+              
             </div>
 
           </cfform>
@@ -89,9 +94,19 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/formValidation/formValidation.min.js"></script>
     <script src="js/formValidation/bootstrap.min.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
 
     <script>
     $(document).ready(function() {
+        $('#datePicker')
+            .datepicker({
+                format: 'mm/dd/yyyy'
+            })
+            .on('changeDate', function(e) {
+                // Revalidate the date field
+                $('#addWellData').formValidation('revalidateField', 'date');
+            });
+
         $('#addWellData').formValidation({
             framework: 'bootstrap',
             icon: {
@@ -100,14 +115,14 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                sampleDate: {
+                date: {
                     validators: {
                         notEmpty: {
-                            message: 'The sample date is required'
+                            message: 'The date is required'
                         },
                         date: {
-                            format: 'YYYY/MM/DD',
-                            message: 'The sample date format is not valid'
+                            format: 'MM/DD/YYYY',
+                            message: 'The date is not a valid'
                         }
                     }
                 }
