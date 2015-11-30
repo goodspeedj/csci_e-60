@@ -7,6 +7,7 @@
     <title>Manage Well Data</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/formValidation/formValidation.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
   </head>
 
@@ -38,7 +39,7 @@
 
         <div class="form-group">
 
-          <cfform action="managewell.cfm" method="post" class="form-horizontal">
+          <cfform id="addWellData" action="managewell.cfm" method="post" class="form-horizontal">
 
             <div class="form-group">
               <label for="wellID" class="col-sm-2 control-label">Well Name</label>
@@ -86,5 +87,33 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/formValidation/formValidation.min.js"></script>
+    <script src="js/formValidation/bootstrap.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#addWellData').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                sampleDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The sample date is required'
+                        },
+                        date: {
+                            format: 'YYYY/MM/DD',
+                            message: 'The sample date format is not valid'
+                        }
+                    }
+                }
+            }
+        });
+    });
+    </script>
   </body>
 </html>
