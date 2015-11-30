@@ -15,7 +15,19 @@
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
 
-        <h3>Well Data</h3>
+        <cfparam name="wellID" default="1" type="string">
+
+        <h3>Well Sample Data</h3>
+
+        <cfquery name="getWells"
+                 datasource="#Request.DSN#"
+                 username="#Request.username#"
+                 password="#Request.password#">
+          SELECT wellID, wellName 
+            FROM tbWell
+            NATURAL JOIN tbWellType
+            WHERE wellType = 'Well'
+        </cfquery>
 
         <cfquery name="getWellSamples"
                  datasource="#Request.DSN#"
@@ -25,9 +37,35 @@
             (SELECT sampleDate, wellID, shortName, pfcLevel 
               FROM tbWellSample NATURAL JOIN tbChemical) 
             PIVOT 
-            (MAX(pfcLevel) FOR shortName IN ('PFOA', 'PFOS', 'PFHxS', 'PFUA', 'PFOSA', 'PFNA', 'PFDeA', 'PFPeA', 'PFHxA', 'PFBA')) 
-            WHERE wellId = 1 ORDER BY sampleDate DESC
+              (MAX(pfcLevel) FOR shortName IN ('PFOA', 'PFOS', 'PFHxS', 'PFUA', 'PFOSA', 'PFNA', 'PFDeA', 'PFPeA', 'PFHxA', 'PFBA')) 
+              WHERE wellId = 
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#wellID#">
+            ORDER BY sampleDate DESC
         </cfquery>
+
+        <cfform id="selectWell" action="welldata.cfm" method="post" class="form-inline">
+
+          <div class="form-group">
+            <label for="wellID">Well Name</label>
+              <select name="wellID" class="form-control" aria-describedby="helpWell">
+                <cfoutput query="getWells">
+                 <cfif "#getWells.wellID#" neq "#getWellSamples.wellID#">
+                   <option value="#wellID#">#wellName#</option>
+                 <cfelse>
+                   <option value="#wellID#" selected>#wellName#</option>
+                 </cfif> 
+                </cfoutput> 
+              </select>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" name="updateWell" class="btn btn-primary">Update</button>
+          </div>
+
+        </cfform>
+
+        <p>&nbsp;</p>
 
         <cfoutput>
 
