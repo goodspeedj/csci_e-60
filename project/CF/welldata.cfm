@@ -17,7 +17,7 @@
 
         <h3>Well Data</h3>
 
-        <cfquery name="getComponent"
+        <cfquery name="getWellSamples"
                  datasource="#Request.DSN#"
                  username="#Request.username#"
                  password="#Request.password#">
@@ -26,23 +26,27 @@
               FROM tbWellSample NATURAL JOIN tbChemical) 
             PIVOT 
             (MAX(pfcLevel) FOR shortName IN ('PFOA', 'PFOS', 'PFHxS', 'PFUA', 'PFOSA', 'PFNA', 'PFDeA', 'PFPeA', 'PFHxA', 'PFBA')) 
-            WHERE wellId = 2 ORDER BY sampleDate
+            WHERE wellId = 1 ORDER BY sampleDate DESC
         </cfquery>
 
+        <cfoutput>
         <table class="table table-striped">
           <tr>
-            <th>Date</th>
-            <th>Level</th>
+            <cfloop array="#getWellSamples.getcolumnlist()#" index="pfcName">
+              <th>#pfcName#</th>
+            </cfloop>
           </tr>
 
-        <cfoutput query="getComponent">
+          <cfloop query="getWellSamples">
           <tr>
-            <td>#sampleDate#</td>
-            <td>#pfcLevel#</td>
+            <cfloop array="#getWellSamples.getcolumnlist()#" index="pfcLevel">
+            <td>#getWellSamples[pfcLevel][currentrow]#</td>
+            </cfloop>
           </tr>
-        </cfoutput>
+          </cfloop>
 
         </table>
+        </cfoutput>
 
       </div>
     </div><!-- /.container -->
