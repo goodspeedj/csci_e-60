@@ -238,9 +238,9 @@ INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFOA', 'Perfluorooctanoic 
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .2);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFHxS', 'Perfluorohexanesulphonic acid', 1.1);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFUA', 'Perfluoroundecanoic acid', .09);
-INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFOSA', 'Perfluorooctane sulfonamide', .09);
-INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFNA', 'Perfluorononanoic acid', .09);
-INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFDeA', 'Perfluorodecanoic acid', .09);
+INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFOSA', 'Perfluorooctane sulfonamide', null);
+INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFNA', 'Perfluorononanoic acid', null);
+INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFDeA', 'Perfluorodecanoic acid', null);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFPeA', 'Perfluorotetradecanoic acid', null);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFHxA', 'Perfluorohexanoic acid', null);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFBA', 'Perfluorobutanoic acid', null);
