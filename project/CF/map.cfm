@@ -26,13 +26,15 @@
         <div class="col-md-4">
           <h4 class="center">Pease International Tradeport</h4>
           <h5 class="center">Portsmouth, NH</h5>
-          <p>This map shows the locations of the wells on the Pease Tradeport.</p>
+          <p>This map shows the locations of the wells on the Pease Tradeport as well as
+             the people who were exposed (and tested) to the contaminated water.</p>
           <p>The active wells are shown with a blue circle and the inactive well, Haven, 
              is shown with a red circle.  The size of the circle represents the well's
              yeild in millions of gallons from 2002 to 2008.</p>
           <p>The orage circles represent the people that were exposed to the PFCs from the
              Pease wells.  The location of the circle represents where they were exposed 
-             and the size of the circle represents the levels of PFCs in their blood.</p>
+             and the size of the circle represents the levels of PFCs in their blood - 
+             the larger the circle the higher the levels of PFCs present.</p>
         </div>
         <div class="col-md-8">
       
