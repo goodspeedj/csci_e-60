@@ -58,7 +58,7 @@
               NATURAL JOIN tbPersonPFCLevel
               NATURAL JOIN tbChemical
               NATURAL JOIN tbAddress
-              WHERE shortName = 'PFOS'
+              WHERE shortName = 'PFHxS'
           </cfquery>
 
           <!-- Store some data to use in the map javascript -->
@@ -128,7 +128,7 @@
               var longitude = results[0].geometry.location.lng();
 
               // Introduce some variability into the lat & long to avoid bullseye effect
-              var jitter = Math.random() / 900;
+              var jitter = Math.random() / 1000;
 
               var loc = new google.maps.Marker({
                 position: {lat: latitude-jitter, lng: longitude+jitter},
