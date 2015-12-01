@@ -58,7 +58,7 @@
               NATURAL JOIN tbPersonPFCLevel
               NATURAL JOIN tbChemical
               NATURAL JOIN tbAddress
-              WHERE shortName = 'PFHxS'
+              WHERE shortName = 'PFOS'
           </cfquery>
 
           <!-- Store some data to use in the map javascript -->
@@ -124,14 +124,26 @@
             var #toScript(shortName, "shortName")#;
 
             if (status == google.maps.GeocoderStatus.OK) {
-              var latitude = results[0].geometry.location.lat();
-              var longitude = results[0].geometry.location.lng();
-
               // Introduce some variability into the lat & long to avoid bullseye effect
               var jitter = Math.random() / 1000;
 
+              var latitude;
+              var longitude;
+
+              if (jitter % 2 === 0) {
+                latitude = results[0].geometry.location.lat() + jitter;
+                longitude = results[0].geometry.location.lng() - jitter;
+              }
+              else {
+                latitude = results[0].geometry.location.lat() - jitter;
+                longitude = results[0].geometry.location.lng() + jitter;  
+              }
+              
+
+              
+
               var loc = new google.maps.Marker({
-                position: {lat: latitude-jitter, lng: longitude+jitter},
+                position: {lat: latitude, lng: longitude},
                 map: map,
                 icon: getMarker(pfcLevel, 'orange'),
                 title: shortName + ": " + pfcLevel
