@@ -127,8 +127,11 @@
               var latitude = results[0].geometry.location.lat();
               var longitude = results[0].geometry.location.lng();
 
+              // Introduce some variability into the lat & long to avoid bullseye effect
+              var jitter = Math.random() / 900;
+
               var loc = new google.maps.Marker({
-                position: {lat: latitude, lng: longitude},
+                position: {lat: latitude-jitter, lng: longitude+jitter},
                 map: map,
                 icon: getMarker(pfcLevel, 'orange'),
                 title: shortName + ": " + pfcLevel
