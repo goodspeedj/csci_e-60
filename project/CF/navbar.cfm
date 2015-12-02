@@ -11,7 +11,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="index.cfm">Info</a></li>
+            <li><a href="index.cfm">Home</a></li>
+            <li><a href="info.cfm">Info</a></li>
             <li><a href="welldata.cfm">Well Data</a></li>
             <li><a href="individualdata.cfm">Individual Data</a></li>
             <li><a href="map.cfm">Map</a></li>

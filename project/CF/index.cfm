@@ -46,6 +46,7 @@
               <nav>
                 <ul class="nav masthead-nav">
                   <li class="active"><a href="#">Home</a></li>
+                  <li><a href="info.cfm">Info</a></li>
                   <li><a href="welldata.cfm">Well Data</a></li>
                   <li><a href="individualdata.cfm">Individual Data</a></li>
                   <li><a href="map.cfm">Map</a></li>
