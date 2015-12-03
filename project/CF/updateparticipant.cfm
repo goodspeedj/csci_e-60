@@ -7,6 +7,7 @@
     <title>Update Participant</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/formValidation/formValidation.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -151,5 +152,71 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/formValidation/formValidation.min.js"></script>
+    <script src="js/formValidation/bootstrap.min.js"></script>
+
+
+    <script>
+    $(document).ready(function() {
+
+        $('#updateParticipantData').formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                nhHHSID: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The nhHHSID is required'
+                        },
+                        regexp: {
+                            regexp: /^PT[0-9][0-9][0-9][0-9]$/,
+                            message: 'The nhHHSID should start with "PT" followed by four digits'
+                        }
+                    }
+                },
+                age: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The participant age is required'
+                        },
+                        numeric: {
+                            message: 'The participant age must be a number'
+                        },
+                        greaterThan: {
+                          value: 0,
+                          message: 'The participants age must be greater than 0'
+                        },
+                        lessThan: {
+                          value: 100,
+                          message: 'The participants age must be less than 100'
+                        }
+                    }
+                },
+                yearsExposed: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The number of years exposed is required'
+                        },
+                        numeric: {
+                            message: 'The number of years exposed must be a number'
+                        },
+                        greaterThan: {
+                          value: 0,
+                          message: 'The number of years exposed must be greater than 0'
+                        },
+                        lessThan: {
+                          value: 30,
+                          message: 'The number of years exposed must be less than 30'
+                        }
+                    }
+                }
+            }
+        });
+    });
+    </script>
   </body>
 </html>
