@@ -83,11 +83,21 @@
                   value="#Form.personID#">
           </cfquery>
 
-          <cflocation url="individualdata.cfm">
+          <cflocation url="updateparticipant.cfm">
 
         <cfelseif IsDefined("Form.deleteParticipant")>
 
-          <p>Deleted
+          <cfquery name="deleteParticipant"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            DELETE FROM tbPerson 
+              WHERE personID =
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.personID#">
+          </cfquery>
+
+          <cflocation url="updateparticipant.cfm">
 
         <cfelse>
 
