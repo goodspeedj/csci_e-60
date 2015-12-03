@@ -81,7 +81,7 @@ CREATE table tbStudy (
         participants    number(11,0)            not null
             constraint  rg_participants check (participants >= 0),
         exposureID      number(11,0)            not null
-            constraint fk_exposureID_tbStudy references tbExposureType (exposureID)
+            constraint fk_exposureID_tbStudy references tbExposureType (exposureID) on delete set null
 );
 
 
@@ -96,7 +96,7 @@ CREATE table tbWell (
         wellID          number(11,0)            not null
             constraint pk_well primary key,
         wellTypeID      number(11,0)            not null
-            constraint  fk_wellTypeID_tbWell references tbWellType (wellTypeID),
+            constraint  fk_wellTypeID_tbWell references tbWellType (wellTypeID) on delete set null,
         wellName        varchar2(30)            not null,
         wellLat         number(10,8)            not null,
         wellLong        number(10,8)            not null,
@@ -124,9 +124,9 @@ CREATE table tbStudyPFCLevel (
 	    studyPfcLevelID number(11,0)            not null
 	        constraint pk_studypfclevel primary key,
         studyID         number(11,0)            not null
-            constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID),
+            constraint  fk_studyID_tbStudyPFCLevel references tbStudy (studyID) on delete cascade,
         chemID          number(11,0)            not null
-            constraint  fk_chemID_tbStudyPFCLevel references tbChemical (chemID),
+            constraint  fk_chemID_tbStudyPFCLevel references tbChemical (chemID) on delete set null,
         pfcMin          number(10,3)            null
             constraint  rg_pfcMin check (pfcMin >= 0),
         pfcMax          number(10,3)            null
@@ -145,9 +145,9 @@ CREATE table tbStudyPFCLevel (
 
 CREATE table tbPersonPFCLevel (
         personID        number(11,0)            not null
-            constraint  fk_personID_tbPersonPFCLevel references tbPerson (personID),
+            constraint  fk_personID_tbPersonPFCLevel references tbPerson (personID) on delete cascade,,
         chemID          number(11,0)            not null
-            constraint  fk_chemID_tbPersonPFCLevel references tbChemical (chemID),
+            constraint  fk_chemID_tbPersonPFCLevel references tbChemical (chemID) on delete set null,
         pfcLevel        number(6,3)             not null
             constraint  rg_personpfclevel check (pfcLevel >= 0),
             constraint  pk_personpfclevel primary key (personID, chemID)
@@ -166,14 +166,14 @@ CREATE table tbWellSample (
         sampleID        number(11,0)            not null
             constraint pk_wellsample primary key,
         wellID          number(11,0)            not null
-            constraint  fk_wellID_tbWellSample references tbWell (wellID),
+            constraint  fk_wellID_tbWellSample references tbWell (wellID) on delete cascade,
         chemID          number(11,0)            not null
-            constraint  fk_chemID_tbWellSample references tbChemical (chemID),
+            constraint  fk_chemID_tbWellSample references tbChemical (chemID) on delete set null,
         sampleDate      date                    not null,
         pfcLevel        number(6,3)             null
             constraint  rg_wellpfclevel check (pfcLevel >= 0),
         noteID		    number(11,0)            null
-            constraint  fk_noteID_tbWellSample references tbSampleNote (noteID)
+            constraint  fk_noteID_tbWellSample references tbSampleNote (noteID) on delete set null
 );
 
 
@@ -181,7 +181,7 @@ CREATE table tbAddress (
         addressID        number(11,0)           not null
             constraint pk_address primary key,
         personID         number(11,0)           not null
-            constraint  fk_personID_tbAddress references tbPerson (personID),
+            constraint  fk_personID_tbAddress references tbPerson (personID) on delete cascade,
         address          varchar(45)            not null
 );
 
