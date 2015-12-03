@@ -60,7 +60,30 @@
 
         <cfelseif IsDefined("Form.updateParticipant")>
 
-          <p>Updated
+          <cfquery name="udpateParticipant"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            UPDATE tbPerson 
+              SET 
+                nhHHSID = 
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.nhHHSID#">, 
+                age = 
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.age#">, 
+                yearsExposed =
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.yearsExposed#">, 
+                sex =
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.sex#">
+              WHERE personID =
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.personID#">
+          </cfquery>
+
+          <cflocation url="individualdata.cfm">
 
         <cfelseif IsDefined("Form.deleteParticipant")>
 
@@ -135,6 +158,7 @@
                 <div class="form-group">
                   <div class="col-sm-2 control-label"></div>
                   <div class="col-sm-4 center">
+                    <input name="personID" type="hidden" value="#personID#">
                     <button type="submit" name="updateParticipant" class="btn btn-primary">Update</button>
                     <button type="submit" name="deleteParticipant" class="btn btn-danger">Delete</button>
                   </div>
