@@ -15,41 +15,51 @@
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
 
-        <h3>Participant Record Data</h3>
+        <cfif !IsDefined("Form.update")>
+          <h3>Participant Record Data</h3>
 
-        <cfquery name="getParticipants"
-                 datasource="#Request.DSN#"
-                 username="#Request.username#"
-                 password="#Request.password#">
-          SELECT * FROM tbPerson ORDER BY nhHHSID
-        </cfquery>
+          <cfquery name="getParticipants"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            SELECT * FROM tbPerson ORDER BY nhHHSID
+          </cfquery>
 
-        <table class="table table-striped">
-          <tr>
-            <th>nhHHSID</th>
-            <th>Age</th>
-            <th>Years Exposed</th>
-            <th>Sex</th>
-            <th>Action</th>
-          </tr>
-          
-          <cfif getParticipants.recordCount LT 1>
+          <table class="table table-striped">
             <tr>
-              <td colspan="3" class="center">No Participants Found</td>
+              <th>nhHHSID</th>
+              <th>Age</th>
+              <th>Years Exposed</th>
+              <th>Sex</th>
+              <th>Action</th>
             </tr>
-          </cfif>
+            
+            <cfif getParticipants.recordCount LT 1>
+              <tr>
+                <td colspan="3" class="center">No Participants Found</td>
+              </tr>
+            </cfif>
 
-          <cfoutput query="getParticipants">
-          <tr>
-            <td>#nhHHSID#</td>
-            <td>#age#</td>
-            <td>#yearsExposed#</td>
-            <td>#sex#</td>
-            <td><button type="submit" name="update" class="btn btn-primary btn-xs">Update/Delete</button></td>
-          </tr>
-          </cfoutput>
+            <cfoutput query="getParticipants">
+            <tr>
+              <td>#nhHHSID#</td>
+              <td>#age#</td>
+              <td>#yearsExposed#</td>
+              <td>#sex#</td>
+              <td>
+                <cfform action="updateparticipant.cfm" method="post">
+                  <input name="personID" type="hidden" value="#personID#">
+                  <button type="submit" name="update" class="btn btn-primary btn-xs">Update/Delete</button>
+                </cfform>
+              </td>
+            </tr>
+            </cfoutput>
 
-        </table>
+          </table>
+
+        <cfelse>
+          <cfoutput>#Form.personID#</cfoutput>
+        </cfif>
 
       </div>
     </div><!-- /.container -->
