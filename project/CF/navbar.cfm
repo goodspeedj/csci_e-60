@@ -21,6 +21,7 @@
               <ul class="dropdown-menu">
                 <li><a href="addwellsample.cfm">Add Well Sample</a></li>
                 <li><a href="addparticipant.cfm">Add Participant Record</a></li>
+                <li><a href="updateparticipant.cfm">Update/Delete Participant Record</a></li>
               </ul>
             </li>
           </ul>
