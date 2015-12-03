@@ -145,7 +145,7 @@ CREATE table tbStudyPFCLevel (
 
 CREATE table tbPersonPFCLevel (
         personID        number(11,0)            not null
-            constraint  fk_personID_tbPersonPFCLevel references tbPerson (personID) on delete cascade,,
+            constraint  fk_personID_tbPersonPFCLevel references tbPerson (personID) on delete cascade,
         chemID          number(11,0)            not null
             constraint  fk_chemID_tbPersonPFCLevel references tbChemical (chemID) on delete set null,
         pfcLevel        number(6,3)             not null
