@@ -15,7 +15,7 @@
       <div class="starter-template">
         <cfinclude template = "navbar.cfm">
 
-        <cfif !IsDefined("Form.update")>
+        <cfif !IsDefined("Form.update") and !IsDefined("Form.updateParticipant") and !IsDefined("Form.deleteParticipant")>
           <h3>Participant Record Data</h3>
 
           <cfquery name="getParticipants"
@@ -57,8 +57,91 @@
 
           </table>
 
+        <cfelseif IsDefined("Form.updateParticipant")>
+
+          <p>Updated
+
+        <cfelseif IsDefined("Form.deleteParticipant")>
+
+          <p>Deleted
+
         <cfelse>
-          <cfoutput>#Form.personID#</cfoutput>
+
+          <cfquery name="getPerson"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            SELECT * FROM tbPerson WHERE personID =
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#Form.personID#">
+          </cfquery>
+
+          <div class="form-group">
+            <cfoutput query="getPerson">
+              <cfform id="updateParticipantData" action="updateparticipant.cfm" method="post" class="form-horizontal">
+
+                <div class="form-group">
+                  <label for="nhHHSID" class="col-sm-2 control-label">nhHHSID</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" name="nhHHSID" aria-describedby="helpnhHHSID" value="#nhHHSID#">
+                    <span id="helpnhHHSID" class="help-block">NH Health and Human Services ID.</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="age" class="col-sm-2 control-label">Age</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" name="age" aria-describedby="helpAge" value="#age#">
+                    <span id="helpAge" class="help-block">THe Participants Age</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="yearsExposed" class="col-sm-2 control-label">Years Exposed</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" name="yearsExposed" aria-describedby="helpYearsExposed" value="#yearsExposed#">
+                    <span id="helpYearsExposed" class="help-block">The Years Exposed</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="sex" class="col-sm-2 control-label">Sex</label>
+                  <div class="col-sm-4">
+                    <div class="radio">
+                      <label>
+                        <cfif "#sex#" eq "F">
+                          <input type="radio" name="sex" id="sexRadios1" value="M">
+                        <cfelse>
+                          <input type="radio" name="sex" id="sexRadios1" value="M" checked>
+                        </cfif>
+                        Male
+                      </label>
+                      <label>
+                        <cfif "#sex#" eq "F">
+                          <input type="radio" name="sex" id="sexRadios2" value="F" checked>
+                        <cfelse>
+                          <input type="radio" name="sex" id="sexRadios2" value="F">
+                        </cfif>
+                        Female
+                      </label>
+                    </div>
+                    <span id="helpSex" class="help-block">The sex of the participant.</span>
+                  </div>
+                </div>
+
+                <p>&nbsp;</p>
+
+                <div class="form-group">
+                  <div class="col-sm-2 control-label"></div>
+                  <div class="col-sm-4 center">
+                    <button type="submit" name="updateParticipant" class="btn btn-primary">Update</button>
+                    <button type="submit" name="deleteParticipant" class="btn btn-danger">Delete</button>
+                  </div>
+                </div>
+
+              </cfform>
+            </cfoutput>
+          </div>
         </cfif>
 
       </div>
