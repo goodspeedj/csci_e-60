@@ -65,6 +65,7 @@
           <cfset wellLat = ListToArray(ValueList(getWells.wellLat)) />
           <cfset wellLong = ListToArray(ValueList(getWells.wellLong)) />
           <cfset wellYeild = ListToArray(ValueList(getWells.wellYeild)) />
+          <cfset address = ListToArray(ValueList(getPeopleLocations.address)) />
 
           <div id="map"></div>
 
@@ -107,7 +108,7 @@
       ];
       function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 43.069537, lng: -70.803328},
+          center: {lat: 43.073809, lng: -70.806720},
           zoom: 14
         });
 
@@ -115,42 +116,11 @@
 
         <cfoutput query="getPeopleLocations">
           var #toScript(address, "address")#;
+          var #toScript(pfcLevel, "pfcLevel")#;
+          var #toScript(shortName, "shortName")#;
+          
+          addrToLatLong(address, pfcLevel, shortName);
 
-          var geocoder = new google.maps.Geocoder();
-
-          geocoder.geocode( { 'address': address}, function(results, status) {
-
-            var #toScript(pfcLevel, "pfcLevel")#;
-            var #toScript(shortName, "shortName")#;
-
-            if (status == google.maps.GeocoderStatus.OK) {
-              // Introduce some variability into the lat & long to avoid bullseye effect
-              var jitter = Math.random() / 1000;
-
-              var latitude;
-              var longitude;
-
-              if (jitter % 2 === 0) {
-                latitude = results[0].geometry.location.lat() + jitter;
-                longitude = results[0].geometry.location.lng() - jitter;
-              }
-              else {
-                latitude = results[0].geometry.location.lat() - jitter;
-                longitude = results[0].geometry.location.lng() + jitter;  
-              }
-              
-
-              
-
-              var loc = new google.maps.Marker({
-                position: {lat: latitude, lng: longitude},
-                map: map,
-                icon: getMarker(pfcLevel, 'orange'),
-                title: shortName + ": " + pfcLevel
-              });
-
-            } 
-          }); 
         </cfoutput>
 
         var haven = new google.maps.Marker({
@@ -176,6 +146,41 @@
           icon: getMarker(harrisonWellYeild, 'blue'),
           title: 'Harrison Well'
         });
+
+        function addrToLatLong(address, pfcLevel, shortName) {
+
+          var geocoder = new google.maps.Geocoder();
+
+          geocoder.geocode( { 'address': address}, function(results, status) {
+
+            if (status == google.maps.GeocoderStatus.OK) {
+              // Introduce some variability into the lat & long to avoid bullseye effect
+              var jitter = Math.random() / 1000;
+
+              var latitude;
+              var longitude;
+
+              if (jitter % 2 === 0) {
+                latitude = results[0].geometry.location.lat() + jitter;
+                longitude = results[0].geometry.location.lng() - jitter;
+              }
+              else {
+                latitude = results[0].geometry.location.lat() - jitter;
+                longitude = results[0].geometry.location.lng() + jitter;  
+              }
+
+              //console.log(latitude + ", " + longitude)
+
+              var loc = new google.maps.Marker({
+                position: {lat: latitude, lng: longitude},
+                map: map,
+                icon: getMarker(pfcLevel, 'orange'),
+                title: shortName + ": " + pfcLevel
+              });
+
+            } 
+          }); 
+        }
 
         function getMarker(size, color) {
           var diameter;
@@ -208,7 +213,7 @@
         }).resize();
 
 
-
+        /*
         map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
           document.getElementById('legend'));
 
@@ -221,6 +226,7 @@
         legend.innerHTML = content.join('');
         legend.index = 1;
         map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
+        */
       }
 
     </script>
