@@ -1411,3 +1411,17 @@ INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 10, '16-Jul-14', 0, null
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 10, '24-Jul-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 10, '12-Dec-14', 0, null);
 INSERT INTO tbWellSample VALUES (seq_sample.nextval, 5, 10, '16-Jun-15', 0, null);
+
+
+/* SELECT Statments on new tables */
+SELECT * FROM tbChemical;
+SELECT * FROM tbExposureType;
+SELECT * FROM tbStudy;
+SELECT * FROM tbWellType;
+SELECT * FROM tbWell;
+SELECT * FROM tbPerson;
+SELECT * FROM tbAddress;
+SELECT * FROM tbStudyPFCLevel WHERE ROWNUM <= 10;
+SELECT * FROM tbPersonPFCLevel WHERE ROWNUM <= 10;
+SELECT * FROM tbSampleNote;
+SELECT * FROM tbWellSample WHERE ROWNUM <= 10;
