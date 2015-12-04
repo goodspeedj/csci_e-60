@@ -298,14 +298,14 @@ INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0009', 56, 3, 'M');
 INSERT INTO tbAddress VALUES (seq_address.nextval, 1, '325 Corporate Drive Portsmouth, NH  03801');
 INSERT INTO tbAddress VALUES (seq_address.nextval, 2, '81 New Hampshire Avenue Portsmouth, NH 03801');
 INSERT INTO tbAddress VALUES (seq_address.nextval, 3, '81 New Hampshire Avenue Portsmouth, NH 03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 4, '81 New Hampshire Avenue Portsmouth, NH 03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 5, '81 New Hampshire Avenue Portsmouth, NH 03801');
+INSERT INTO tbAddress VALUES (seq_address.nextval, 4, '30 Rye Streed Portsmouth, NH 03801');
+INSERT INTO tbAddress VALUES (seq_address.nextval, 5, '30 Rye Street Portsmouth, NH 03801');
 INSERT INTO tbAddress VALUES (seq_address.nextval, 6, '81 New Hampshire Avenue Portsmouth, NH 03801');
 INSERT INTO tbAddress VALUES (seq_address.nextval, 7, '325 Corporate Drive Portsmouth, NH  03801');
 INSERT INTO tbAddress VALUES (seq_address.nextval, 8, '325 Corporate Drive Portsmouth, NH  03801');
 INSERT INTO tbAddress VALUES (seq_address.nextval, 9, '101 International Drive Portsmouth, NH  03801');
 INSERT INTO tbAddress VALUES (seq_address.nextval, 10, '101 International Drive Portsmouth, NH  03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 11, '101 International Drive Portsmouth, NH  03801');
+INSERT INTO tbAddress VALUES (seq_address.nextval, 11, '161 Corporate Drive Portsmouth, NH  03801');
 /* person PFC level table */
 INSERT INTO tbPersonPFCLevel VALUES (1, 1, 2.6);
 INSERT INTO tbPersonPFCLevel VALUES (1, 2, 12.7);
