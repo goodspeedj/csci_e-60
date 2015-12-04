@@ -20,154 +20,155 @@
 
         <cfif IsDefined("Form.addParticipant")>
 
+          <cftransaction>
+            <cfquery name="addPerson"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPerson
+                VALUES (
+                  seq_person.nextval, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.nhHHSID#">, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.age#">, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.yearsExposed#">,
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.sex#">
+                )
+            </cfquery>
 
-          <cfquery name="addPerson"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPerson
-              VALUES (
-                seq_person.nextval, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.nhHHSID#">, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.age#">, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.yearsExposed#">,
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.sex#">
-              )
-          </cfquery>
+            <cfquery name="addPersonAddress"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbAddress
+                VALUES (
+                  seq_address.nextval,
+                  seq_person.currval, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.address# Portsmouth, NH  03801">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonAddress"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbAddress
-              VALUES (
-                seq_address.nextval,
-                seq_person.currval, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.address# Portsmouth, NH  03801">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFOS"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  1, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel1#">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonPFOS"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                1, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel1#">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFOA"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  2, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel2#">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonPFOA"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                2, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel2#">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFHxS"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  3, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel3#">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonPFHxS"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                3, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel3#">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFUA"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  4, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel4#">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonPFUA"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                4, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel4#">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFOSA"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  5, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel5#">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonPFOSA"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                5, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel5#">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFNA"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  6, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel6#">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonPFNA"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                6, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel6#">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFDeA"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  7, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel7#">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonPFDeA"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                7, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel7#">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFPeA"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  8, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel8#">
+                )
+            </cfquery>
 
-          <cfquery name="addPersonPFPeA"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                8, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel8#">
-              )
-          </cfquery>
-
-          <cfquery name="addPersonPFHxA"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            INSERT INTO tbPersonPFCLevel
-              VALUES (
-                seq_person.currval, 
-                9, 
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#Form.pfcLevel9#">
-              )
-          </cfquery>
+            <cfquery name="addPersonPFHxA"
+                     datasource="#Request.DSN#"
+                     username="#Request.username#"
+                     password="#Request.password#">
+              INSERT INTO tbPersonPFCLevel
+                VALUES (
+                  seq_person.currval, 
+                  9, 
+                  <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                    value="#Form.pfcLevel9#">
+                )
+            </cfquery>
+          </cftransaction>
           <cflocation url="individualdata.cfm">
         <cfelse>
 
