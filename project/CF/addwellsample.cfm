@@ -138,7 +138,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/formValidation/formValidation.min.js"></script>
     <script src="js/formValidation/bootstrap.min.js"></script>
-    <script src="js/bootstrap-datepicker.min.js"></script>
+    <script src="js/bootstrap-datepicker3.min.js"></script>
 
     <script>
     $(document).ready(function() {
