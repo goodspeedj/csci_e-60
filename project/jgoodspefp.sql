@@ -237,8 +237,8 @@ CREATE sequence seq_studypfclevel
 /* chemical table */
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFOA', 'Perfluorooctanoic acid', .4);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFOS', 'Perfluorooctanesulfonic acid', .2);
-INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFHxS', 'Perfluorohexanesulphonic acid', 1.1);
-INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFUA', 'Perfluoroundecanoic acid', .09);
+INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFHxS', 'Perfluorohexanesulphonic acid', null);
+INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFUA', 'Perfluoroundecanoic acid', null);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFOSA', 'Perfluorooctane sulfonamide', null);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFNA', 'Perfluorononanoic acid', null);
 INSERT INTO tbChemical VALUES (seq_chemical.nextval, 'PFDeA', 'Perfluorodecanoic acid', null);
