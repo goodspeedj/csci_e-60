@@ -75,7 +75,7 @@
                              </cfif>  
                            </cfoutput>
                          </select>
-                <p><br /><strong>Number of Participants:</strong> <cfoutput>#getPersonRecord.participants#</cfoutput></p>
+                <p><br /><strong>Number of Study Participants:</strong> <cfoutput>#getPersonRecord.participants#</cfoutput></p>
                 <p><strong>Exposure Type:</strong> <cfoutput>#getPersonRecord.exposureType#</cfoutput></p>
                 <p>&nbsp;</p>
                 <button type="submit" name="update" class="btn btn-primary">Update</button>
