@@ -23,7 +23,7 @@
                  datasource="#Request.DSN#"
                  username="#Request.username#"
                  password="#Request.password#">
-          SELECT wellID, wellName 
+          SELECT wellID, wellName
             FROM tbWell
             NATURAL JOIN tbWellType
             WHERE wellType = 'Well'
@@ -34,7 +34,7 @@
                  username="#Request.username#"
                  password="#Request.password#">
           SELECT * FROM 
-            (SELECT sampleDate, wellID, shortName, pfcLevel 
+            (SELECT sampleDate, wellID, shortName, pfcLevel
               FROM tbWellSample NATURAL JOIN tbChemical) 
             PIVOT 
               (MAX(pfcLevel) FOR shortName IN ('PFOA', 'PFOS', 'PFHxS', 'PFUA', 'PFOSA', 'PFNA', 'PFDeA', 'PFPeA', 'PFHxA', 'PFBA')) 
@@ -42,6 +42,15 @@
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                   value="#wellID#">
             ORDER BY sampleDate DESC
+        </cfquery>
+
+        <cfquery name="getWellStatus"
+                 datasource="#Request.DSN#"
+                 username="#Request.username#"
+                 password="#Request.password#">
+          SELECT wellActive FROM tbWell WHERE wellID = 
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#wellID#">
         </cfquery>
 
         <cfform id="selectWell" action="welldata.cfm" method="post" class="form-inline">
@@ -68,6 +77,15 @@
         <p>&nbsp;</p>
 
         <cfoutput>
+
+        <p><Strong>Well Status: </Strong>
+          <cfif #getWellStatus.wellActive# eq 'Y'>
+            Active
+          <cfelse>
+            Shutdown
+          </cfif>
+        </p>
+
 
         <!-- Following code based on: http://stackoverflow.com/questions/33876129/displaying-results-from-pivot-query-in-coldfusion/33877746 -->
 
