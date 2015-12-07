@@ -35,7 +35,8 @@
                    username="#Request.username#"
                    password="#Request.password#">
             SELECT chemID, shortName
-            FROM tbChemical
+              FROM tbChemical 
+              WHERE chemID NOT IN (4, 7)
           </cfquery>
 
           <cfquery name="getHavenSamples"

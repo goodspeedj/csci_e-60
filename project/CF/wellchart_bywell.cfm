@@ -82,20 +82,6 @@
               AND chemID = 3
           </cfquery>
 
-          <cfquery name="getPFUASamples"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            SELECT sampleDate, wellID, wellName, shortName, pfcLevel
-              FROM tbWellSample
-              NATURAL JOIN tbWell
-              NATURAL JOIN tbChemical
-              WHERE wellID = 
-              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#wellID#">
-              AND chemID = 4
-          </cfquery>
-
           <cfquery name="getPFOSASamples"
                    datasource="#Request.DSN#"
                    username="#Request.username#"
@@ -122,20 +108,6 @@
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                   value="#wellID#">
               AND chemID = 6
-          </cfquery>
-
-          <cfquery name="getPFDeASamples"
-                   datasource="#Request.DSN#"
-                   username="#Request.username#"
-                   password="#Request.password#">
-            SELECT sampleDate, wellID, wellName, shortName, pfcLevel
-              FROM tbWellSample
-              NATURAL JOIN tbWell
-              NATURAL JOIN tbChemical
-              WHERE wellID = 
-              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#wellID#">
-              AND chemID = 7
           </cfquery>
 
           <cfquery name="getPFPeASamples"
@@ -243,12 +215,6 @@
                           seriesLabel="PFHxS">
 
             <cfchartseries type="line"
-                          query="getPFUASamples"
-                          valueColumn="pfcLevel"
-                          itemColumn="smpDate"
-                          seriesLabel="PFUA">
-
-            <cfchartseries type="line"
                           query="getPFOSASamples"
                           valueColumn="pfcLevel"
                           itemColumn="smpDate"
@@ -259,12 +225,6 @@
                           valueColumn="pfcLevel"
                           itemColumn="smpDate"
                           seriesLabel="PFNA">
-
-            <cfchartseries type="line"
-                          query="getPFDeASamples"
-                          valueColumn="pfcLevel"
-                          itemColumn="smpDate"
-                          seriesLabel="PFDeA">
 
             <cfchartseries type="line"
                           query="getPFPeASamples"
