@@ -231,6 +231,22 @@ CREATE sequence seq_studypfclevel
 
 
 -- ******************************************************
+--    CREATE TRIGGER - Fulfiling trigger requirement 
+-- ******************************************************
+CREATE OR REPLACE TRIGGER TR_new_addressID_IN
+   BEFORE INSERT ON tbAddress
+   FOR EACH ROW
+
+   BEGIN
+      SELECT seq_address.nextval
+           into :new.addressID
+            FROM dual;
+   END TR_new_addressID_IN;
+.
+/
+
+
+-- ******************************************************
 --    POPULATE TABLES
 -- ******************************************************
 
@@ -295,17 +311,18 @@ INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0008', 29, 10, 'M');
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0009', 56, 3, 'M');
 
 /* address table */
-INSERT INTO tbAddress VALUES (seq_address.nextval, 1, '325 Corporate Drive Portsmouth, NH  03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 2, '81 New Hampshire Avenue Portsmouth, NH 03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 3, '81 New Hampshire Avenue Portsmouth, NH 03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 4, '30 Rye Streed Portsmouth, NH 03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 5, '30 Rye Street Portsmouth, NH 03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 6, '81 New Hampshire Avenue Portsmouth, NH 03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 7, '325 Corporate Drive Portsmouth, NH  03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 8, '325 Corporate Drive Portsmouth, NH  03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 9, '101 International Drive Portsmouth, NH  03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 10, '101 International Drive Portsmouth, NH  03801');
-INSERT INTO tbAddress VALUES (seq_address.nextval, 11, '161 Corporate Drive Portsmouth, NH  03801');
+INSERT INTO tbAddress (personID, address) VALUES (1, '325 Corporate Drive Portsmouth, NH  03801');
+INSERT INTO tbAddress (personID, address) VALUES (2, '81 New Hampshire Avenue Portsmouth, NH 03801');
+INSERT INTO tbAddress (personID, address) VALUES (3, '81 New Hampshire Avenue Portsmouth, NH 03801');
+INSERT INTO tbAddress (personID, address) VALUES (4, '30 Rye Streed Portsmouth, NH 03801');
+INSERT INTO tbAddress (personID, address) VALUES (5, '30 Rye Street Portsmouth, NH 03801');
+INSERT INTO tbAddress (personID, address) VALUES (6, '81 New Hampshire Avenue Portsmouth, NH 03801');
+INSERT INTO tbAddress (personID, address) VALUES (7, '325 Corporate Drive Portsmouth, NH  03801');
+INSERT INTO tbAddress (personID, address) VALUES (8, '325 Corporate Drive Portsmouth, NH  03801');
+INSERT INTO tbAddress (personID, address) VALUES (9, '101 International Drive Portsmouth, NH  03801');
+INSERT INTO tbAddress (personID, address) VALUES (10, '101 International Drive Portsmouth, NH  03801');
+INSERT INTO tbAddress (personID, address) VALUES (11, '161 Corporate Drive Portsmouth, NH  03801');
+
 /* person PFC level table */
 INSERT INTO tbPersonPFCLevel VALUES (1, 1, 2.6);
 INSERT INTO tbPersonPFCLevel VALUES (1, 2, 12.7);

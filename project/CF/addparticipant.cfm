@@ -44,8 +44,8 @@
                      username="#Request.username#"
                      password="#Request.password#">
               INSERT INTO tbAddress
+                (personID, address) 
                 VALUES (
-                  seq_address.nextval,
                   seq_person.currval, 
                   <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                     value="#Form.address# Portsmouth, NH  03801">
