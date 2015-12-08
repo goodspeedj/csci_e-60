@@ -51,11 +51,11 @@
                     ORDER BY sampleDate
                 ) a 
                 WHERE rownum < (
-                  (3 * 10) + 1
+                  (1 * 300) + 1
                 )
             ) 
             WHERE r >= (
-              ((3-1) * 10) + 1
+              ((1-1) * 300) + 1
             )
           </cfquery>
 
@@ -82,7 +82,7 @@
 
         <p>&nbsp;</p>
 
-        <div id="pager"></div>
+        <!-- <div id="pager"></div> -->
 
           <table class="table table-striped">
             <tr>
@@ -227,9 +227,22 @@
     <script>
         // init bootpag
         $('#pager').bootpag({
-            total: 10
-        }).on("page", function(event, /* page number here */ num){
-             $("#content").html("Insert content"); // some ajax content loading...
+            total: 10,
+            page: 1
+        }).on("page", function(event, num){
+             console.log(num);
+             $.ajax({
+                url: "pager.cfc",
+                type: "post",
+                dataType: "json",
+                data: {
+                  method: "updatePage",
+                  page: num
+                },
+                success: function (data) {
+
+                }
+             });
         });
     </script>
 
