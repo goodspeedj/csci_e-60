@@ -37,7 +37,7 @@
             (SELECT sampleDate, wellID, shortName, pfcLevel
               FROM tbWellSample NATURAL JOIN tbChemical) 
             PIVOT 
-              (MAX(pfcLevel) FOR shortName IN ('PFOA', 'PFOS', 'PFHxS', 'PFUA', 'PFOSA', 'PFNA', 'PFDeA', 'PFPeA', 'PFHxA', 'PFBA')) 
+              (MAX(pfcLevel) FOR shortName IN ('PFOA', 'PFOS', 'PFHxS', 'PFOSA', 'PFNA', 'PFPeA', 'PFHxA', 'PFBA')) 
               WHERE wellId = 
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                   value="#wellID#">
