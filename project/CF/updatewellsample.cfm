@@ -37,14 +37,26 @@
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT sampleID, wellID, sampleDate, shortName, pfcLevel 
-              FROM tbWellSample 
-              NATURAL JOIN  tbWell 
-              NATURAL JOIN tbChemical 
-              WHERE wellID =
-              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#wellID#">
-              ORDER BY sampleDate DESC
+            SELECT * 
+            FROM ( 
+              SELECT a.*, rownum r 
+                FROM ( 
+                  SELECT sampleID, wellID, sampleDate, shortName, pfcLevel 
+                    FROM tbWellSample 
+                    NATURAL JOIN  tbWell 
+                    NATURAL JOIN tbChemical
+                    WHERE wellID = 
+                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                      value="#wellID#">
+                    ORDER BY sampleDate
+                ) a 
+                WHERE rownum < (
+                  (3 * 10) + 1
+                )
+            ) 
+            WHERE r >= (
+              ((3-1) * 10) + 1
+            )
           </cfquery>
 
           <cfform id="selectWell" action="updatewellsample.cfm" method="post" class="form-inline">
@@ -69,6 +81,8 @@
         </cfform>
 
         <p>&nbsp;</p>
+
+        <div id="pager"></div>
 
           <table class="table table-striped">
             <tr>
@@ -208,7 +222,16 @@
     <script src="js/formValidation/formValidation.min.js"></script>
     <script src="js/formValidation/bootstrap.min.js"></script>
     <script src="js/bootstrap-datepicker3.min.js"></script>
+    <script src="js/jquery.bootpag.min.js"></script>
 
+    <script>
+        // init bootpag
+        $('#pager').bootpag({
+            total: 10
+        }).on("page", function(event, /* page number here */ num){
+             $("#content").html("Insert content"); // some ajax content loading...
+        });
+    </script>
 
     <script>
     $(document).ready(function() {
