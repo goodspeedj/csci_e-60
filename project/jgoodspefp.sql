@@ -55,6 +55,7 @@ DROP sequence seq_studypfclevel;
 -- ******************************************************
 
 
+/* Table to store the different PFC chemicals present in the wells and blood samples */
 CREATE table tbChemical (
         chemID          number(11,0)            not null
             constraint pk_chemical primary key,
@@ -65,6 +66,7 @@ CREATE table tbChemical (
 );
 
 
+/* Refrence table to store the type of exposure a given study looked at */
 CREATE table tbExposureType (
         exposureID        number(11,0)          not null
             constraint pk_exposureType primary key,
@@ -72,19 +74,21 @@ CREATE table tbExposureType (
 );
 
 
+/* Table to store the different studies on PFCs */
 CREATE table tbStudy (
         studyID         number(11,0)            not null
             constraint pk_study primary key,
+        exposureID      number(11,0)            not null
+            constraint fk_exposureID_tbStudy references tbExposureType (exposureID) on delete set null,
         studyName            varchar2(30)       not null,
         studyStartDate       date               not null,
         studyEndDate         date               not null,
         participants    number(11,0)            not null
-            constraint  rg_participants check (participants >= 0),
-        exposureID      number(11,0)            not null
-            constraint fk_exposureID_tbStudy references tbExposureType (exposureID) on delete set null
+            constraint  rg_participants check (participants >= 0)
 );
 
 
+/* Reference table for the type of well - well or distribution point */
 CREATE table tbWellType (
         wellTypeID      number(11,0)            not null
             constraint pk_welltype primary key,
@@ -92,6 +96,7 @@ CREATE table tbWellType (
 );
 
 
+/* Table to store data on the different Pease wells */
 CREATE table tbWell (
         wellID          number(11,0)            not null
             constraint pk_well primary key,
@@ -107,6 +112,7 @@ CREATE table tbWell (
 );
 
 
+/* Table to store information about people who have had their blood tested */
 CREATE table tbPerson (
         personID        number(11,0)            not null
             constraint pk_person primary key,
@@ -120,6 +126,8 @@ CREATE table tbPerson (
 );
 
 
+/* PFC data for the different studies in the tbStudy table.  Not all studies have the same data
+   points (e.g. some use median and some use mean) which is why those columns can be null */
 CREATE table tbStudyPFCLevel (
 	    studyPfcLevelID number(11,0)            not null
 	        constraint pk_studypfclevel primary key,
@@ -143,6 +151,7 @@ CREATE table tbStudyPFCLevel (
 );
 
 
+/* Table to store PFC information about people who have had their blood tested */
 CREATE table tbPersonPFCLevel (
         personID        number(11,0)            not null
             constraint  fk_personID_tbPersonPFCLevel references tbPerson (personID) on delete cascade,
@@ -154,6 +163,7 @@ CREATE table tbPersonPFCLevel (
 );
 
 
+/* Some well samples have 'notes' attached to them - reference table */
 CREATE table tbSampleNote (
         noteID          number(11,0)            not null
             constraint pk_samplenote primary key,
@@ -162,6 +172,7 @@ CREATE table tbSampleNote (
 );
 
 
+/* Table to store information about the ongoing well sampling */
 CREATE table tbWellSample (
         sampleID        number(11,0)            not null
             constraint pk_wellsample primary key,
@@ -177,6 +188,7 @@ CREATE table tbWellSample (
 );
 
 
+/* Table to store the location of where the people on Pease were exposed */
 CREATE table tbAddress (
         addressID        number(11,0)           not null
             constraint pk_address primary key,
@@ -268,16 +280,16 @@ INSERT INTO tbExposureType VALUES (seq_exposure.nextval, 'Environmental');
 INSERT INTO tbExposureType VALUES (seq_exposure.nextval, 'General Population');
 
 /* study table */
-INSERT INTO tbStudy VALUES (seq_study.nextval, '3M Workers (PFOS and PFOA)', '01-JAN-2000', '31-DEC-2000', 263, 1);
-INSERT INTO tbStudy VALUES (seq_study.nextval, '3M Workers (PFHxS)', '01-JAN-2004', '31-DEC-2004', 26, 1);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'Dupont Workers', '01-JAN-2004', '31-DEC-2004', 1025, 1);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'Ohio River Valley - C8', '01-JAN-2005', '31-DEC-2006', 69030, 2);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'Decatur, Alabama', '01-JAN-2009', '31-DEC-2009', 153, 2);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'East Metro Minnesota Pilot', '01-JAN-2008', '31-DEC-2009', 196, 2);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'Red Cross donors', '01-JAN-2006', '31-DEC-2006', 600, 3);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'NHANES 1', '01-JAN-2003', '31-DEC-2004', 2094, 3);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'NHANES 2', '01-JAN-2011', '31-DEC-2012', 1904, 3);
-INSERT INTO tbStudy VALUES (seq_study.nextval, 'Schecter', '01-JAN-2009', '31-DEC-2009', 300, 3);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 1, '3M Workers (PFOS and PFOA)', '01-JAN-2000', '31-DEC-2000', 263);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 1, '3M Workers (PFHxS)', '01-JAN-2004', '31-DEC-2004', 26);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 1, 'Dupont Workers', '01-JAN-2004', '31-DEC-2004', 1025);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 2, 'Ohio River Valley - C8', '01-JAN-2005', '31-DEC-2006', 69030);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 2, 'Decatur, Alabama', '01-JAN-2009', '31-DEC-2009', 153);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 2, 'East Metro Minnesota Pilot', '01-JAN-2008', '31-DEC-2009', 196);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 3, 'Red Cross donors', '01-JAN-2006', '31-DEC-2006', 600);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 3, 'NHANES 1', '01-JAN-2003', '31-DEC-2004', 2094);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 3, 'NHANES 2', '01-JAN-2011', '31-DEC-2012', 1904);
+INSERT INTO tbStudy VALUES (seq_study.nextval, 3, 'Schecter', '01-JAN-2009', '31-DEC-2009', 300);
 
 /* Well Type table */
 INSERT INTO tbWellType VALUES (seq_welltype.nextval, 'Well');
@@ -299,7 +311,7 @@ INSERT INTO tbSampleNote VALUES (seq_samplenote.nextval, 'D', 'duplicate sample'
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0576', 40, 13, 'M');
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0577', 4, 2, 'F');
 
-/* fake data */
+/* fake person data */
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0001', 4, 3, 'F');
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0002', 3, 1, 'M');
 INSERT INTO tbPerson VALUES (seq_person.nextval, 'PT0003', 1, 1, 'F');
@@ -343,7 +355,7 @@ INSERT INTO tbPersonPFCLevel VALUES (2, 7, .2);
 INSERT INTO tbPersonPFCLevel VALUES (2, 8, .6);
 INSERT INTO tbPersonPFCLevel VALUES (2, 9, .1);
 
-/* fake data */
+/* fake person PFC data */
 INSERT INTO tbPersonPFCLevel VALUES (3, 1, 9.2);
 INSERT INTO tbPersonPFCLevel VALUES (3, 2, 23.5);
 INSERT INTO tbPersonPFCLevel VALUES (3, 3, 9.8);
