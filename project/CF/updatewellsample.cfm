@@ -18,19 +18,57 @@
         <cfinclude template = "navbar.cfm">
 
         <cfif !IsDefined("Form.update") and !IsDefined("Form.updateWellSample") and !IsDefined("Form.deleteWellSample")>
+
+          <cfparam name="wellID" default="1" type="string">
+
           <h3>Well Sample Record Data</h3>
+
+          <cfquery name="getWells"
+                   datasource="#Request.DSN#"
+                   username="#Request.username#"
+                   password="#Request.password#">
+            SELECT wellID, wellName
+              FROM tbWell
+              NATURAL JOIN tbWellType
+              WHERE wellType = 'Well'
+          </cfquery>
 
           <cfquery name="getWellSamples"
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT sampleID, sampleDate, shortName, pfcLevel 
+            SELECT sampleID, wellID, sampleDate, shortName, pfcLevel 
               FROM tbWellSample 
               NATURAL JOIN  tbWell 
               NATURAL JOIN tbChemical 
-              WHERE wellID =1 
+              WHERE wellID =
+              <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
+                  value="#wellID#">
               ORDER BY sampleDate DESC
           </cfquery>
+
+          <cfform id="selectWell" action="updatewellsample.cfm" method="post" class="form-inline">
+
+          <div class="form-group">
+            <label for="wellID">Well Name</label>
+              <select name="wellID" class="form-control" aria-describedby="helpWell">
+                <cfoutput query="getWells">
+                 <cfif "#getWells.wellID#" neq "#getWellSamples.wellID#">
+                   <option value="#wellID#">#wellName#</option>
+                 <cfelse>
+                   <option value="#wellID#" selected>#wellName#</option>
+                 </cfif> 
+                </cfoutput> 
+              </select>
+          </div>
+
+          <div class="form-group">
+            <button type="submit" name="updateWell" class="btn btn-primary">Update</button>
+          </div>
+
+        </cfform>
+
+        <p>&nbsp;</p>
 
           <table class="table table-striped">
             <tr>
