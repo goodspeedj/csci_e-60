@@ -31,9 +31,9 @@
           <p>The active wells are shown with a blue circle and the inactive well, Haven, 
              is shown with a red circle.  The size of the circle represents the well's
              yeild in millions of gallons from 2002 to 2008.</p>
-          <p>The orage circles represent the people that were exposed to the PFCs from the
-             Pease wells.  The location of the circle represents where they were exposed 
-             and the size of the circle represents the levels of PFCs in their blood - 
+          <p>The orage circles represent the individuals that were exposed to the PFCs from the
+             Pease wells.  The location of the circle represents where the individual was exposed 
+             and the size of the circle represents the relative amount of PFCs in their blood - 
              the larger the circle the higher the levels of PFCs present.</p>
         </div>
         <div class="col-md-8">
