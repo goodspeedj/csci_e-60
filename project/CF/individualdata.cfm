@@ -22,16 +22,16 @@
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT nhHHSID FROM tbPerson WHERE nhHHSID =
+            SELECT nhHHSID FROM tbPerson WHERE nhHHSID = upper(
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#nhHHSID#">
+                  value="#nhHHSID#">)
           </cfquery>
 
           <cfquery name="getPersonRecord"
                    datasource="#Request.DSN#"
                    username="#Request.username#"
                    password="#Request.password#">
-            SELECT nhHHSID, age, adult, shortName, longname, pfcLevel,  pfcMin, pfcMax, 
+            SELECT upper(nhHHSID), age, adult, shortName, longname, pfcLevel,  pfcMin, pfcMax, 
               pfcMean, pfcGeoMean, pfcMedian, studyID, studyName, participants, exposureType
               FROM tbPerson
               NATURAL JOIN tbPersonPFCLevel
@@ -44,9 +44,9 @@
                   WHEN age < 18 
                   THEN 'N' ELSE 'Y' 
                 END)
-              AND nhHHSID =
+              AND nhHHSID = upper(
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
-                  value="#nhHHSID#">
+                  value="#nhHHSID#">)
               AND studyID =
               <cfqueryparam cfsqltype="CF_SQL_VARCHAR"
                   value="#studyID#">
