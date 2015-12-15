@@ -146,7 +146,7 @@
           <div class="form-group">
             <cfform action="individualdata.cfm" method="post" class="form-inline">
               <input name="nhHHSID" type="text" maxlength="6" class="formcontrol input-lg" size="20" placeholder="nhHHSID" aria-describedby="nhHHSIDHelp">
-              <span id="nhHHSIDHelp" class="help-block">nhHHSID Participant IDs can be found on your blood sample record.</span>
+              <span id="nhHHSIDHelp" class="help-block">nhHHSID Participant IDs can be found on your blood sample record (e.g. PT0576).</span>
               <input name="studyID" type="hidden" value="9">
               <button type="submit" name="search" class="btn btn-primary btn-lg">Search</button>
             </cfform>
