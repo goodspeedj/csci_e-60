@@ -60,26 +60,42 @@
           </cfquery>
 
           <h3>Individual Data</h3>
-            <div class="form-group">
-              <cfform action="individualdata.cfm" method="post" class="form-inline">
-              <cfoutput>
-                <strong>Participant:</strong> <cfinput class="form-control" name="nhHHSID" type="text" maxlength="6" size="8" value="#nhHHSID#">
-              </cfoutput>
-                <p>&nbsp;</p>
-                  <strong>Study:</strong> <select name="studyID" class="form-control">
-                           <cfoutput query="getStudies">
-                             <cfif "#getStudies.studyID#" neq "#getPersonRecord.studyID#">
-                               <option value="#studyID#">#studyName#</option>
-                             <cfelse>
-                               <option value="#studyID#" selected>#studyName#</option>
-                             </cfif>  
-                           </cfoutput>
-                         </select>
-                <p><br /><strong>Number of Study Participants:</strong> <cfoutput>#getPersonRecord.participants#</cfoutput></p>
-                <p><strong>Exposure Type:</strong> <cfoutput>#getPersonRecord.exposureType#</cfoutput></p>
-                <p>&nbsp;</p>
-                <button type="submit" name="update" class="btn btn-primary">Update</button>
-              </cfform>
+            <div class="col-md-5">
+              <div class="form-group">
+                <cfform action="individualdata.cfm" method="post" class="form-inline">
+                <cfoutput>
+                  <strong>Participant:</strong> <cfinput class="form-control" name="nhHHSID" type="text" maxlength="6" size="8" value="#nhHHSID#">
+                </cfoutput>
+                  <p>&nbsp;</p>
+                    <strong>Study:</strong> <select name="studyID" class="form-control">
+                             <cfoutput query="getStudies">
+                               <cfif "#getStudies.studyID#" neq "#getPersonRecord.studyID#">
+                                 <option value="#studyID#">#studyName#</option>
+                               <cfelse>
+                                 <option value="#studyID#" selected>#studyName#</option>
+                               </cfif>  
+                             </cfoutput>
+                           </select>
+                  <p><br /><strong>Number of Study Participants:</strong> <cfoutput>#getPersonRecord.participants#</cfoutput></p>
+                  <p><strong>Exposure Type:</strong> <cfoutput>#getPersonRecord.exposureType#</cfoutput></p>
+                  <p><strong>Participant Age:</strong> <cfoutput>#getPersonRecord.age#</cfoutput></p>
+                  <p><strong>Study Population: </strong>
+                    <cfif "#getPersonRecord.adult#" eq "Y">
+                      Adult
+                    <cfelse>
+                      Child
+                    </cfif>
+                  </p>
+                  <p>&nbsp;</p>
+                  <button type="submit" name="update" class="btn btn-primary">Update</button>
+                </cfform>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <p>The following table shows an individual's PFC blood levels (shaded in blue) compared to the selected studies levels.</p>
+              <p>Several of the studies only looked at either adults or children other studies looked at both adults and children.
+                 If an adult participant is selected and compared to a study only looking at children no results will be displayed and
+                 vice versa for child participants and adult studies.</p>
             </div>
             <p>&nbsp;</p>
           <table class="table table-striped">
@@ -145,7 +161,7 @@
           <h3>Type in your Participant ID number</h3>
           <div class="form-group">
             <cfform action="individualdata.cfm" method="post" class="form-inline">
-              <input name="nhHHSID" type="text" maxlength="6" class="formcontrol input-lg" size="20" placeholder="nhHHSID" aria-describedby="nhHHSIDHelp">
+              <input name="nhHHSID" type="text" maxlength="6" class="formcontrol input-lg" size="20" placeholder="e.g. PT0576" aria-describedby="nhHHSIDHelp">
               <span id="nhHHSIDHelp" class="help-block">nhHHSID Participant IDs can be found on your blood sample record (e.g. PT0576).</span>
               <input name="studyID" type="hidden" value="9">
               <button type="submit" name="search" class="btn btn-primary btn-lg">Search</button>
