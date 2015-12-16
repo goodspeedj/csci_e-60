@@ -50,6 +50,7 @@
                   <li><a href="welldata.cfm">Well Data</a></li>
                   <li><a href="individualdata.cfm">Individual Data</a></li>
                   <li><a href="map.cfm">Map</a></li>
+                  <li><a href="addparticipant.cfm">Admin</a></li>
                 </ul>
               </nav>
             </div>
